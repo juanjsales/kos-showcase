@@ -43,7 +43,7 @@ body { display: flex; flex-direction: column; position: relative; }
   color: #22d3ee; font-weight: 700; text-transform: uppercase;
 }
 
-/* PAINEL SUPERIOR FIXO SEM SOBREPOR O SITE (ALTURA 52PX, LARGURA 100%) */
+/* PAINEL SUPERIOR FIXO SEM SOBREPOR O SITE */
 .topbar {
   width: 100%; height: 52px; min-height: 52px; max-height: 52px;
   background: rgba(10, 16, 12, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -54,7 +54,6 @@ body { display: flex; flex-direction: column; position: relative; }
 
 .header-left { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
-/* SELETOR DE CLIENTES RESTAURADO */
 .client-select-wrap {
   display: flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--kos-border); padding: 3px 8px; border-radius: 8px; height: 34px;
@@ -63,7 +62,6 @@ body { display: flex; flex-direction: column; position: relative; }
 .client-select { background: transparent; border: none; color: #fff; font-family: inherit; font-weight: 700; font-size: 0.8rem; outline: none; cursor: pointer; }
 .client-select option { background: #0d150f; color: #fff; }
 
-/* SELETOR DE PROTÓTIPOS EM DROPDOWN DE ALTO CONTRASTE */
 .proto-dropdown-wrap {
   display: flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.6);
   border: 1.5px solid var(--kos-cyan); padding: 3px 8px; border-radius: 8px; height: 34px;
@@ -76,7 +74,7 @@ body { display: flex; flex-direction: column; position: relative; }
 }
 .proto-select option { background: #0d150f; color: #ffffff; font-weight: 700; padding: 6px; }
 
-/* CENTRO: NAVEGADOR DE PÍLULAS COM BOTÕES ANTERIOR E PRÓXIMO */
+/* CENTRO: NAVEGADOR DE PÍLULAS */
 .header-center { display: flex; align-items: center; justify-content: center; flex: 1; min-width: 0; overflow: hidden; gap: 4px; }
 
 .nav-step-btn {
@@ -106,7 +104,7 @@ body { display: flex; flex-direction: column; position: relative; }
 }
 .proto-badge-tag { font-size: 0.6rem; padding: 1px 5px; border-radius: 4px; background: rgba(0, 0, 0, 0.35); font-weight: 900; }
 
-/* CONTROLES RESTAURADOS À DIREITA */
+/* CONTROLES À DIREITA */
 .header-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .device-btn-group { display: flex; gap: 2px; background: rgba(0, 0, 0, 0.5); padding: 2px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); }
 .dev-btn { background: transparent; border: none; color: var(--kos-muted); padding: 3px 8px; height: 28px; border-radius: 4px; font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: var(--tr); white-space: nowrap; }
@@ -122,7 +120,7 @@ body { display: flex; flex-direction: column; position: relative; }
 .btn-action.primary { background: var(--kos-cyan); color: #000; border: none; font-weight: 900; }
 .btn-action.primary:hover { background: #06b6d4; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4); }
 
-/* MAIN STAGE DA TELA (PERFEITAMENTE CENTRALIZADO E COM 100% DE LARGURA) */
+/* MAIN STAGE */
 .stage {
   width: 100%; height: calc(100vh - 52px); display: flex; justify-content: center; align-items: center;
   background: #030504; padding: 0; margin: 0 auto; position: relative; overflow: hidden; gap: 10px; box-sizing: border-box;
@@ -134,7 +132,6 @@ body { display: flex; flex-direction: column; position: relative; }
   position: relative; flex: 1;
 }
 
-/* SIMULAÇÃO DE DISPOSITIVOS */
 .iframe-wrapper.laptop { max-width: 1180px; height: 96%; border-radius: 18px; border: 10px solid #1a1a1a; margin: 0 auto; }
 .iframe-wrapper.tablet { max-width: 768px; height: 96%; border-radius: 24px; border: 12px solid #1a1a1a; margin: 0 auto; }
 .iframe-wrapper.mobile { max-width: 380px; height: 800px; max-height: 96%; border-radius: 36px; border: 10px solid #1a1a1a; position: relative; margin: 0 auto; }
@@ -185,9 +182,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
 </head>
 <body>
 
-<!-- PAINEL SUPERIOR SEM QUALQUER DESLOCAMENTO OU SOBREPOSIÇÃO -->
 <header class="topbar">
-  <!-- ESQUERDA: LOGO KOS + CLIENTES + PROTÓTIPOS -->
   <div class="header-left">
     <a href="#" class="kos-brand-logo">
       <div class="kos-brand-main">
@@ -209,18 +204,16 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
     </div>
   </div>
 
-  <!-- CENTRO: ATALHOS EM PÍLULAS DAS 10 OPÇÕES -->
   <div class="header-center">
     <button class="nav-step-btn" onclick="stepOption(-1)" title="Opção Anterior">◄ Anterior</button>
 
     <div class="proto-tabs" id="protoTabs">
-      <!-- Preenchido via JS com as 10 opções -->
+      <!-- Preenchido via JS -->
     </div>
 
     <button class="nav-step-btn" onclick="stepOption(1)" title="Próxima Opção">Próximo ►</button>
   </div>
 
-  <!-- DIREITA: FERRAMENTAS KOS -->
   <div class="header-right">
     <div class="device-btn-group">
       <button class="dev-btn active" onclick="setDevice('desktop', this)" title="PC Desktop">🖥️ PC</button>
@@ -251,7 +244,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </header>
 
-<!-- MAIN STAGE (100% LARGURA CENTRALIZADO SEM EMPURRAR PARA A ESQUERDA) -->
 <main class="stage" id="mainStage">
   <div class="iframe-wrapper" id="iframeWrapper">
     <iframe src="about:blank" id="prototypeFrame" title="Protótipo Principal KOS"></iframe>
@@ -265,7 +257,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </main>
 
-<!-- MODAL QR CODE -->
 <div class="modal-overlay" id="qrModal">
   <div class="modal-card">
     <button class="modal-close" onclick="closeQrModal()">×</button>
@@ -282,7 +273,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </div>
 
-<!-- GAVETA FEEDBACK -->
 <div class="feedback-drawer" id="feedbackDrawer">
   <div class="drawer-header">
     <div class="drawer-title">Aprovação do Protótipo</div>
@@ -311,7 +301,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
 
   <div style="margin-bottom: 18px;">
     <label style="display: block; font-size: 0.78rem; font-weight: 800; color: var(--kos-muted); margin-bottom: 6px;">Comentário Adicional (Opcional):</label>
-    <textarea id="fbComment" style="width: 100%; height: 85px; background: rgba(0,0,0,0.4); border: 1px solid var(--kos-cyan); border-radius: 10px; padding: 12px; color: var(--white); font-family: inherit; font-size: 0.85rem; outline: none;" placeholder="Ex: Gostei muito da Opção H..."></textarea>
+    <textarea id="fbComment" style="width: 100%; height: 85px; background: rgba(0,0,0,0.4); border: 1px solid var(--kos-cyan); border-radius: 10px; padding: 12px; color: var(--white); font-family: inherit; font-size: 0.85rem; outline: none;" placeholder="Ex: Gostei muito da Opção J OneScreen..."></textarea>
   </div>
 
   <button onclick="sendFeedbackWsp('Aprovado')" class="btn-action primary" style="width: 100%; justify-content: center; padding: 14px; margin-bottom: 10px; font-size: 0.9rem;">
@@ -376,12 +366,12 @@ function loadClient(clientId, targetProtoId = null) {
 }
 
 function getShortTitle(fullTitle) {
+  if (fullTitle.includes('OneScreen')) return 'OneScreen ⚡';
   if (fullTitle.includes('Mouse-Driven')) return 'Mouse 3D';
   if (fullTitle.includes('Lotus Glow')) return 'Lótus Nude';
   if (fullTitle.includes('Bio-Reset')) return 'Bio-Reset 30D';
   if (fullTitle.includes('Official Card')) return 'Cartão Oficial';
   if (fullTitle.includes('Golden Hour')) return 'VIP Luxury';
-  if (fullTitle.includes('Executive')) return 'Executivo';
   if (fullTitle.includes('Health Hub')) return 'Health Hub';
   if (fullTitle.includes('Wellness')) return 'Luxury';
   if (fullTitle.includes('Performance')) return 'Performance';
