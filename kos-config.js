@@ -27,6 +27,22 @@ const KOS_HUB_CONFIG = {
       description: "Modelos de site para clínica de nutrição da Dra. Silvia de Oliveira Lemos.",
       prototypes: [
         {
+          id: "op-d",
+          title: "Opção D — Official Card & Botanical Line-Art",
+          subtitle: "Verde Sage • Linhas Orgânicas • Logo Frutas & Estilo Cartão Oficial",
+          badge: "Novo (Cartão Oficial)",
+          badgeColor: "#92a988",
+          url: "clientes/silvia-nutri/opcao-d.html"
+        },
+        {
+          id: "op-e",
+          title: "Opção E — Sage Minimalist & Health Hub",
+          subtitle: "Verde Floresta • Calculadora IMC • Glassmorphism",
+          badge: "Novo (Health Hub)",
+          badgeColor: "#b3c8a7",
+          url: "clientes/silvia-nutri/opcao-e.html"
+        },
+        {
           id: "op-a",
           title: "Opção A — Wellness & Clinical Luxury",
           subtitle: "Verde Floresta • Dourado • Estilo Editorial Sophisticated",

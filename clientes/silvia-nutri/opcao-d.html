@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opção D — SOL Botanical & Fruit Line-Art · Dra. Silvia Oliveira Nutricionista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage-light: #a4ba9a;
+  --sage-bg: #92a988;
+  --sage-grad: linear-gradient(135deg, #abbf9f 0%, #8ca481 100%);
+  --forest-dark: #203528;
+  --forest-card: #182a1f;
+  --forest-deep: #122117;
+  --cream: #eef4e5;
+  --cream-dim: #c5d4b8;
+  --text-dark: #192b20;
+  --border-sage: rgba(164, 186, 154, 0.3);
+  --border-forest: rgba(238, 244, 229, 0.15);
+  --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.25);
+  --tr: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--forest-dark); color: var(--cream); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; line-height: 1.7; }
+
+/* HEADER SAGE & FOREST */
+.hdr {
+  position: fixed; top: 0; left: 0; right: 0; height: 90px;
+  background: rgba(24, 42, 31, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-forest); padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between; z-index: 1000;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.brand-logo-svg { width: 52px; height: 42px; color: var(--sage-light); flex-shrink: 0; }
+.brand-text { display: flex; flex-direction: column; }
+.brand-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--cream); letter-spacing: 0.5px; line-height: 1.1; }
+.brand-sub { font-size: 0.8rem; font-weight: 500; color: var(--sage-light); letter-spacing: 1px; }
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { color: var(--cream-dim); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; transition: var(--tr); }
+.nav-links a:hover { color: var(--sage-light); }
+
+.btn-sage {
+  background: var(--sage-light); color: var(--forest-dark); font-weight: 800; font-size: 0.82rem;
+  letter-spacing: 1px; padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: var(--tr);
+  box-shadow: 0 6px 20px rgba(164, 186, 154, 0.3); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+}
+.btn-sage:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(238, 244, 229, 0.4); }
+
+/* HERO INSPIRADO NO CARTÃO OFICIAL */
+.hero {
+  min-height: 100vh; padding: 130px 5% 80px; max-width: 1350px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+
+/* LADO ESQUERDO: VERDE SAGE COM FOTO EM CÍRCULO E DECORAÇÃO ORGÂNICA */
+.hero-left-card {
+  background: var(--sage-grad); border-radius: 36px; padding: 50px 40px; color: var(--text-dark);
+  position: relative; overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+
+/* LINHAS ORGÂNICAS SQUIGGLE DECORATIVAS */
+.hero-left-card::before {
+  content: ''; position: absolute; top: -30px; left: -30px; width: 180px; height: 180px;
+  border: 1.5px solid rgba(25, 43, 32, 0.25); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  pointer-events: none;
+}
+.hero-left-card::after {
+  content: ''; position: absolute; bottom: -40px; right: -40px; width: 220px; height: 220px;
+  border: 1.5px solid rgba(25, 43, 32, 0.2); border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%;
+  pointer-events: none;
+}
+
+.hero-avatar-circle {
+  width: 230px; height: 230px; border-radius: 50%; overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.4); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); margin-bottom: 24px;
+}
+.hero-avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero-card-brand {
+  margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.hero-card-brand svg { width: 60px; height: 40px; color: var(--forest-dark); }
+.hero-card-name { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--forest-dark); line-height: 1.1; }
+.hero-card-sub { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); opacity: 0.85; }
+
+/* LADO DIREITO: INFORMAÇÕES E CTAS ESTILO FICHA DA CLINICA */
+.hero-right-info { padding-left: 20px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px; background: rgba(164, 186, 154, 0.15);
+  border: 1px solid var(--sage-light); color: var(--sage-light); font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+}
+h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 3.8rem);
+  font-weight: 600; line-height: 1.15; margin-bottom: 20px; color: var(--cream);
+}
+h1 em { font-style: italic; color: var(--sage-light); font-weight: 400; }
+
+.hero-contact-list { display: flex; flex-direction: column; gap: 18px; margin: 30px 0 40px; }
+.contact-item { display: flex; align-items: center; gap: 16px; font-size: 1rem; color: var(--cream); }
+.contact-icon-badge {
+  width: 44px; height: 44px; background: rgba(164, 186, 154, 0.15); border: 1px solid var(--border-sage);
+  border-radius: 14px; color: var(--sage-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+}
+
+.specialties-badge {
+  font-size: 0.92rem; color: var(--sage-light); font-weight: 600; background: rgba(24, 42, 31, 0.8);
+  padding: 12px 20px; border-radius: 16px; border: 1px solid var(--border-sage); margin-bottom: 30px; display: inline-block;
+}
+
+/* SEÇÕES COMUNS */
+.sec { padding: 110px 5%; max-width: 1300px; margin: 0 auto; }
+.sec-hdr { text-align: center; max-width: 680px; margin: 0 auto 60px; }
+.sec-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 10px; display: block; }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 600; color: var(--cream); }
+
+/* GRID DE ATENDIMENTO */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.card-botanical {
+  background: var(--forest-card); border-radius: 28px; padding: 40px 32px;
+  border: 1px solid var(--border-forest); transition: var(--tr); position: relative;
+}
+.card-botanical:hover { transform: translateY(-8px); border-color: var(--sage-light); box-shadow: var(--shadow-card); }
+.card-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--sage-light); opacity: 0.5; margin-bottom: 14px; }
+.card-h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--cream); margin-bottom: 14px; }
+.card-p { font-size: 0.92rem; color: var(--cream-dim); line-height: 1.7; }
+
+/* RECURSO INTERATIVO: MONTAR PRATO SAUDÁVEL */
+.plate-widget {
+  background: var(--forest-card); border: 1px solid var(--border-sage); border-radius: 32px;
+  padding: 50px 6%; margin-top: 40px; box-shadow: var(--shadow-card);
+}
+.plate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 30px; }
+.plate-visual {
+  width: 260px; height: 260px; border-radius: 50%; border: 6px solid var(--sage-light); margin: 0 auto;
+  position: relative; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2);
+}
+.plate-slice { position: absolute; font-size: 0.82rem; font-weight: 700; text-align: center; color: var(--cream); }
+.slice-salada { top: 30px; left: 30px; }
+.slice-proteina { bottom: 40px; left: 40px; color: var(--sage-light); }
+.slice-carbo { bottom: 40px; right: 40px; color: var(--cream-dim); }
+
+/* DEPOIMENTOS */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.testi-card { background: var(--forest-card); padding: 32px 26px; border-radius: 24px; border: 1px solid var(--border-forest); }
+.testi-text { font-size: 0.92rem; color: var(--cream-dim); font-style: italic; margin-bottom: 20px; line-height: 1.7; }
+.testi-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.1rem; color: var(--sage-light); }
+
+/* FOOTER */
+footer { background: var(--forest-deep); border-top: 1px solid var(--border-forest); padding: 75px 5% 35px; margin-top: 100px; }
+.ftr-flex { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 50px; border-bottom: 1px solid var(--border-forest); }
+.ftr-col h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--sage-light); margin-bottom: 20px; }
+.ftr-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: var(--cream-dim); }
+.ftr-col ul a { color: var(--cream-dim); text-decoration: none; transition: var(--tr); }
+.ftr-col ul a:hover { color: var(--sage-light); }
+
+.wsp-float {
+  position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px;
+  background: var(--sage-light); color: var(--forest-dark); border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 10px 25px rgba(164, 186, 154, 0.4);
+  text-decoration: none; z-index: 999; transition: var(--tr); font-weight: 800;
+}
+.wsp-float:hover { transform: scale(1.1); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .hero, .plate-grid { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
+  .hero-right-info { padding-left: 0; }
+  .grid-3, .testi-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="#" class="brand">
+    <svg class="brand-logo-svg" viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M 25 35 C 20 25, 35 15, 55 22 C 45 28, 30 35, 25 35 Z" />
+      <path d="M 45 42 C 38 32, 52 24, 60 30 C 68 24, 82 32, 75 42 C 70 50, 50 50, 45 42 Z" />
+      <path d="M 60 25 Q 62 20 66 18" />
+      <circle cx="82" cy="32" r="5" />
+      <circle cx="91" cy="30" r="5" />
+      <circle cx="86" cy="39" r="5" />
+      <circle cx="95" cy="37" r="5" />
+      <circle cx="90" cy="46" r="5" />
+      <circle cx="35" cy="44" r="7" />
+    </svg>
+    <div class="brand-text">
+      <div class="brand-title">Silvia Oliveira</div>
+      <div class="brand-sub">nutricionista</div>
+    </div>
+  </a>
+
+  <nav class="nav-links">
+    <a href="#especialidades">Especialidades</a>
+    <a href="#prato">Prato Saudável</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta." target="_blank" class="btn-sage">
+    🌿 Agendar Consulta
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- LADO ESQUERDO: ESTILO CARTÃO OFICIAL COM VERDE SAGE E LINHAS ORGÂNICAS -->
+  <div class="hero-left-card reveal">
+    <div class="hero-avatar-circle">
+      <img src="assets/silvia-hero.jpg" alt="Dra. Silvia Oliveira Nutricionista">
+    </div>
+
+    <div class="hero-card-brand">
+      <svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M 25 35 C 20 25, 35 15, 55 22 C 45 28, 30 35, 25 35 Z" />
+        <path d="M 45 42 C 38 32, 52 24, 60 30 C 68 24, 82 32, 75 42 C 70 50, 50 50, 45 42 Z" />
+        <path d="M 60 25 Q 62 20 66 18" />
+        <circle cx="82" cy="32" r="5" />
+        <circle cx="91" cy="30" r="5" />
+        <circle cx="86" cy="39" r="5" />
+        <circle cx="95" cy="37" r="5" />
+        <circle cx="90" cy="46" r="5" />
+        <circle cx="35" cy="44" r="7" />
+      </svg>
+      <div class="hero-card-name">Silvia Oliveira</div>
+      <div class="hero-card-sub">nutricionista</div>
+    </div>
+  </div>
+
+  <!-- LADO DIREITO: FICHA TÉCNICA E CTAS -->
+  <div class="hero-right-info reveal" style="transition-delay: 0.15s;">
+    <div class="hero-tag">
+      📋 Entre em contato e mude sua alimentação!
+    </div>
+    <h1>Alimentação consciente &amp; <em>resultados reais.</em></h1>
+    
+    <div class="specialties-badge">
+      🌱 Clínica • Esportiva • Obesidade e Emagrecimento • Atendimento Online
+    </div>
+
+    <div class="hero-contact-list">
+      <div class="contact-item">
+        <div class="contact-icon-badge">📞</div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--sage-light); text-transform: uppercase; font-weight: 700;">Telefone / WhatsApp</div>
+          <div style="font-weight: 700; font-size: 1.1rem;">(21) 98738-5146</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon-badge">✉️</div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--sage-light); text-transform: uppercase; font-weight: 700;">E-mail</div>
+          <div>silviadeoliveira24.nutri@gmail.com</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon-badge">📷</div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--sage-light); text-transform: uppercase; font-weight: 700;">Instagram</div>
+          <div>@silviaoliveira_nutri</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Quero%20mudar%20minha%20alimenta%C3%A7%C3%A3o!" target="_blank" class="btn-sage" style="padding: 16px 36px; font-size: 0.9rem;">
+      💬 Falar no WhatsApp Agora
+    </a>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="sec" id="especialidades">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Áreas de Atuação</span>
+    <h2>Tratamento Nutricional Personalizado</h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="card-botanical reveal">
+      <div class="card-num">01</div>
+      <h3 class="card-h3">Nutrição Clínica</h3>
+      <p class="card-p">Tratamento focado na saúde intestinal, disposição diária, equilíbrio hormonal e ajuste de exames de sangue.</p>
+    </div>
+
+    <div class="card-botanical reveal" style="transition-delay: 0.1s;">
+      <div class="card-num">02</div>
+      <h3 class="card-h3">Nutrição Esportiva</h3>
+      <p class="card-p">Acompanhamento científico para otimizar seus treinos, hipertrofia muscular e queima eficiente de gordura.</p>
+    </div>
+
+    <div class="card-botanical reveal" style="transition-delay: 0.2s;">
+      <div class="card-num">03</div>
+      <h3 class="card-h3">Obesidade &amp; Emagrecimento</h3>
+      <p class="card-p">Estratégias de emagrecimento definitivo sem terrorismo nutricional, respeitando seus hábitos e rotina diária.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MONTAR PRATO SAUDÁVEL -->
+<section class="sec" id="prato">
+  <div class="plate-widget reveal">
+    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+      <span class="sec-tag">Conceito de Refeição Equilibrada</span>
+      <h2>A Regra do Prato Perfeito</h2>
+    </div>
+
+    <div class="plate-grid">
+      <div class="plate-visual">
+        <div class="plate-slice slice-salada">🥗 50% Vegetais &amp; Saladas</div>
+        <div class="plate-slice slice-proteina">🍗 25% Proteínas</div>
+        <div class="plate-slice slice-carbo">🍚 25% Carboidratos</div>
+      </div>
+
+      <div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--sage-light); margin-bottom: 16px;">Sem Proibições. Apenas Combinações Inteligentes.</h3>
+        <p style="color: var(--cream-dim); line-height: 1.8; margin-bottom: 20px;">
+          Na consulta com a Dra. Silvia Oliveira, você aprende como organizar o seu prato no dia a dia para comer de tudo com saúde e saciedade.
+        </p>
+        <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Quero%20aprender%20o%20m%C3%A9todo%20do%20prato%20saud%C3%A1vel." target="_blank" class="btn-sage">
+          Quero o Meu Plano Personalizado
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="sec" id="depoimentos">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Depoimentos Reais</span>
+    <h2>O Que Dizem os Pacientes</h2>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-text">"O atendimento da Dra. Silvia é incrível! Consegui reeducar minha alimentação e perdi 10kg sem abrir mão do meu café da manhã preferido."</div>
+      <div class="testi-name">Juliana M.</div>
+    </div>
+
+    <div class="testi-card reveal" style="transition-delay: 0.1s;">
+      <div class="testi-text">"A nutrição esportiva mudou meu rendimento no treino. Consegui ganhar massa magra rápido com suplementação certeira."</div>
+      <div class="testi-name">Lucas T.</div>
+    </div>
+
+    <div class="testi-card reveal" style="transition-delay: 0.2s;">
+      <div class="testi-text">"Mesmo morando em outra cidade, a consulta online funcionou perfeitamente. O suporte pelo WhatsApp faz toda a diferença."</div>
+      <div class="testi-name">Fernanda R.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="ftr-flex">
+    <div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 6px;">Silvia Oliveira</div>
+      <div style="font-size: 0.88rem; color: var(--sage-light); margin-bottom: 14px;">nutricionista</div>
+      <p style="color: var(--cream-dim); font-size: 0.88rem; max-width: 340px;">Atendimento presencial e online para todo o Brasil. Saúde, longevidade e emagrecimento inteligente.</p>
+    </div>
+
+    <div class="ftr-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#prato">Prato Saudável</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr-col">
+      <h4>Contato</h4>
+      <ul>
+        <li>📞 (21) 98738-5146</li>
+        <li>✉️ silviadeoliveira24.nutri@gmail.com</li>
+        <li>📷 @silviaoliveira_nutri</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="max-width: 1300px; margin: 25px auto 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--cream-dim);">
+    <div>© 2026 Dra. Silvia Oliveira Nutricionista • Todos os direitos reservados.</div>
+    <div>SOL Botanical Line-Art</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="wsp-float">
+  💬
+</a>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
