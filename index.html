@@ -43,7 +43,7 @@ body { display: flex; flex-direction: column; position: relative; }
   color: #22d3ee; font-weight: 700; text-transform: uppercase;
 }
 
-/* PAINEL SUPERIOR FIXO SEM SOBREPOR O SITE */
+/* PAINEL SUPERIOR FIXO */
 .topbar {
   width: 100%; height: 52px; min-height: 52px; max-height: 52px;
   background: rgba(10, 16, 12, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -140,6 +140,25 @@ body { display: flex; flex-direction: column; position: relative; }
 iframe { width: 100%; height: 100%; border: none; display: block; }
 .stage.split .iframe-wrapper { height: 96%; border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); }
 
+/* ONBOARDING TOUR MODAL */
+.onboarding-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(16px);
+  display: flex; align-items: center; justify-content: center; z-index: 9999;
+  opacity: 0; pointer-events: none; transition: var(--tr); padding: 20px;
+}
+.onboarding-overlay.open { opacity: 1; pointer-events: auto; }
+.onboarding-card {
+  background: #0d150f; border: 1.5px solid var(--kos-cyan); border-radius: 28px;
+  padding: 36px 32px; max-width: 520px; width: 100%; text-align: center; box-shadow: var(--shadow-lg);
+  position: relative; transform: scale(0.9); transition: var(--tr);
+}
+.onboarding-overlay.open .onboarding-card { transform: scale(1); }
+.ob-icon-badge { width: 64px; height: 64px; background: rgba(34, 211, 238, 0.15); border: 1.5px solid var(--kos-cyan); border-radius: 50%; color: var(--kos-cyan); font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.ob-step-indicator { font-size: 0.75rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--kos-cyan); margin-bottom: 8px; }
+.ob-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.ob-desc { font-size: 0.92rem; color: var(--kos-muted); line-height: 1.7; margin-bottom: 24px; }
+.ob-btns { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
 /* MODAL QR CODE */
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(14px);
@@ -215,6 +234,11 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 
   <div class="header-right">
+    <!-- BOTÃO PARA ABRIR O ONBOARDING -->
+    <button class="btn-action" onclick="startOnboarding()" title="Guia Interativo de Uso">
+      ❓ Guia KOS
+    </button>
+
     <div class="device-btn-group">
       <button class="dev-btn active" onclick="setDevice('desktop', this)" title="PC Desktop">🖥️ PC</button>
       <button class="dev-btn" onclick="setDevice('laptop', this)" title="Notebook">💻 Notebook</button>
@@ -257,6 +281,24 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </main>
 
+<!-- ONBOARDING TOUR MODAL -->
+<div class="onboarding-overlay" id="onboardingOverlay">
+  <div class="onboarding-card">
+    <div class="ob-icon-badge" id="obIcon">🚀</div>
+    <div class="ob-step-indicator" id="obStepTag">ETAPA 1 DE 5</div>
+    <div class="ob-title" id="obTitle">Bem-vindo(a) ao Seu Portal KOS!</div>
+    <div class="ob-desc" id="obDesc">
+      Criamos este portal interativo para apresentar as opções de site desenvolvidas exclusivamente para a sua marca. Veja como é simples explorar!
+    </div>
+
+    <div class="ob-btns">
+      <button class="btn-action" onclick="prevObStep()" id="obPrevBtn" style="display: none;">◄ Voltar</button>
+      <button class="btn-action primary" onclick="nextObStep()" id="obNextBtn" style="margin-left: auto;">Próximo Passo ►</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL QR CODE -->
 <div class="modal-overlay" id="qrModal">
   <div class="modal-card">
     <button class="modal-close" onclick="closeQrModal()">×</button>
@@ -273,6 +315,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </div>
 
+<!-- GAVETA FEEDBACK -->
 <div class="feedback-drawer" id="feedbackDrawer">
   <div class="drawer-header">
     <div class="drawer-title">Aprovação do Protótipo</div>
@@ -301,7 +344,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
 
   <div style="margin-bottom: 18px;">
     <label style="display: block; font-size: 0.78rem; font-weight: 800; color: var(--kos-muted); margin-bottom: 6px;">Comentário Adicional (Opcional):</label>
-    <textarea id="fbComment" style="width: 100%; height: 85px; background: rgba(0,0,0,0.4); border: 1px solid var(--kos-cyan); border-radius: 10px; padding: 12px; color: var(--white); font-family: inherit; font-size: 0.85rem; outline: none;" placeholder="Ex: Gostei muito da Opção C OneScreen..."></textarea>
+    <textarea id="fbComment" style="width: 100%; height: 85px; background: rgba(0,0,0,0.4); border: 1px solid var(--kos-cyan); border-radius: 10px; padding: 12px; color: var(--white); font-family: inherit; font-size: 0.85rem; outline: none;" placeholder="Ex: Gostei muito da Opção F, apenas ajustar o texto..."></textarea>
   </div>
 
   <button onclick="sendFeedbackWsp('Aprovado')" class="btn-action primary" style="width: 100%; justify-content: center; padding: 14px; margin-bottom: 10px; font-size: 0.9rem;">
@@ -319,6 +362,40 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
 let currentClient = null;
 let currentProto = null;
 let isSplitView = false;
+let currentObStep = 0;
+
+const onboardingSteps = [
+  {
+    icon: "🚀",
+    tag: "ETAPA 1 DE 5 • BEM-VINDO(A)",
+    title: "Seu Portal de Protótipos KOS",
+    desc: "Bem-vindo(a)! Este é o seu ambiente exclusivo para visualizar, testar e aprovar os modelos de site criados para a sua marca."
+  },
+  {
+    icon: "🎨",
+    tag: "ETAPA 2 DE 5 • NAVEGAÇÃO",
+    title: "12 Modelos Exclusivos (A até L)",
+    desc: "Navegue entre as opções pelas pílulas no topo (A, B, C, D...) ou pelas setas ◄ / ►. Cada modelo possui um conceito visual e recursos interativos inéditos!"
+  },
+  {
+    icon: "📱",
+    tag: "ETAPA 3 DE 5 • DISPOSITIVOS",
+    title: "Teste em Telas Reais",
+    desc: "Clique nos ícones de PC, Notebook, Tablet e Celular no topo para simular como seu site fica em cada tela. Você também pode ler o QR Code para abrir no celular!"
+  },
+  {
+    icon: "⚔️",
+    tag: "ETAPA 4 DE 5 • COMPARAÇÃO",
+    title: "Compare 2 Opções Lado a Lado",
+    desc: "Em dúvida entre duas ideias? Clique em '⚔️ Comparar' para colocar 2 protótipos na mesma tela e comparar detalhes visuais."
+  },
+  {
+    icon: "💬",
+    tag: "ETAPA 5 DE 5 • APROVAÇÃO",
+    title: "Envie Seu Parecer no WhatsApp",
+    desc: "Gostou do modelo ou quer ajustes? Clique em '💬 Feedback' para nos enviar sua escolha instantaneamente no WhatsApp!"
+  }
+];
 
 window.addEventListener('DOMContentLoaded', () => {
   if (typeof KOS_HUB_CONFIG === 'undefined') {
@@ -336,7 +413,57 @@ window.addEventListener('DOMContentLoaded', () => {
   clientSel.value = activeClientId;
   
   loadClient(activeClientId, urlParams.get('proto'));
+
+  // AUTO-OPEN ONBOARDING TOUR ON FIRST VISIT
+  if (!localStorage.getItem('kos_ob_seen')) {
+    setTimeout(startOnboarding, 600);
+  }
 });
+
+function startOnboarding() {
+  currentObStep = 0;
+  renderObStep();
+  document.getElementById('onboardingOverlay').classList.add('open');
+}
+
+function renderObStep() {
+  const step = onboardingSteps[currentObStep];
+  document.getElementById('obIcon').innerText = step.icon;
+  document.getElementById('obStepTag').innerText = step.tag;
+  document.getElementById('obTitle').innerText = step.title;
+  document.getElementById('obDesc').innerText = step.desc;
+
+  const prevBtn = document.getElementById('obPrevBtn');
+  const nextBtn = document.getElementById('obNextBtn');
+
+  prevBtn.style.display = currentObStep > 0 ? 'inline-flex' : 'none';
+  if (currentObStep === onboardingSteps.length - 1) {
+    nextBtn.innerText = '✨ Entendi! Explorar Modelos';
+  } else {
+    nextBtn.innerText = 'Próximo Passo ►';
+  }
+}
+
+function nextObStep() {
+  if (currentObStep < onboardingSteps.length - 1) {
+    currentObStep++;
+    renderObStep();
+  } else {
+    closeOnboarding();
+  }
+}
+
+function prevObStep() {
+  if (currentObStep > 0) {
+    currentObStep--;
+    renderObStep();
+  }
+}
+
+function closeOnboarding() {
+  localStorage.setItem('kos_ob_seen', 'true');
+  document.getElementById('onboardingOverlay').classList.remove('open');
+}
 
 function loadClient(clientId, targetProtoId = null) {
   currentClient = KOS_HUB_CONFIG.clients.find(c => c.id === clientId) || KOS_HUB_CONFIG.clients[0];
