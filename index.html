@@ -54,6 +54,12 @@ body { display: flex; flex-direction: column; position: relative; }
 
 .header-left { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
+.client-label-badge {
+  display: flex; align-items: center; gap: 5px; background: rgba(34, 211, 238, 0.12);
+  border: 1px solid var(--kos-cyan); padding: 3px 10px; border-radius: 8px; height: 32px;
+  font-size: 0.78rem; font-weight: 800; color: #ffffff; white-space: nowrap;
+}
+
 .client-select-wrap {
   display: flex; align-items: center; gap: 4px; background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--kos-border); padding: 2px 6px; border-radius: 8px; height: 32px;
@@ -104,7 +110,7 @@ body { display: flex; flex-direction: column; position: relative; }
 }
 .proto-badge-tag { font-size: 0.58rem; padding: 1px 4px; border-radius: 4px; background: rgba(0, 0, 0, 0.35); font-weight: 900; }
 
-/* CONTROLES À DIREITA - POSICIONADOS COM ALTA VISIBILIDADE DO FEEDBACK */
+/* CONTROLES À DIREITA */
 .header-right { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 .device-btn-group { display: flex; gap: 2px; background: rgba(0, 0, 0, 0.5); padding: 2px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); }
 .dev-btn { background: transparent; border: none; color: var(--kos-muted); padding: 2px 6px; height: 26px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: var(--tr); white-space: nowrap; }
@@ -118,7 +124,6 @@ body { display: flex; flex-direction: column; position: relative; }
 }
 .btn-action:hover { background: var(--white); color: #000; }
 
-/* HIGHLIGHT DO BOTÃO DE FEEDBACK DENTRO DA BARRA */
 .btn-feedback-cta {
   background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); color: #000000;
   border: none; padding: 0 12px; height: 30px; border-radius: var(--radius-pill);
@@ -218,10 +223,16 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
       <div class="kos-brand-sub">Web &amp; Automação</div>
     </a>
 
-    <div class="client-select-wrap">
+    <!-- SELETOR DE CLIENTE (EXIBIDO APENAS NO MODO ADMIN DA AGÊNCIA) -->
+    <div class="client-select-wrap" id="clientSelectWrap" style="display: none;">
       <label>👤 Cliente:</label>
       <select class="client-select" id="clientSelect" onchange="onClientChange(this.value)">
       </select>
+    </div>
+
+    <!-- NOME FIXO DO CLIENTE (EXIBIDO NO MODO ISOLAMENTO/WHITE-LABEL DO CLIENTE) -->
+    <div class="client-label-badge" id="clientLabelBadge">
+      <span>👤</span> <span id="clientNameText">Dra. Silvia de Oliveira Lemos</span>
     </div>
 
     <div class="proto-dropdown-wrap">
@@ -242,7 +253,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 
   <div class="header-right">
-    <!-- BOTÃO FEEDBACK EM DESTAQUE REORGANIZADO -->
     <button onclick="toggleFeedbackDrawer()" class="btn-feedback-cta" title="Aprovar ou enviar feedback">
       💬 Feedback
     </button>
@@ -408,14 +418,27 @@ window.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const clientSel = document.getElementById('clientSelect');
-  clientSel.innerHTML = KOS_HUB_CONFIG.clients.map(c => `
-    <option value="${c.id}">${c.clientName}</option>
-  `).join('');
-
   const urlParams = new URLSearchParams(window.location.search);
+  const isAdmin = urlParams.get('admin') === 'true';
+
+  const clientSelWrap = document.getElementById('clientSelectWrap');
+  const clientBadge = document.getElementById('clientLabelBadge');
+  const clientSel = document.getElementById('clientSelect');
+
+  // CONTROLE DE PRIVACIDADE E ISOLAMENTO DO CLIENTE (WHITE-LABEL)
+  if (isAdmin && KOS_HUB_CONFIG.clients.length > 1) {
+    clientSelWrap.style.display = 'flex';
+    clientBadge.style.display = 'none';
+    clientSel.innerHTML = KOS_HUB_CONFIG.clients.map(c => `
+      <option value="${c.id}">${c.clientName}</option>
+    `).join('');
+  } else {
+    clientSelWrap.style.display = 'none';
+    clientBadge.style.display = 'flex';
+  }
+
   const activeClientId = urlParams.get('client') || KOS_HUB_CONFIG.clients[0].id;
-  clientSel.value = activeClientId;
+  if (isAdmin) clientSel.value = activeClientId;
   
   loadClient(activeClientId, urlParams.get('proto'));
 
@@ -471,6 +494,9 @@ function closeOnboarding() {
 
 function loadClient(clientId, targetProtoId = null) {
   currentClient = KOS_HUB_CONFIG.clients.find(c => c.id === clientId) || KOS_HUB_CONFIG.clients[0];
+
+  const nameTxt = document.getElementById('clientNameText');
+  if (nameTxt) nameTxt.innerText = currentClient.clientName;
 
   const protoSel = document.getElementById('protoSelect');
   protoSel.innerHTML = currentClient.prototypes.map((p) => `
@@ -548,7 +574,9 @@ function switchPrototype(protoId) {
     }
   });
 
-  const newUrl = `${window.location.pathname}?client=${currentClient.id}&proto=${currentProto.id}`;
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAdmin = urlParams.get('admin') === 'true';
+  const newUrl = `${window.location.pathname}?client=${currentClient.id}&proto=${currentProto.id}${isAdmin ? '&admin=true' : ''}`;
   window.history.replaceState(null, '', newUrl);
 
   if (isSplitView) {
@@ -613,7 +641,9 @@ function setDevice(deviceType, btnEl) {
 }
 
 function copyShareableLink() {
-  const shareUrl = `${window.location.origin}${window.location.pathname}?client=${currentClient.id}&proto=${currentProto.id}`;
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAdmin = urlParams.get('admin') === 'true';
+  const shareUrl = `${window.location.origin}${window.location.pathname}?client=${currentClient.id}&proto=${currentProto.id}${isAdmin ? '&admin=true' : ''}`;
   navigator.clipboard.writeText(shareUrl).then(() => {
     alert(`Link Copiado com Sucesso!\n\nLink: ${shareUrl}`);
   }).catch(() => {
