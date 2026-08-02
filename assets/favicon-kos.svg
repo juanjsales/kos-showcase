@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="kosBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050806"/>
+      <stop offset="100%" stop-color="#0d1f14"/>
+    </linearGradient>
+    <linearGradient id="kosGlowDot" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="33%" stop-color="#3b82f6"/>
+      <stop offset="66%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="cyanBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- BACKGROUND ROUNDED HEXAGON/CARD -->
+  <rect x="24" y="24" width="464" height="464" rx="120" fill="url(#kosBg)" stroke="url(#cyanBorder)" stroke-width="14"/>
+
+  <!-- CYBERNETIC K LOGO PATH -->
+  <path d="M 140 130 L 140 382 M 140 256 L 270 130 M 140 256 L 280 382" stroke="#ffffff" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- O LOGO CIRCLE -->
+  <circle cx="340" cy="256" r="64" fill="none" stroke="#22d3ee" stroke-width="36" filter="url(#glow)"/>
+
+  <!-- GLOWING KOS DOT -->
+  <circle cx="410" cy="140" r="28" fill="url(#kosGlowDot)" filter="url(#glow)"/>
+</svg>
