@@ -27,10 +27,26 @@ const KOS_HUB_CONFIG = {
       description: "Modelos de site para clínica de nutrição da Dra. Silvia de Oliveira Lemos.",
       prototypes: [
         {
+          id: "op-f",
+          title: "Opção F — SOL Lotus Glow & Signature Elegance",
+          subtitle: "Sand Nude • Logo Lótus Dourada • Assinatura Cursiva • Diagnóstico 360°",
+          badge: "Novo (Lótus Nude)",
+          badgeColor: "#c5a059",
+          url: "clientes/silvia-nutri/opcao-f.html"
+        },
+        {
+          id: "op-g",
+          title: "Opção G — SOL Holistic Bio-Reset Timeline",
+          subtitle: "Velvet Nude • Assinatura Cursiva • Cronograma 30 Dias",
+          badge: "Novo (Bio-Reset)",
+          badgeColor: "#5e8465",
+          url: "clientes/silvia-nutri/opcao-g.html"
+        },
+        {
           id: "op-d",
           title: "Opção D — Official Card & Botanical Line-Art",
           subtitle: "Verde Sage • Linhas Orgânicas • Logo Frutas & Estilo Cartão Oficial",
-          badge: "Novo (Cartão Oficial)",
+          badge: "Cartão Oficial",
           badgeColor: "#92a988",
           url: "clientes/silvia-nutri/opcao-d.html"
         },
@@ -38,7 +54,7 @@ const KOS_HUB_CONFIG = {
           id: "op-e",
           title: "Opção E — Sage Minimalist & Health Hub",
           subtitle: "Verde Floresta • Calculadora IMC • Glassmorphism",
-          badge: "Novo (Health Hub)",
+          badge: "Health Hub",
           badgeColor: "#b3c8a7",
           url: "clientes/silvia-nutri/opcao-e.html"
         },
