@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opção A — SOL Wellness & Clinical Luxury · Dra. Silvia de Oliveira Lemos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-main: #0a140f;
+  --bg-sec: #11221a;
+  --bg-card: #152b21;
+  --gold-primary: #c69c5e;
+  --gold-light: #e6c894;
+  --gold-gradient: linear-gradient(135deg, #e6c894 0%, #c69c5e 50%, #9e793b 100%);
+  --text-main: #f3f7f4;
+  --text-muted: #9eb5a8;
+  --border-gold: rgba(198, 156, 94, 0.25);
+  --shadow-lux: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --radius-lg: 24px;
+  --tr: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.7; }
+
+/* HEADER EDITORIAL LUXO */
+.hdr {
+  position: fixed; top: 0; left: 0; right: 0; height: 90px;
+  background: rgba(10, 20, 15, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-gold); padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between; z-index: 1000;
+}
+.brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+.lotus-brand-icon { width: 46px; height: 46px; flex-shrink: 0; }
+.brand-titles { display: flex; flex-direction: column; }
+.brand-sol { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 4px; color: var(--gold-light); text-transform: uppercase; }
+.brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--text-main); letter-spacing: 0.5px; }
+
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--tr); }
+.nav-links a:hover { color: var(--gold-light); }
+
+.btn-gold {
+  background: var(--gold-gradient); color: #0a140f; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 2px; text-transform: uppercase; padding: 14px 28px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: var(--tr);
+  box-shadow: 0 6px 20px rgba(198, 156, 94, 0.3); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(198, 156, 94, 0.5); }
+
+/* HERO SECTION */
+.hero {
+  min-height: 100vh; padding: 140px 5% 80px; max-width: 1350px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px; color: var(--gold-light);
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  border-bottom: 1px solid var(--gold-primary); padding-bottom: 6px; margin-bottom: 24px;
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 400; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.5px;
+}
+h1 em { font-style: italic; font-weight: 600; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.hero-sub { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 40px; max-width: 520px; font-weight: 300; }
+.hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
+
+.hero-img-container { position: relative; }
+.hero-img-card {
+  border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card);
+  border: 1px solid var(--border-gold); box-shadow: var(--shadow-lux); aspect-ratio: 4/5;
+}
+.hero-img-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.hero-img-card:hover img { transform: scale(1.03); }
+
+/* SEÇÕES */
+.sec { padding: 110px 5%; max-width: 1350px; margin: 0 auto; }
+.sec-hdr { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.sec-tag { font-size: 0.78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; display: block; }
+h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.3rem, 3.5vw, 3.4rem); font-weight: 400; line-height: 1.2; }
+
+/* GRID DE SERVIÇOS */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.card-lux {
+  background: var(--bg-card); border-radius: var(--radius-lg); padding: 44px 36px;
+  border: 1px solid var(--border-gold); transition: var(--tr); position: relative;
+}
+.card-lux:hover { transform: translateY(-8px); border-color: var(--gold-light); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+.card-icon { width: 60px; height: 60px; background: rgba(198, 156, 94, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--gold-light); margin-bottom: 28px; border: 1px solid var(--border-gold); }
+.card-h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--text-main); margin-bottom: 16px; }
+.card-p { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; line-height: 1.8; }
+
+/* RECURSO INTERATIVO: CALCULADORA DE ÁGUA */
+.calc-box {
+  background: linear-gradient(135deg, #11221a 0%, #152b21 100%);
+  border: 1px solid var(--border-gold); border-radius: 32px; padding: 50px 6%;
+  box-shadow: var(--shadow-lux); margin-top: 40px; text-align: center;
+}
+.calc-input-wrap { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 30px 0; flex-wrap: wrap; }
+.calc-input { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-gold); color: var(--text-main); font-family: 'Montserrat', sans-serif; padding: 14px 24px; border-radius: 100px; font-size: 1rem; outline: none; text-align: center; width: 200px; }
+.calc-result { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold-light); font-weight: 600; margin-top: 16px; }
+
+/* SOBRE A NUTRI EDITORIAL */
+.about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
+.about-img { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-gold); box-shadow: var(--shadow-lux); aspect-ratio: 4/5; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* FAQ ACCORDION LUXO */
+.faq-grid { display: grid; gap: 16px; max-width: 850px; margin: 0 auto; }
+.faq-card { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-gold); overflow: hidden; }
+.faq-head { padding: 24px 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; padding: 0 30px; }
+.faq-card.active .faq-body { max-height: 250px; padding-bottom: 24px; }
+.faq-body p { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; }
+
+/* FOOTER EDITORIAL */
+footer { background: #060c09; border-top: 1px solid var(--border-gold); padding: 80px 5% 40px; margin-top: 120px; }
+.ftr-flex { max-width: 1350px; margin: 0 auto; display: flex; justify-content: space-between; gap: 50px; flex-wrap: wrap; padding-bottom: 60px; border-bottom: 1px solid rgba(198, 156, 94, 0.15); }
+.ftr-brand { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold-light); margin-bottom: 14px; }
+.ftr-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-primary); margin-bottom: 24px; }
+.ftr-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; color: var(--text-muted); }
+.ftr-col ul a { color: var(--text-muted); text-decoration: none; transition: var(--tr); }
+.ftr-col ul a:hover { color: var(--gold-light); }
+.ftr-copy { max-width: 1350px; margin: 30px auto 0; display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); }
+
+/* FLOATING WSP */
+.wsp-float {
+  position: fixed; bottom: 32px; right: 32px; width: 60px; height: 60px;
+  background: var(--gold-gradient); color: #0a140f; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 10px 30px rgba(198, 156, 94, 0.4);
+  text-decoration: none; z-index: 999; transition: var(--tr);
+}
+.wsp-float:hover { transform: scale(1.1); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .hero, .about-grid { grid-template-columns: 1fr; text-align: center; padding-top: 130px; }
+  .hero-sub { margin: 0 auto 30px; }
+  .hero-btns { justify-content: center; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="#" class="brand">
+    <svg class="lotus-brand-icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M50 15 C35 35, 20 60, 50 85 C80 60, 65 35, 50 15 Z" stroke="#e6c894" />
+      <path d="M50 85 C25 80, 10 55, 25 35 C40 50, 45 70, 50 85 Z" stroke="#c69c5e" />
+      <path d="M50 85 C75 80, 90 55, 75 35 C60 50, 55 70, 50 85 Z" stroke="#c69c5e" />
+    </svg>
+    <div class="brand-titles">
+      <span class="brand-sol">SOL</span>
+      <div class="brand-name">Silvia de Oliveira Lemos</div>
+    </div>
+  </a>
+  <nav class="nav-links">
+    <a href="#especialidades">Especialidades</a>
+    <a href="#calculadora">Hidratação</a>
+    <a href="#sobre">Sobre a Nutri</a>
+    <a href="#faq">Dúvidas</a>
+  </nav>
+  <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-gold">
+    👑 Agendar Consulta
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="reveal">
+    <div class="hero-tag">
+      ✨ Nutrição Clínica &amp; Esportiva de Alto Padrão
+    </div>
+    <h1>Saúde, vitalidade e <em>emagrecimento definitivo.</em></h1>
+    <p class="hero-sub">Transforme sua saúde e alcance sua melhor versão física com o plano estratégico humanizado da Dra. Silvia de Oliveira Lemos.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Vim%20pelo%20site%20e%20quero%20agendar%20minha%20consulta." target="_blank" class="btn-gold">
+        Agendar no WhatsApp: (21) 98738-5146
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-img-container reveal" style="transition-delay: 0.15s;">
+    <div class="hero-img-card">
+      <img src="assets/silvia-hero.jpg" alt="Dra. Silvia de Oliveira Lemos Nutricionista">
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="sec" id="especialidades">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Pilares de Tratamento</span>
+    <h2>Atendimento Especializado</h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="card-lux reveal">
+      <div class="card-icon">🌿</div>
+      <h3 class="card-h3">Nutrição Clínica &amp; Saúde</h3>
+      <p class="card-p">Tratamento de desequilíbrios metabólicos, saúde intestinal, melhora dos exames laboratoriais e disposição diária.</p>
+    </div>
+
+    <div class="card-lux reveal" style="transition-delay: 0.1s;">
+      <div class="card-icon">⚡</div>
+      <h3 class="card-h3">Nutrição Esportiva</h3>
+      <p class="card-p">Estratégias nutricionais avançadas para ganho de massa magra, hipertrofia e máxima energia nos treinos.</p>
+    </div>
+
+    <div class="card-lux reveal" style="transition-delay: 0.2s;">
+      <div class="card-icon">👑</div>
+      <h3 class="card-h3">Obesidade &amp; Emagrecimento</h3>
+      <p class="card-p">Protocolos focados em perda de gordura acelerada com preservação muscular e reeducação alimentar duradoura.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FERRAMENTA INTERATIVA: CALCULADORA DE ÁGUA -->
+<section class="sec" id="calculadora">
+  <div class="calc-box reveal">
+    <span class="sec-tag">Ferramenta Exclusiva</span>
+    <h2>Calculadora de Hidratação Diária</h2>
+    <p style="color: var(--text-muted); margin-top: 8px;">Descubra a quantidade ideal de água que seu corpo necessita todos os dias:</p>
+    
+    <div class="calc-input-wrap">
+      <input type="number" id="pesoInput" class="calc-input" placeholder="Seu peso (ex: 70kg)" value="70">
+      <button onclick="calcularAgua()" class="btn-gold">Calcular Metas</button>
+    </div>
+
+    <div id="resultadoAgua" class="calc-result">2.45 Litros / dia</div>
+  </div>
+</section>
+
+<!-- SOBRE A NUTRI -->
+<section class="sec" id="sobre">
+  <div class="about-grid reveal">
+    <div class="about-img">
+      <img src="assets/silvia-consultation.jpg" alt="Dra. Silvia em Consulta">
+    </div>
+    <div>
+      <span class="sec-tag">Conheça a Nutricionista</span>
+      <h2>Dra. Silvia de Oliveira Lemos</h2>
+      <p style="color: var(--text-muted); font-size: 1rem; margin-top: 20px; margin-bottom: 24px;">
+        Nutricionista dedicada a alinhar a ciência da nutrição à rotina real de cada paciente. Com atendimento acolhedor e focado em metas concretas, meu compromisso é garantir que você conquiste resultados visíveis sem dietas malucas.
+      </p>
+      <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Quero%20agendar%20uma%20consulta." target="_blank" class="btn-gold">
+        Falar Diretamente com a Nutri
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ ACCORDION -->
+<section class="sec" id="faq">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Tire Suas Dúvidas</span>
+    <h2>Perguntas Frequentes</h2>
+  </div>
+
+  <div class="faq-grid reveal">
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-head">
+        <span>Como funciona a primeira consulta?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-body">
+        <p>A primeira consulta é uma imersão na sua rotina. Realizamos anamnese detalhada, avaliação de hábitos, análise de exames e definimos seu plano alimentar exclusivo com receitas e suporte.</p>
+      </div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-head">
+        <span>Você faz atendimento presencial e online?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-body">
+        <p>Sim! Atendo presencialmente em consultório completo e também via videochamada online para pacientes em todo o Brasil e no exterior.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER EDITORIAL -->
+<footer>
+  <div class="ftr-flex">
+    <div>
+      <div class="ftr-brand">Dra. Silvia de Oliveira Lemos</div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 380px;">Nutricionista Clínica, Esportiva, Obesidade e Emagrecimento Definitivo. Atendimento Presencial &amp; Online.</p>
+    </div>
+    <div class="ftr-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#calculadora">Calculadora</a></li>
+        <li><a href="#sobre">Sobre Mim</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+      </ul>
+    </div>
+    <div class="ftr-col">
+      <h4>Contato Direto</h4>
+      <ul>
+        <li>📞 WhatsApp: (21) 98738-5146</li>
+        <li>✉️ silviadeoliveira24.nutri@gmail.com</li>
+        <li>📷 Instagram: @silviaoliveira_nutri</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ftr-copy">
+    <div>© 2026 Dra. Silvia de Oliveira Lemos • Todos os direitos reservados.</div>
+    <div>SOL Luxury Editorial</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Vim%20pelo%20site%20Luxury!" target="_blank" class="wsp-float">
+  💬
+</a>
+
+<script>
+function calcularAgua() {
+  const peso = parseFloat(document.getElementById('pesoInput').value) || 70;
+  const aguaLitros = (peso * 35 / 1000).toFixed(2);
+  document.getElementById('resultadoAgua').innerText = `${aguaLitros} Litros / dia`;
+}
+
+function toggleFaq(card) {
+  card.classList.toggle('active');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
