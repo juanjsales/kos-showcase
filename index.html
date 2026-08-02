@@ -4,7 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KOS Showcase Hub 2.0 · Web & Automação</title>
-<link rel="icon" type="image/svg+xml" href="assets/favicon-kos.svg">
+
+<!-- METADADOS DE SEO E SOCIAL SHARING (OPENGRAPH) -->
+<meta name="title" content="KOS Showcase Hub 2.0 · Web & Automação">
+<meta name="description" content="Portal interativo de protótipos de alta conversão desenvolvidos exclusivamente pela KOS Web & Automação.">
+<meta name="keywords" content="KOS, Web & Automação, Protótipos de Sites, Sites para Nutricionistas, Sites de Alta Conversão">
+<meta name="author" content="KOS Web & Automação">
+
+<!-- OPEN GRAPH / FACEBOOK / WHATSAPP CARDS -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://github.com/juanjsales/kos-showcase">
+<meta property="og:title" content="KOS Showcase Hub 2.0 · Web & Automação">
+<meta property="og:description" content="Portal interativo de protótipos de alta conversão desenvolvidos exclusivamente pela KOS Web & Automação.">
+<meta property="og:image" content="assets/kos-og-image.png">
+
+<!-- TWITTER CARDS -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="KOS Showcase Hub 2.0 · Web & Automação">
+<meta property="twitter:description" content="Portal interativo de protótipos de alta conversão desenvolvidos exclusivamente pela KOS Web & Automação.">
+<meta property="twitter:image" content="assets/kos-og-image.png">
+
+<!-- FAVICON & BRAND ICONS -->
+<link rel="icon" type="image/png" href="assets/favicon-kos.png">
+<link rel="apple-touch-icon" href="assets/kos-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -28,16 +50,10 @@ body { display: flex; flex-direction: column; position: relative; }
 
 /* LOGO KOS WEB & AUTOMAÇÃO */
 .kos-brand-logo {
-  display: flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; flex-shrink: 0;
 }
-.kos-brand-main {
-  font-family: monospace, 'Courier New', Courier; font-size: 1.15rem; font-weight: 900;
-  letter-spacing: 0.08em; color: #ffffff; text-transform: uppercase; display: flex; align-items: center; gap: 4px;
-}
-.kos-brand-dot {
-  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 33%, #8b5cf6 66%, #ec4899 100%);
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.9);
+.kos-brand-img {
+  height: 28px; width: auto; display: block; object-fit: contain;
 }
 .kos-brand-sub {
   font-family: monospace, 'Courier New', Courier; font-size: 8.5px; letter-spacing: 0.06em;
@@ -218,9 +234,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
 <header class="topbar">
   <div class="header-left">
     <a href="#" class="kos-brand-logo">
-      <div class="kos-brand-main">
-        KOS<span class="kos-brand-dot"></span>
-      </div>
+      <img src="assets/kos-logo.png" alt="KOS Web & Automação" class="kos-brand-img">
       <div class="kos-brand-sub">Web &amp; Automação</div>
     </a>
 
@@ -426,7 +440,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const clientBadge = document.getElementById('clientLabelBadge');
   const clientSel = document.getElementById('clientSelect');
 
-  // CONTROLE DE PRIVACIDADE E ISOLAMENTO DO CLIENTE (WHITE-LABEL)
   if (isAdmin && KOS_HUB_CONFIG.clients.length > 1) {
     clientSelWrap.style.display = 'flex';
     clientBadge.style.display = 'none';
