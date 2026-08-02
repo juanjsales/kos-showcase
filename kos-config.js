@@ -30,7 +30,7 @@ const KOS_HUB_CONFIG = {
           id: "op-h",
           title: "Opção H — SOL Mouse-Driven Interactive Experience",
           subtitle: "Parallax 3D no Mouse • Spotlight Cards • Lente de Revelação",
-          badge: "Novo (Interativo no Mouse)",
+          badge: "Interativo no Mouse",
           badgeColor: "#c9a55c",
           url: "clientes/silvia-nutri/opcao-h.html"
         },
@@ -57,6 +57,22 @@ const KOS_HUB_CONFIG = {
           badge: "Cartão Oficial",
           badgeColor: "#92a988",
           url: "clientes/silvia-nutri/opcao-d.html"
+        },
+        {
+          id: "op-i",
+          title: "Opção I — SOL Golden Hour Luxury & VIP Concierge",
+          subtitle: "Dourado Champagne • Concierge VIP • Simulador de Metas",
+          badge: "Novo (VIP Luxury)",
+          badgeColor: "#cba358",
+          url: "clientes/silvia-nutri/opcao-i.html"
+        },
+        {
+          id: "op-j",
+          title: "Opção J — SOL Executive Performance & Fast-Track",
+          subtitle: "Matte Black & Sage • Alta Performance Executiva",
+          badge: "Novo (Executivo)",
+          badgeColor: "#9bb793",
+          url: "clientes/silvia-nutri/opcao-j.html"
         },
         {
           id: "op-e",
