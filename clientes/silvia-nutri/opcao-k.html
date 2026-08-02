@@ -3,217 +3,223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Opção K — SOL Neo-Brutalist & Botanical Pop · Dra. Silvia de Oliveira Lemos</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Opção K — SOL Horizontal Scroll Art-Gallery · Dra. Silvia de Oliveira Lemos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --pop-bg: #f4efe6;
-  --pop-card: #ffffff;
-  --pop-dark: #121814;
-  --pop-green: #256d43;
-  --pop-yellow: #f4d068;
-  --pop-pink: #f7a998;
-  --border-thick: 2.5px solid #121814;
-  --shadow-brutal: 5px 5px 0px #121814;
-  --tr: all 0.25s ease;
+  --bg-nude: #f4ebe1;
+  --panel-card: #ffffff;
+  --forest-dark: #1b2e22;
+  --gold-accent: #c69c5e;
+  --sage-accent: #628468;
+  --text-dark: #221a16;
+  --text-muted: #66574f;
+  --shadow-lux: 0 20px 45px rgba(27, 46, 34, 0.12);
+  --tr: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background-color: var(--pop-bg); color: var(--pop-dark); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; line-height: 1.6; }
+html, body { width: 100vw; height: 100vh; overflow: hidden; background: var(--bg-nude); color: var(--text-dark); font-family: 'Plus Jakarta Sans', sans-serif; }
 
-/* HEADER NEO-BRUTALIST */
+/* HEADER FIXO */
 .hdr {
-  position: fixed; top: 0; left: 0; right: 0; height: 85px;
-  background: var(--pop-bg); border-bottom: var(--border-thick); padding: 0 5%;
+  position: fixed; top: 0; left: 0; right: 0; height: 80px;
+  background: rgba(244, 235, 225, 0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(198, 156, 94, 0.3); padding: 0 4%;
   display: flex; align-items: center; justify-content: space-between; z-index: 1000;
 }
-.brand-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--pop-dark); }
-.brand-sub { font-size: 0.78rem; font-weight: 800; color: var(--pop-green); }
+.brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--forest-dark); line-height: 1.1; }
+.brand-sub { font-size: 0.78rem; font-weight: 700; color: var(--sage-accent); letter-spacing: 1px; }
 
-.nav-links { display: flex; gap: 24px; }
-.nav-links a { color: var(--pop-dark); text-decoration: none; font-size: 0.88rem; font-weight: 700; transition: var(--tr); }
-.nav-links a:hover { color: var(--pop-green); }
-
-.btn-brutal {
-  background: var(--pop-yellow); color: var(--pop-dark); font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem;
-  padding: 12px 24px; border-radius: 12px; border: var(--border-thick); cursor: pointer; text-decoration: none;
-  box-shadow: var(--shadow-brutal); transition: var(--tr); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+.hdr-btns { display: flex; align-items: center; gap: 10px; }
+.btn-app {
+  background: rgba(27, 46, 34, 0.08); color: var(--forest-dark); border: 1px solid var(--forest-dark);
+  font-weight: 700; font-size: 0.76rem; padding: 8px 16px; border-radius: 100px; text-decoration: none; transition: var(--tr);
 }
-.btn-brutal:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0px #121814; }
+.btn-app:hover { background: var(--forest-dark); color: #fff; }
 
-/* HERO */
-.hero {
-  min-height: 100vh; padding: 130px 5% 80px; max-width: 1300px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+.btn-gold {
+  background: linear-gradient(135deg, #c69c5e 0%, #a87d3f 100%); color: #fff; font-weight: 800; font-size: 0.8rem;
+  padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: var(--tr);
+  box-shadow: 0 6px 20px rgba(198, 156, 94, 0.35); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
 }
-h1 {
-  font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.8rem, 4.5vw, 4.2rem);
-  line-height: 1.1; color: var(--pop-dark); margin-bottom: 20px;
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(198, 156, 94, 0.5); }
+
+/* HORIZONTAL SCROLL CONTAINER */
+.h-container {
+  display: flex; flex-direction: row; height: calc(100vh - 80px); margin-top: 80px;
+  overflow-x: auto; overflow-y: hidden; scroll-behavior: smooth;
+  scrollbar-width: thin; scrollbar-color: var(--gold-accent) transparent;
 }
-h1 em { font-style: normal; background: var(--pop-yellow); padding: 2px 10px; border-radius: 8px; border: var(--border-thick); }
 
-.hero-img-box {
-  background: var(--pop-green); border: var(--border-thick); border-radius: 28px; padding: 16px; box-shadow: var(--shadow-brutal);
+.h-panel {
+  min-width: 85vw; max-width: 85vw; height: 100%; padding: 40px 4%; flex-shrink: 0;
+  display: flex; flex-direction: column; justify-content: center; border-right: 1px solid rgba(198, 156, 94, 0.2);
+  box-sizing: border-box;
 }
-.hero-img-box img { width: 100%; border-radius: 16px; border: var(--border-thick); aspect-ratio: 4/3; object-fit: cover; }
 
-/* SEÇÕES */
-.sec { padding: 90px 5%; max-width: 1250px; margin: 0 auto; }
-.sec-hdr { text-align: center; max-width: 650px; margin: 0 auto 50px; }
-.sec-tag { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; background: var(--pop-pink); padding: 4px 14px; border-radius: 8px; border: var(--border-thick); display: inline-block; margin-bottom: 12px; }
-h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 3.5vw, 3.2rem); color: var(--pop-dark); }
+/* CONTEÚDO DOS PAINÉIS */
+.tag-badge {
+  display: inline-block; background: rgba(198, 156, 94, 0.15); color: #8e682d; font-size: 0.76rem;
+  font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px;
+  border: 1px solid var(--gold-accent); margin-bottom: 16px; width: fit-content;
+}
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 3.8rem); font-weight: 600; line-height: 1.15; color: var(--forest-dark); margin-bottom: 16px; }
+h1 em { font-style: italic; color: var(--gold-accent); }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3vw, 3rem); font-weight: 600; color: var(--forest-dark); margin-bottom: 16px; }
 
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.card-brutal { background: #fff; border: var(--border-thick); border-radius: 20px; padding: 32px 24px; box-shadow: var(--shadow-brutal); transition: var(--tr); }
-.card-brutal:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #121814; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-/* FAQ */
-.faq-wrap { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-.faq-item { background: #fff; border-radius: 16px; border: var(--border-thick); overflow: hidden; box-shadow: var(--shadow-brutal); }
-.faq-q { padding: 20px 24px; font-weight: 800; font-size: 1rem; color: var(--pop-dark); cursor: pointer; display: flex; justify-content: space-between; }
-.faq-a { padding: 0 24px 20px; font-size: 0.9rem; color: #444; display: none; line-height: 1.7; }
-
-/* FOOTER */
-footer { background: var(--pop-dark); color: #fff; border-top: var(--border-thick); padding: 75px 5% 30px; margin-top: 100px; }
-.ftr-flex { max-width: 1250px; margin: 0 auto; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.panel-card { background: var(--panel-card); border-radius: 28px; padding: 32px; box-shadow: var(--shadow-lux); border: 1px solid rgba(198, 156, 94, 0.25); }
 
 .wsp-float {
   position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px;
-  background: var(--pop-yellow); color: var(--pop-dark); border-radius: 50%; border: var(--border-thick); display: flex;
-  align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: var(--shadow-brutal);
-  text-decoration: none; z-index: 999; transition: var(--tr); font-weight: 800;
+  background: #25d366; color: #fff; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  text-decoration: none; z-index: 999; transition: var(--tr);
 }
 .wsp-float:hover { transform: scale(1.1); }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
+  .h-container { flex-direction: column; overflow-x: hidden; overflow-y: auto; height: auto; }
+  .h-panel { min-width: 100vw; max-width: 100vw; height: auto; padding: 60px 5%; border-right: none; border-bottom: 1px solid rgba(198, 156, 94, 0.2); }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
+<!-- HEADER FIXO -->
 <header class="hdr">
-  <div>
+  <div style="display: flex; flex-direction: column;">
     <div class="brand-title">Dra. Silvia de Oliveira Lemos</div>
     <div class="brand-sub">Nutricionista • CRN-4 24987/P</div>
   </div>
 
-  <nav class="nav-links">
-    <a href="#sobre">Sobre</a>
-    <a href="#especialidades">Especialidades</a>
-    <a href="#como-funciona">Como Funciona</a>
-    <a href="#depoimentos">Depoimentos</a>
-    <a href="#faq">Dúvidas</a>
-  </nav>
+  <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">
+    ↔️ Deslize ou use a roda do mouse para navegar lateralmente
+  </div>
 
-  <div style="display: flex; gap: 10px;">
-    <a href="https://webdiet.com.br" target="_blank" class="btn-brutal" style="background: #fff;">🔑 Área do Paciente</a>
-    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="btn-brutal">💬 Agendar Consulta</a>
+  <div class="hdr-btns">
+    <a href="https://webdiet.com.br" target="_blank" class="btn-app">🔑 Área do Paciente</a>
+    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="btn-gold">💬 Agendar Consulta</a>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <span class="sec-tag">🌱 Nutrição Pop &amp; Comportamental</span>
-    <h1>Saúde de verdade <em>sem neuras.</em></h1>
-    <p style="font-size: 1.05rem; color: #444; margin-bottom: 30px;">Nutrição clínica, esportiva e reeducação alimentar com suporte contínuo no aplicativo.</p>
+<!-- HORIZONTAL SCROLL CONTAINER -->
+<main class="h-container" id="hContainer">
+  <!-- PAINEL 1: HERO -->
+  <section class="h-panel">
+    <div class="grid-2">
+      <div>
+        <span class="tag-badge">🌱 Rolagem Horizontal • Galeria Editorial</span>
+        <h1>Nutrição de alta precisão &amp; <em>saúde duradoura.</em></h1>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Atendimento clínico, esportivo e comportamental humanizado sob medida para o seu estilo de vida.</p>
+        <div style="display: flex; gap: 12px;">
+          <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="btn-gold" style="padding: 14px 30px;">💬 Agendar Consulta no WhatsApp</a>
+          <a href="https://webdiet.com.br" target="_blank" class="btn-app" style="padding: 14px 20px;">🔑 App Paciente</a>
+        </div>
+      </div>
+      <div class="panel-card" style="padding: 12px; text-align: center;">
+        <img src="assets/silvia-hero.jpg" alt="Dra. Silvia de Oliveira Lemos" style="width: 100%; border-radius: 20px; aspect-ratio: 4/3; object-fit: cover;">
+      </div>
+    </div>
+  </section>
 
-    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="btn-brutal" style="padding: 16px 32px; font-size: 0.95rem;">
-      💬 Falar no WhatsApp com a Dra. Silvia
-    </a>
-  </div>
-
-  <div class="hero-img-box">
-    <img src="assets/silvia-hero.jpg" alt="Dra. Silvia de Oliveira Lemos">
-  </div>
-</section>
-
-<!-- SOBRE MIM -->
-<section class="sec" id="sobre">
-  <div class="sec-hdr">
-    <span class="sec-tag">CRN-4 24987/P</span>
+  <!-- PAINEL 2: SOBRE MIM & CRN -->
+  <section class="h-panel">
+    <span class="tag-badge">CRN-4 24987/P</span>
     <h2>Dra. Silvia de Oliveira Lemos</h2>
-  </div>
-  <div class="card-brutal" style="max-width: 850px; margin: 0 auto; text-align: center;">
-    <p style="font-size: 1rem; color: #444; line-height: 1.8;">
-      Atendimento nutricional completo focado no equilíbrio entre a saúde do corpo e o prazer de comer bem. Registro ativo no CRN-4 e mais de 500 vidas transformadas.
-    </p>
-  </div>
-</section>
-
-<!-- ESPECIALIDADES -->
-<section class="sec" id="especialidades">
-  <div class="sec-hdr">
-    <span class="sec-tag">Nossos Serviços</span>
-    <h2>Especialidades em Destaque</h2>
-  </div>
-
-  <div class="grid-3">
-    <div class="card-brutal">
-      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; margin-bottom: 10px;">🔥 Emagrecimento</h3>
-      <p style="font-size: 0.9rem; color: #444;">Perda de peso consistente e saudável sem cortar o que você gosta.</p>
+    <div class="grid-2">
+      <div class="panel-card">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--gold-accent); margin-bottom: 10px;">Ciência &amp; Atendimento Humanizado</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Especialista em Nutrição Clínica, Esportiva e Comportamental. Mais de 500 pacientes atendidos com avaliação física detalhada e planejamento flexível no aplicativo.
+        </p>
+      </div>
+      <div class="panel-card">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--gold-accent); margin-bottom: 10px;">Acompanhamento no App</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Seu cardápio, lista de compras e substitutos ficam disponíveis 24h no celular através da área do paciente.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <div class="card-brutal">
-      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; margin-bottom: 10px;">⚡ Nutrição Esportiva</h3>
-      <p style="font-size: 0.9rem; color: #444;">Hipertrofia muscular e suplementação estratégica de treino.</p>
+  <!-- PAINEL 3: ESPECIALIDADES -->
+  <section class="h-panel">
+    <span class="tag-badge">Nossos Serviços</span>
+    <h2>Especialidades Clínicas &amp; Esportivas</h2>
+    <div class="grid-3">
+      <div class="panel-card">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--forest-dark); margin-bottom: 8px;">🔥 Emagrecimento</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Perda de peso definitiva sem passar fome ou perda de massa magra.</p>
+      </div>
+      <div class="panel-card">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--forest-dark); margin-bottom: 8px;">⚡ Nutrição Esportiva</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Hipertrofia muscular, força e suplementação de alta eficiência.</p>
+      </div>
+      <div class="panel-card">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--forest-dark); margin-bottom: 8px;">🌿 Saúde Intestinal</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Fim do estufamento abdominal e regulação digestiva.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card-brutal">
-      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; margin-bottom: 10px;">🌿 Saúde Intestinal</h3>
-      <p style="font-size: 0.9rem; color: #444;">Fim do estufamento abdominal e modulação de exames de sangue.</p>
+  <!-- PAINEL 4: METODOLOGIA -->
+  <section class="h-panel">
+    <span class="tag-badge">Passo a Passo</span>
+    <h2>Como Funciona a Consulta</h2>
+    <div class="grid-2">
+      <div class="panel-card">
+        <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold-accent); font-weight: 700;">01 &amp; 02</div>
+        <h4 style="margin: 6px 0;">Anamnese &amp; Avaliação Corporal</h4>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Análise completa da saúde, exames de sangue e bioimpedância corporal.</p>
+      </div>
+      <div class="panel-card">
+        <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold-accent); font-weight: 700;">03 &amp; 04</div>
+        <h4 style="margin: 6px 0;">Plano no App &amp; Suporte WhatsApp</h4>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Entrega do cardápio no celular com suporte diário para tirar dúvidas.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FAQ -->
-<section class="sec" id="faq">
-  <div class="sec-hdr">
-    <span class="sec-tag">FAQ</span>
-    <h2>Perguntas Frequentes</h2>
-  </div>
-
-  <div class="faq-wrap">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Fornece recibo para convênio? <span>+</span></div>
-      <div class="faq-a">Sim! Entregamos nota fiscal e recibo completos para que você solicite o reembolso no seu plano de saúde.</div>
+  <!-- PAINEL 5: LEAD MAGNET & CONTATO -->
+  <section class="h-panel">
+    <span class="tag-badge">Material Gratuito &amp; Agendamento</span>
+    <h2>Agende Sua Consulta</h2>
+    <div class="grid-2">
+      <div class="panel-card">
+        <h3>E-book Grátis de Receitas</h3>
+        <form onsubmit="alert('E-book enviado para seu WhatsApp!'); return false;" style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+          <input type="text" placeholder="Seu Nome" required style="padding: 10px 14px; border-radius: 8px; border: 1px solid #ccc;">
+          <input type="tel" placeholder="Seu WhatsApp com DDD" required style="padding: 10px 14px; border-radius: 8px; border: 1px solid #ccc;">
+          <button type="submit" class="btn-gold">📥 Baixar E-book</button>
+        </form>
+      </div>
+      <div class="panel-card" style="background: var(--forest-dark); color: #fff;">
+        <h3 style="color: var(--gold-accent);">Contato Direto</h3>
+        <p style="font-size: 0.9rem; margin: 10px 0;">📞 (21) 98738-5146<br>✉️ silviadeoliveira24.nutri@gmail.com<br>📷 @silviaoliveira_nutri</p>
+        <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">💬 Falar no WhatsApp</a>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ftr-flex">
-    <div>
-      <div style="font-family: 'Syne', sans-serif; font-size: 1.6rem; color: #fff;">Dra. Silvia de Oliveira Lemos</div>
-      <div style="color: var(--pop-yellow); font-size: 0.88rem;">CRN-4 24987/P • Nutricionista</div>
-    </div>
-    <div>
-      <h4 style="font-family: 'Syne', sans-serif; color: var(--pop-yellow); margin-bottom: 12px;">Contato Direto</h4>
-      <div style="font-size: 0.88rem; opacity: 0.8;">📞 (21) 98738-5146 | silviadeoliveira24.nutri@gmail.com</div>
-    </div>
-  </div>
-  <div style="max-width: 1250px; margin: 25px auto 0; display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.6;">
-    <div>© 2026 Dra. Silvia de Oliveira Lemos • CRN-4 24987/P</div>
-    <div>LGPD • Política de Privacidade • Isenção Médica</div>
-  </div>
-</footer>
+  </section>
+</main>
 
 <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="wsp-float">
   💬
 </a>
 
 <script>
-function toggleFaq(el) {
-  const ans = el.nextElementSibling;
-  const isVis = ans.style.display === 'block';
-  ans.style.display = isVis ? 'none' : 'block';
-  el.querySelector('span').innerText = isVis ? '+' : '–';
-}
+// MAPEMENTO DA RODA DO MOUSE PARA MOVIMENTO HORIZONTAL
+const hContainer = document.getElementById('hContainer');
+hContainer.addEventListener('wheel', (evt) => {
+  if (evt.deltaY !== 0) {
+    evt.preventDefault();
+    hContainer.scrollLeft += evt.deltaY * 1.5;
+  }
+});
 </script>
 </body>
 </html>

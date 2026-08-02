@@ -108,18 +108,18 @@ const KOS_HUB_CONFIG = {
         },
         {
           id: "op-k",
-          title: "Opção K — SOL Neo-Brutalist & Botanical Pop",
-          subtitle: "Vibrant Magazine Style • Tipografia Forte & Contrastes",
-          badge: "Novo (Neo-Brutalist)",
-          badgeColor: "#f4d068",
+          title: "Opção K — SOL Horizontal Scroll Art-Gallery",
+          subtitle: "Rolagem Lateral da Esquerda para a Direita • Galeria Editorial Luxo",
+          badge: "Novo (Rolagem Horizontal)",
+          badgeColor: "#c69c5e",
           url: "clientes/silvia-nutri/opcao-k.html"
         },
         {
           id: "op-l",
-          title: "Opção L — SOL Tech Bio-Hacking & Metabolic Matrix",
-          subtitle: "Cyberpunk Bio-Hacking • Calculadora Circadiana • Neon Matrix",
-          badge: "Novo (Bio-Hacking)",
-          badgeColor: "#00ff9d",
+          title: "Opção L — SOL Bento Grid & Depth Parallax",
+          subtitle: "Apple-Style Bento Box Grid • Parallax 3D de Profundidade",
+          badge: "Novo (Bento Grid 3D)",
+          badgeColor: "#9eb896",
           url: "clientes/silvia-nutri/opcao-l.html"
         }
       ]

@@ -234,7 +234,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 
   <div class="header-right">
-    <!-- BOTÃO PARA ABRIR O ONBOARDING -->
     <button class="btn-action" onclick="startOnboarding()" title="Guia Interativo de Uso">
       ❓ Guia KOS
     </button>
@@ -281,7 +280,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </main>
 
-<!-- ONBOARDING TOUR MODAL -->
 <div class="onboarding-overlay" id="onboardingOverlay">
   <div class="onboarding-card">
     <div class="ob-icon-badge" id="obIcon">🚀</div>
@@ -298,7 +296,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </div>
 
-<!-- MODAL QR CODE -->
 <div class="modal-overlay" id="qrModal">
   <div class="modal-card">
     <button class="modal-close" onclick="closeQrModal()">×</button>
@@ -315,7 +312,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   </div>
 </div>
 
-<!-- GAVETA FEEDBACK -->
 <div class="feedback-drawer" id="feedbackDrawer">
   <div class="drawer-header">
     <div class="drawer-title">Aprovação do Protótipo</div>
@@ -344,7 +340,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
 
   <div style="margin-bottom: 18px;">
     <label style="display: block; font-size: 0.78rem; font-weight: 800; color: var(--kos-muted); margin-bottom: 6px;">Comentário Adicional (Opcional):</label>
-    <textarea id="fbComment" style="width: 100%; height: 85px; background: rgba(0,0,0,0.4); border: 1px solid var(--kos-cyan); border-radius: 10px; padding: 12px; color: var(--white); font-family: inherit; font-size: 0.85rem; outline: none;" placeholder="Ex: Gostei muito da Opção F, apenas ajustar o texto..."></textarea>
+    <textarea id="fbComment" style="width: 100%; height: 85px; background: rgba(0,0,0,0.4); border: 1px solid var(--kos-cyan); border-radius: 10px; padding: 12px; color: var(--white); font-family: inherit; font-size: 0.85rem; outline: none;" placeholder="Ex: Gostei muito da Opção K Rolagem Lateral..."></textarea>
   </div>
 
   <button onclick="sendFeedbackWsp('Aprovado')" class="btn-action primary" style="width: 100%; justify-content: center; padding: 14px; margin-bottom: 10px; font-size: 0.9rem;">
@@ -414,7 +410,6 @@ window.addEventListener('DOMContentLoaded', () => {
   
   loadClient(activeClientId, urlParams.get('proto'));
 
-  // AUTO-OPEN ONBOARDING TOUR ON FIRST VISIT
   if (!localStorage.getItem('kos_ob_seen')) {
     setTimeout(startOnboarding, 600);
   }
@@ -493,14 +488,14 @@ function loadClient(clientId, targetProtoId = null) {
 }
 
 function getShortTitle(fullTitle) {
+  if (fullTitle.includes('Horizontal Scroll')) return 'Rolagem Lateral ↔️';
+  if (fullTitle.includes('Bento Grid')) return 'Bento Grid 3D 🍱';
   if (fullTitle.includes('OneScreen')) return 'OneScreen ⚡';
   if (fullTitle.includes('Mouse-Driven')) return 'Mouse 3D';
   if (fullTitle.includes('Lotus Glow')) return 'Lótus Nude';
   if (fullTitle.includes('Bio-Reset')) return 'Bio-Reset 30D';
   if (fullTitle.includes('Official Card')) return 'Cartão Oficial';
   if (fullTitle.includes('Golden Hour')) return 'VIP Luxury';
-  if (fullTitle.includes('Neo-Brutalist')) return 'Neo-Brutalist 🎨';
-  if (fullTitle.includes('Bio-Hacking')) return 'Bio-Hacking ⚡';
   if (fullTitle.includes('Health Hub')) return 'Health Hub';
   if (fullTitle.includes('Wellness')) return 'Luxury';
   if (fullTitle.includes('Performance')) return 'Performance';
