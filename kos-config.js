@@ -27,20 +27,44 @@ const KOS_HUB_CONFIG = {
       description: "Modelos de site para clínica de nutrição da Dra. Silvia de Oliveira Lemos.",
       prototypes: [
         {
-          id: "op-j",
-          title: "Opção J — SOL OneScreen Executive Hub",
+          id: "op-a",
+          title: "Opção A — Wellness & Clinical Luxury",
+          subtitle: "Verde Floresta • Dourado • Estilo Editorial Sophisticated",
+          badge: "Recomendado",
+          badgeColor: "#C69C5E",
+          url: "clientes/silvia-nutri/opcao-a.html"
+        },
+        {
+          id: "op-b",
+          title: "Opção B — Performance & Sports Focus",
+          subtitle: "Dark Mode • Verde Menta • Alta Energia & Treinos",
+          badge: "Alta Energia",
+          badgeColor: "#00E699",
+          url: "clientes/silvia-nutri/opcao-b.html"
+        },
+        {
+          id: "op-c",
+          title: "Opção C — SOL OneScreen Executive Hub",
           subtitle: "100% Single Viewport • Sem Rolagem da Página • Painel de Abas Interativo",
           badge: "OneScreen (Sem Rolagem)",
           badgeColor: "#9eb896",
-          url: "clientes/silvia-nutri/opcao-j.html"
+          url: "clientes/silvia-nutri/opcao-c.html"
         },
         {
-          id: "op-h",
-          title: "Opção H — SOL Mouse-Driven Interactive Experience",
-          subtitle: "Parallax 3D no Mouse • Spotlight Cards • Lente de Revelação",
-          badge: "Interativo no Mouse",
-          badgeColor: "#c9a55c",
-          url: "clientes/silvia-nutri/opcao-h.html"
+          id: "op-d",
+          title: "Opção D — Official Card & Botanical Line-Art",
+          subtitle: "Verde Sage • Linhas Orgânicas • Logo Frutas & Estilo Cartão Oficial",
+          badge: "Cartão Oficial",
+          badgeColor: "#92a988",
+          url: "clientes/silvia-nutri/opcao-d.html"
+        },
+        {
+          id: "op-e",
+          title: "Opção E — Sage Minimalist & Health Hub",
+          subtitle: "Verde Floresta • Calculadora IMC • Glassmorphism",
+          badge: "Health Hub",
+          badgeColor: "#b3c8a7",
+          url: "clientes/silvia-nutri/opcao-e.html"
         },
         {
           id: "op-f",
@@ -59,12 +83,12 @@ const KOS_HUB_CONFIG = {
           url: "clientes/silvia-nutri/opcao-g.html"
         },
         {
-          id: "op-d",
-          title: "Opção D — Official Card & Botanical Line-Art",
-          subtitle: "Verde Sage • Linhas Orgânicas • Logo Frutas & Estilo Cartão Oficial",
-          badge: "Cartão Oficial",
-          badgeColor: "#92a988",
-          url: "clientes/silvia-nutri/opcao-d.html"
+          id: "op-h",
+          title: "Opção H — SOL Mouse-Driven Interactive Experience",
+          subtitle: "Parallax 3D no Mouse • Spotlight Cards • Lente de Revelação",
+          badge: "Interativo no Mouse",
+          badgeColor: "#c9a55c",
+          url: "clientes/silvia-nutri/opcao-h.html"
         },
         {
           id: "op-i",
@@ -75,36 +99,28 @@ const KOS_HUB_CONFIG = {
           url: "clientes/silvia-nutri/opcao-i.html"
         },
         {
-          id: "op-e",
-          title: "Opção E — Sage Minimalist & Health Hub",
-          subtitle: "Verde Floresta • Calculadora IMC • Glassmorphism",
-          badge: "Health Hub",
-          badgeColor: "#b3c8a7",
-          url: "clientes/silvia-nutri/opcao-e.html"
-        },
-        {
-          id: "op-a",
-          title: "Opção A — Wellness & Clinical Luxury",
-          subtitle: "Verde Floresta • Dourado • Estilo Editorial Sophisticated",
-          badge: "Recomendado",
-          badgeColor: "#C69C5E",
-          url: "clientes/silvia-nutri/opcao-a.html"
-        },
-        {
-          id: "op-b",
-          title: "Opção B — Performance & Sports Focus",
-          subtitle: "Dark Mode • Verde Menta • Alta Energia & Treinos",
-          badge: "Alta Energia",
-          badgeColor: "#00E699",
-          url: "clientes/silvia-nutri/opcao-b.html"
-        },
-        {
-          id: "op-c",
-          title: "Opção C — Organic Minimalist & Soft",
+          id: "op-j",
+          title: "Opção J — Organic Minimalist & Soft",
           subtitle: "Warm Sand • Terracota • Nutrição Humanizada",
           badge: "Minimalista",
           badgeColor: "#D87D56",
-          url: "clientes/silvia-nutri/opcao-c.html"
+          url: "clientes/silvia-nutri/opcao-j.html"
+        },
+        {
+          id: "op-k",
+          title: "Opção K — SOL Neo-Brutalist & Botanical Pop",
+          subtitle: "Vibrant Magazine Style • Tipografia Forte & Contrastes",
+          badge: "Novo (Neo-Brutalist)",
+          badgeColor: "#f4d068",
+          url: "clientes/silvia-nutri/opcao-k.html"
+        },
+        {
+          id: "op-l",
+          title: "Opção L — SOL Tech Bio-Hacking & Metabolic Matrix",
+          subtitle: "Cyberpunk Bio-Hacking • Calculadora Circadiana • Neon Matrix",
+          badge: "Novo (Bio-Hacking)",
+          badgeColor: "#00ff9d",
+          url: "clientes/silvia-nutri/opcao-l.html"
         }
       ]
     }
