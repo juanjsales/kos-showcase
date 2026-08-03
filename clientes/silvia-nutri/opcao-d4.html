@@ -64,7 +64,7 @@ body { background-color: var(--forest-dark); color: var(--cream); font-family: '
 }
 .btn-sage:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(238, 244, 229, 0.4); }
 
-/* HERO D4: CONSULTA ONLINE SEM FRONTEIRAS */
+/* HERO D4 */
 .hero {
   padding: 70px 5% 80px; max-width: 1350px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
@@ -78,7 +78,6 @@ body { background-color: var(--forest-dark); color: var(--cream); font-family: '
   border: 6px solid rgba(255, 255, 255, 0.4); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); margin-bottom: 20px;
 }
 .hero-avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
-.hero-card-brand svg { width: 50px; height: 35px; color: var(--forest-dark); }
 .hero-card-name { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 700; color: var(--forest-dark); line-height: 1.1; }
 .hero-card-sub { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); opacity: 0.85; }
 
@@ -95,32 +94,60 @@ h1 {
 h1 em { font-style: italic; color: var(--sage-light); font-weight: 400; }
 .hero-p { color: var(--cream-dim); font-size: 1.05rem; margin-bottom: 25px; line-height: 1.7; }
 
-.specialties-badge {
-  font-size: 0.88rem; color: var(--sage-light); font-weight: 600; background: rgba(24, 42, 31, 0.8);
-  padding: 10px 18px; border-radius: 14px; border: 1px solid var(--border-sage); margin-bottom: 25px; display: inline-block;
-}
-
 /* SECTIONS */
 .sec { padding: 90px 5%; max-width: 1300px; margin: 0 auto; }
 .sec-hdr { text-align: center; max-width: 700px; margin: 0 auto 50px; }
 .sec-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 10px; display: block; }
 h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 600; color: var(--cream); }
 
-/* COMO FUNCIONA CONSULTA ONLINE (4 PASSOS) */
-.steps-online-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
-.step-online-card {
-  background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: 24px;
-  padding: 30px 22px; transition: var(--tr); text-align: center;
+/* SEÇÃO 1 PRESERVADA: TEXTO DA APRESENTAÇÃO NA OPÇÃO A */
+.about-card-sol {
+  background: var(--forest-card); border: 1px solid var(--border-sage); border-radius: 32px;
+  padding: 50px 6%; margin-bottom: 60px; display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: center; box-shadow: var(--shadow-card);
 }
-.step-online-card:hover { border-color: var(--sage-light); transform: translateY(-5px); }
-.step-icon-circle {
-  width: 50px; height: 50px; border-radius: 50%; background: rgba(164, 186, 154, 0.15); border: 1px solid var(--sage-light);
-  color: var(--sage-light); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+.about-img-circle {
+  width: 100%; height: 340px; border-radius: 24px; overflow: hidden; border: 2px solid var(--border-sage);
 }
-.step-online-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--cream); margin-bottom: 10px; }
-.step-online-desc { font-size: 0.86rem; color: var(--cream-dim); line-height: 1.6; }
+.about-img-circle img { width: 100%; height: 100%; object-fit: cover; }
 
-/* MATERIAIS EM PDF (KIT VISUAL) */
+/* SEÇÃO 2 PRESERVADA: COMO POSSO OTIMIZAR SUA SAÚDE DA OPÇÃO F (DIAGNOSTICO 360°) */
+.diag-box {
+  background: var(--forest-card); border: 1.5px solid var(--border-sage); border-radius: 32px;
+  padding: 45px 5%; margin-top: 30px; box-shadow: var(--shadow-card);
+}
+.diag-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 30px; }
+.diag-card {
+  background: rgba(0,0,0,0.25); border: 1px solid var(--border-forest); border-radius: 20px;
+  padding: 24px 18px; cursor: pointer; transition: var(--tr); text-align: center;
+}
+.diag-card:hover, .diag-card.selected { border-color: var(--sage-light); background: rgba(164, 186, 154, 0.15); transform: translateY(-4px); }
+.diag-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+.diag-h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--cream); margin-bottom: 8px; }
+.diag-p { font-size: 0.84rem; color: var(--cream-dim); line-height: 1.5; }
+
+/* SEÇÃO 3 PRESERVADA: COMO FUNCIONA SUA CONSULTA DA OPÇÃO A */
+.step-grid-a { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+.step-card-a {
+  background: var(--forest-card); padding: 32px 24px; border-radius: 24px;
+  border-top: 4px solid var(--sage-light); border-left: 1px solid var(--border-forest); border-right: 1px solid var(--border-forest); border-bottom: 1px solid var(--border-forest);
+  transition: var(--tr);
+}
+.step-card-a:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.step-num-a { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--sage-light); margin-bottom: 8px; }
+
+/* SEÇÃO 4 PRESERVADA: CALCULADORA DE SAÚDE & IMC DA OPÇÃO E/D */
+.calc-box {
+  background: var(--forest-card); border: 1px solid var(--border-sage); border-radius: 32px;
+  padding: 45px 5%; margin-top: 40px; box-shadow: var(--shadow-card);
+}
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; margin-top: 25px; }
+.calc-input-group { display: flex; flex-direction: column; gap: 14px; }
+.calc-field { display: flex; flex-direction: column; gap: 6px; }
+.calc-field label { font-size: 0.8rem; font-weight: 700; color: var(--sage-light); text-transform: uppercase; letter-spacing: 1px; }
+.calc-field input { background: rgba(0,0,0,0.3); border: 1px solid var(--border-sage); padding: 12px 18px; border-radius: 12px; color: var(--cream); font-family: inherit; font-size: 1rem; outline: none; }
+.calc-res-display { background: rgba(0,0,0,0.35); border-radius: 24px; padding: 30px; text-align: center; border: 1.5px solid var(--sage-light); }
+
+/* MATERIAIS EM PDF */
 .pdf-kit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 40px; }
 .pdf-card {
   background: var(--forest-card); border: 1.5px solid var(--border-sage); border-radius: 24px;
@@ -131,43 +158,6 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.2vw, 3rem)
   position: absolute; top: 16px; right: 16px; font-size: 0.68rem; font-weight: 800;
   background: var(--sage-light); color: var(--forest-dark); padding: 3px 8px; border-radius: 6px;
 }
-.pdf-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
-.pdf-h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--cream); margin-bottom: 10px; }
-.pdf-p { font-size: 0.86rem; color: var(--cream-dim); line-height: 1.6; }
-
-/* SOLUÇÕES POR OBJETIVO */
-.obj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 30px; }
-.obj-card {
-  background: var(--forest-card); border-radius: 24px; padding: 32px 28px; border: 1px solid var(--border-forest);
-  display: flex; gap: 20px; align-items: flex-start; transition: var(--tr);
-}
-.obj-card:hover { border-color: var(--sage-light); transform: translateY(-4px); }
-.obj-icon { font-size: 2.2rem; flex-shrink: 0; background: rgba(164, 186, 154, 0.1); padding: 14px; border-radius: 18px; border: 1px solid var(--border-sage); }
-.obj-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--cream); margin-bottom: 8px; }
-.obj-desc { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.6; }
-
-/* DEPOIMENTOS DE CONSULTA ONLINE */
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
-.testi-card { background: var(--forest-card); padding: 30px 24px; border-radius: 24px; border: 1px solid var(--border-forest); }
-.testi-city { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--sage-light); margin-bottom: 8px; }
-.testi-text { font-size: 0.92rem; color: var(--cream-dim); font-style: italic; margin-bottom: 18px; line-height: 1.7; }
-.testi-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.05rem; color: var(--sage-light); }
-
-/* FAQ CONSULTA ONLINE & REEMBOLSO */
-.faq-wrap { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-.faq-item {
-  background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: 18px;
-  overflow: hidden; transition: var(--tr);
-}
-.faq-item.active { border-color: var(--sage-light); }
-.faq-question {
-  padding: 22px 26px; font-size: 1.02rem; font-weight: 600; color: var(--cream);
-  display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;
-}
-.faq-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(164, 186, 154, 0.15); color: var(--sage-light); display: flex; align-items: center; justify-content: center; font-weight: 800; transition: var(--tr); }
-.faq-item.active .faq-icon { transform: rotate(45deg); background: var(--sage-light); color: var(--forest-dark); }
-.faq-answer { padding: 0 26px 22px; font-size: 0.92rem; color: var(--cream-dim); line-height: 1.7; display: none; }
-.faq-item.active .faq-answer { display: block; }
 
 /* FOOTER */
 footer { background: var(--forest-deep); border-top: 1px solid var(--border-forest); padding: 70px 5% 30px; margin-top: 80px; }
@@ -189,8 +179,7 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 992px) {
-  .hero, .steps-online-grid, .pdf-kit-grid, .obj-grid, .testi-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .hero-right-info { text-align: center; padding-left: 0; }
+  .hero, .step-grid-a, .pdf-kit-grid, .diag-grid, .calc-grid, .about-card-sol { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; }
   .nav-links { display: none; }
   .sec { padding: 60px 20px !important; }
 }
@@ -200,7 +189,7 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
 
 <!-- TOP VARIANT SELECTOR BAR -->
 <div class="variant-bar">
-  <span class="variant-title">Opção D — Estruturas:</span>
+  <span class="variant-title">Opção D — Escolha a Estrutura:</span>
   <div class="variant-pills">
     <a href="opcao-d1.html" class="variant-pill">1. Jornada Humanizada</a>
     <a href="opcao-d2.html" class="variant-pill">2. Foco Conversão</a>
@@ -223,11 +212,11 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
   </a>
 
   <nav class="nav-links">
+    <a href="#sobre">Sobre Mim</a>
+    <a href="#otimizar">Otimizar Saúde</a>
     <a href="#como-funciona">Como Funciona</a>
-    <a href="#materiais-pdf">Materiais PDF</a>
-    <a href="#solucoes">Soluções</a>
-    <a href="#depoimentos">Depoimentos Remotos</a>
-    <a href="#faq">Dúvidas</a>
+    <a href="#calculadora">Calculadora IMC</a>
+    <a href="#materiais-pdf">Kit PDF</a>
   </nav>
 
   <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Quero%20agendar%20uma%20consulta%20online." target="_blank" class="btn-sage">
@@ -272,36 +261,143 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
   </div>
 </section>
 
-<!-- COMO FUNCIONA CONSULTA 100% ONLINE -->
-<section class="sec" id="como-funciona">
+<!-- SEÇÃO 1 PRESERVADA: TEXTO DA APRESENTAÇÃO NA OPÇÃO A -->
+<section class="sec" id="sobre">
+  <div class="about-card-sol reveal">
+    <div class="about-img-circle">
+      <img src="assets/nutri-portrait.jpg" alt="Dra. Silvia Oliveira">
+    </div>
+
+    <div>
+      <span style="font-size: 0.78rem; font-weight: 800; color: var(--sage-light); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 12px;">CRN 25104731 • Registro Ativo</span>
+      <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Ciência, Acolhimento &amp; Nutrição Real</h2>
+      <p style="color: var(--cream-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 16px;">
+        Sou a <strong>Dra. Silvia de Oliveira Lemos</strong>, nutricionista especializada em Nutrição Clínica, Esportiva e Comportamental. Minha missão é ajudar você a alcançar seus objetivos estéticos e de saúde de forma leve e definitiva.
+      </p>
+      <p style="color: var(--cream-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 24px;">
+        Acredito que o alimento não deve ser fonte de culpa ou ansiedade. Através de um planejamento estratégico personalizado entregue em materiais em PDF de fácil acesso, adequamos os macronutrientes à sua rotina real, com suporte contínuo via WhatsApp.
+      </p>
+      <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Li%20sua%20apresenta%C3%A7%C3%A3o%20no%20site%20e%20gostaria%20de%20agendar." target="_blank" class="btn-sage">
+        💬 Falar Direto com a Dra. Silvia
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 2 PRESERVADA: COMO POSSO OTIMIZAR SUA SAÚDE DA OPÇÃO F (DIAGNOSTICO 360°) -->
+<section class="sec" id="otimizar">
   <div class="sec-hdr reveal">
-    <span class="sec-tag">Passo a Passo Remoto</span>
-    <h2>Como Funciona a Consulta Online</h2>
+    <span class="sec-tag">Diagnóstico Nutricional 360°</span>
+    <h2>Como Posso Otimizar Sua Saúde</h2>
+    <p style="color: var(--cream-dim); margin-top: 10px;">Selecione o sintoma ou objetivo que você mais deseja melhorar hoje:</p>
   </div>
 
-  <div class="steps-online-grid">
-    <div class="step-online-card reveal">
-      <div class="step-icon-circle">📲</div>
-      <h3 class="step-online-title">1. Agendamento pelo WhatsApp</h3>
-      <p class="step-online-desc">Escolha o melhor dia e horário na agenda diretamente com a nossa equipe no WhatsApp.</p>
+  <div class="diag-box reveal">
+    <div class="diag-grid">
+      <div class="diag-card selected" onclick="selectDiag(this, 'Metabolismo Lento & Emagrecimento')">
+        <span class="diag-icon">🔥</span>
+        <h3 class="diag-h3">Metabolismo Lento</h3>
+        <p class="diag-p">Dificuldade de emagrecer mesmo praticando dietas e exercícios.</p>
+      </div>
+
+      <div class="diag-card" onclick="selectDiag(this, 'Ansiedade & Fome por Doces')">
+        <span class="diag-icon">🍫</span>
+        <h3 class="diag-h3">Vontade de Doces</h3>
+        <p class="diag-p">Ansiedade e fome emocional no final da tarde ou à noite.</p>
+      </div>
+
+      <div class="diag-card" onclick="selectDiag(this, 'Ganho de Massa Magra & Performance')">
+        <span class="diag-icon">⚡</span>
+        <h3 class="diag-h3">Ganho de Massa</h3>
+        <p class="diag-p">Estagnação de hipertrofia e falta de energia nos treinos.</p>
+      </div>
+
+      <div class="diag-card" onclick="selectDiag(this, 'Saúde Intestinal & Estufamento')">
+        <span class="diag-icon">🌿</span>
+        <h3 class="diag-h3">Estufamento Intestinal</h3>
+        <p class="diag-p">Sensação de inchaço e má digestão constante após refeições.</p>
+      </div>
     </div>
 
-    <div class="step-online-card reveal" style="transition-delay: 0.1s;">
-      <div class="step-icon-circle">💻</div>
-      <h3 class="step-online-title">2. Videochamada Individual</h3>
-      <p class="step-online-desc">Consulta de 60 minutos via Google Meet ou WhatsApp Video para anamnese e alinhamento de metas.</p>
+    <div style="text-align: center; margin-top: 30px;">
+      <a id="btnSendDiagWsp" href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Fiz%20o%20diagn%C3%B3stico%20no%20site%20para:%20Metabolismo%20Lento%20%26%20Emagrecimento.%20Quero%20otimizar%20minha%20sa%C3%BAde!" target="_blank" class="btn-sage" style="padding: 16px 36px;">
+        🚀 Receber Meu Plano de Ajuste no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 3 PRESERVADA: COMO FUNCIONA SUA CONSULTA DA OPÇÃO A -->
+<section class="sec" id="como-funciona">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Passo a Passo</span>
+    <h2>Como Funciona a Sua Consulta</h2>
+  </div>
+
+  <div class="step-grid-a">
+    <div class="step-card-a reveal">
+      <div class="step-num-a">01</div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 10px;">Anamnese Aprofundada</h3>
+      <p style="font-size: 0.88rem; color: var(--cream-dim); line-height: 1.6;">Investigação da sua rotina, hábitos, histórico de exames e preferências alimentares.</p>
     </div>
 
-    <div class="step-online-card reveal" style="transition-delay: 0.2s;">
-      <div class="step-icon-circle">📄</div>
-      <h3 class="step-online-title">3. Envio dos Materiais em PDF</h3>
-      <p class="step-online-desc">Recebimento do plano alimentício, guia de compras e tabela de substituições direto no e-mail e WhatsApp.</p>
+    <div class="step-card-a reveal" style="transition-delay: 0.1s;">
+      <div class="step-num-a">02</div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 10px;">Avaliação Corporal</h3>
+      <p style="font-size: 0.88rem; color: var(--cream-dim); line-height: 1.6;">Bioimpedância e medições no presencial ou acompanhamento por fotos guiadas no online.</p>
     </div>
 
-    <div class="step-online-card reveal" style="transition-delay: 0.3s;">
-      <div class="step-icon-circle">💬</div>
-      <h3 class="step-online-title">4. Suporte Diário de Dúvidas</h3>
-      <p class="step-online-desc">Acompanhamento contínuo via WhatsApp para tirar dúvidas e manter sua consistência em qualquer lugar.</p>
+    <div class="step-card-a reveal" style="transition-delay: 0.2s;">
+      <div class="step-num-a">03</div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 10px;">Plano Alimentar em PDF</h3>
+      <p style="font-size: 0.88rem; color: var(--cream-dim); line-height: 1.6;">Cardápio personalizado e lista de compras entregues em PDF de fácil consulta no celular.</p>
+    </div>
+
+    <div class="step-card-a reveal" style="transition-delay: 0.3s;">
+      <div class="step-num-a">04</div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 10px;">Suporte no WhatsApp</h3>
+      <p style="font-size: 0.88rem; color: var(--cream-dim); line-height: 1.6;">Acompanhamento contínuo para garantir que você cumpra suas metas com leveza.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 4 PRESERVADA: CALCULADORA INTERATIVA DE SAÚDE & IMC DA OPÇÃO E/D -->
+<section class="sec" id="calculadora">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Ferramenta Interativa</span>
+    <h2>Calculadora de Saúde &amp; IMC</h2>
+  </div>
+
+  <div class="calc-box reveal">
+    <div class="calc-grid">
+      <div class="calc-input-group">
+        <div class="calc-field">
+          <label>Seu Peso Atual (kg)</label>
+          <input type="number" id="calcPeso" placeholder="Ex: 70" value="70" oninput="calcularSaude()">
+        </div>
+        <div class="calc-field">
+          <label>Sua Altura (m)</label>
+          <input type="number" id="calcAltura" step="0.01" placeholder="Ex: 1.68" value="1.68" oninput="calcularSaude()">
+        </div>
+        <button onclick="calcularSaude()" class="btn-sage" style="margin-top: 10px; width: 100%; justify-content: center;">
+          ⚡ Calcular Diagnóstico Agora
+        </button>
+      </div>
+
+      <div class="calc-res-display">
+        <div style="font-size: 0.82rem; color: var(--sage-light); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Resultado do Seu IMC</div>
+        <div id="resIMC" style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--cream); margin: 6px 0;">24.8</div>
+        <div id="resDiag" style="font-size: 1rem; color: var(--sage-light); font-weight: 700; margin-bottom: 16px;">Peso Corporal Saudável</div>
+        
+        <div style="border-top: 1px dashed var(--border-sage); padding-top: 14px; margin-top: 10px;">
+          <div style="font-size: 0.78rem; color: var(--cream-dim); font-weight: 600;">Meta de Água Recomendada:</div>
+          <div id="resAgua" style="font-size: 1.2rem; font-weight: 800; color: var(--cream);">2.5L / dia</div>
+        </div>
+
+        <a id="btnSendCalcWsp" href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Calculei%20no%20site:%20Meu%20IMC%20%C3%A9%2024.8%20(Peso%20Corporal%20Saud%C3%A1vel)%20e%20meta%20de%20%C3%A1gua%202.5L/dia.%20Quero%20agendar%20minha%20consulta!" target="_blank" class="btn-sage" style="margin-top: 18px; font-size: 0.8rem; padding: 10px 18px; width: 100%; justify-content: center;">
+          📲 Enviar Resultado no WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -316,140 +412,30 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
   <div class="pdf-kit-grid">
     <div class="pdf-card reveal">
       <span class="pdf-badge">PDF #1</span>
-      <span class="pdf-icon">📋</span>
-      <h3 class="pdf-h3">Plano Alimentar Individual</h3>
-      <p class="pdf-p">Estrutura completa de horários, proporções de nutrientes e cardápio calculado para a sua rotina real.</p>
+      <span style="font-size:2.2rem; margin-bottom:14px; display:block;">📋</span>
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.2rem; font-weight:600; color:var(--cream); margin-bottom:10px;">Plano Alimentar Individual</h3>
+      <p style="font-size:0.86rem; color:var(--cream-dim); line-height:1.6;">Estrutura completa de horários e proporções calculada para a sua rotina real.</p>
     </div>
 
     <div class="pdf-card reveal" style="transition-delay: 0.1s;">
       <span class="pdf-badge">PDF #2</span>
-      <span class="pdf-icon">🍱</span>
-      <h3 class="pdf-h3">Guia de Marmitas &amp; Preparo</h3>
-      <p class="pdf-p">Manual didático de organização semanal de refeições para economizar seu tempo na cozinha.</p>
+      <span style="font-size:2.2rem; margin-bottom:14px; display:block;">🍱</span>
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.2rem; font-weight:600; color:var(--cream); margin-bottom:10px;">Guia de Marmitas &amp; Preparo</h3>
+      <p style="font-size:0.86rem; color:var(--cream-dim); line-height:1.6;">Manual didático de organização semanal de refeições para economizar seu tempo.</p>
     </div>
 
     <div class="pdf-card reveal" style="transition-delay: 0.2s;">
       <span class="pdf-badge">PDF #3</span>
-      <span class="pdf-icon">🛒</span>
-      <h3 class="pdf-h3">Lista de Supermercado</h3>
-      <p class="pdf-p">Lista prática categorizada com marcas recomendadas, opções acessíveis e itens essenciais.</p>
+      <span style="font-size:2.2rem; margin-bottom:14px; display:block;">🛒</span>
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.2rem; font-weight:600; color:var(--cream); margin-bottom:10px;">Lista de Supermercado</h3>
+      <p style="font-size:0.86rem; color:var(--cream-dim); line-height:1.6;">Lista prática categorizada com marcas recomendadas e itens essenciais.</p>
     </div>
 
     <div class="pdf-card reveal" style="transition-delay: 0.3s;">
       <span class="pdf-badge">PDF #4</span>
-      <span class="pdf-icon">🔄</span>
-      <h3 class="pdf-h3">Tabela de Substituições</h3>
-      <p class="pdf-p">Flexibilidade garantida para trocar alimentos em viagens ou dias corridos sem estragar a dieta.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUÇÕES POR OBJETIVO -->
-<section class="sec" id="solucoes">
-  <div class="sec-hdr reveal">
-    <span class="sec-tag">Especialidades Remotas</span>
-    <h2>Soluções Nutricionais por Objetivo</h2>
-  </div>
-
-  <div class="obj-grid">
-    <div class="obj-card reveal">
-      <span class="obj-icon">🌸</span>
-      <div>
-        <h3 class="obj-title">Saúde da Mulher &amp; Hormônios</h3>
-        <p class="obj-desc">Ajustes nutricionais para SOP, TPM, menopausa, desequilíbrios hormonais e saúde da tireoide.</p>
-      </div>
-    </div>
-
-    <div class="obj-card reveal" style="transition-delay: 0.1s;">
-      <span class="obj-icon">⚡</span>
-      <div>
-        <h3 class="obj-title">Nutrição Esportiva &amp; Treinos</h3>
-        <p class="obj-desc">Estratégias de suplementação, refeições pré e pós-treino para hipertrofia e definição muscular.</p>
-      </div>
-    </div>
-
-    <div class="obj-card reveal" style="transition-delay: 0.2s;">
-      <span class="obj-icon">🔥</span>
-      <div>
-        <h3 class="obj-title">Emagrecimento Sustentável</h3>
-        <p class="obj-desc">Redução de gordura corporal sem restrições severas, mantendo sua massa magra e vitalidade.</p>
-      </div>
-    </div>
-
-    <div class="obj-card reveal" style="transition-delay: 0.3s;">
-      <span class="obj-icon">🩸</span>
-      <div>
-        <h3 class="obj-title">Doenças Metabólicas</h3>
-        <p class="obj-desc">Tratamento de esteatose hepática, colesterol elevado, pré-diabetes e síndrome metabólica.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS FOCADOS EM ATENDIMENTO REMOTO -->
-<section class="sec" id="depoimentos">
-  <div class="sec-hdr reveal">
-    <span class="sec-tag">Pacientes de Todo o Brasil</span>
-    <h2>Depoimentos de Quem Faz Consulta Online</h2>
-  </div>
-
-  <div class="testi-grid">
-    <div class="testi-card reveal">
-      <div class="testi-city">📍 São Paulo / SP</div>
-      <div class="testi-text">"Moro em SP e tinha receio da consulta online, mas foi super completa! A Dra. Silvia analisou todos os meus exames e enviou o PDF no mesmo dia."</div>
-      <div class="testi-name">Camila N.</div>
-    </div>
-
-    <div class="testi-card reveal" style="transition-delay: 0.1s;">
-      <div class="testi-city">📍 Belo Horizonte / MG</div>
-      <div class="testi-text">"A praticidade de não precisar pegar trânsito para ser atendida é maravilhosa. O plano alimentar em PDF e o WhatsApp funcionam perfeitamente."</div>
-      <div class="testi-name">Rodrigo B.</div>
-    </div>
-
-    <div class="testi-card reveal" style="transition-delay: 0.2s;">
-      <div class="testi-city">📍 Lisboa / Portugal</div>
-      <div class="testi-text">"Mesmo morando no exterior, a Dra. Silvia adaptou os alimentos para o que encontro nos mercados de Lisboa. Atendimento nota 1000!"</div>
-      <div class="testi-name">Vanessa M.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ ESPECÍFICO CONSULTA ONLINE -->
-<section class="sec" id="faq">
-  <div class="sec-hdr reveal">
-    <span class="sec-tag">Dúvidas Frequentes</span>
-    <h2>Perguntas Frequentes sobre Consulta Online</h2>
-  </div>
-
-  <div class="faq-wrap reveal">
-    <div class="faq-item active">
-      <div class="faq-question">
-        <span>Como é feita a avaliação física à distância?</span>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-answer">
-        Enviamos um guia prático de como tirar suas medidas simples em casa com fita métrica e/ou fotos de acompanhamento de evolução da composição corporal.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Como solicito reembolso no meu plano de saúde?</span>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-answer">
-        Após a consulta online, emitimos a nota fiscal e o recibo oficial assinado com CRN para você protocolar no aplicativo do seu convênio.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Qual aplicativo preciso para a videochamada?</span>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-answer">
-        As consultas são realizadas pelo Google Meet ou WhatsApp Video, sem necessidade de baixar nada complicado no celular ou computador.
-      </div>
+      <span style="font-size:2.2rem; margin-bottom:14px; display:block;">🔄</span>
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.2rem; font-weight:600; color:var(--cream); margin-bottom:10px;">Tabela de Substituições</h3>
+      <p style="font-size:0.86rem; color:var(--cream-dim); line-height:1.6;">Flexibilidade garantida para trocar alimentos sem estragar a dieta.</p>
     </div>
   </div>
 </section>
@@ -459,17 +445,18 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
   <div class="ftr-flex">
     <div>
       <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 4px;">Dra. Silvia Oliveira</div>
-      <div style="font-size: 0.88rem; color: var(--sage-light); margin-bottom: 14px;">Nutricionista • CRN 24.108</div>
+      <div style="font-size: 0.88rem; color: var(--sage-light); margin-bottom: 14px;">Nutricionista • CRN 25104731</div>
       <p style="color: var(--cream-dim); font-size: 0.88rem; max-width: 340px;">Atendimento nutricional 100% online para todo o Brasil e exterior, com materiais em PDF e suporte humanizado via WhatsApp.</p>
     </div>
 
     <div class="ftr-col">
       <h4>Navegação</h4>
       <ul>
+        <li><a href="#sobre">Sobre Mim</a></li>
+        <li><a href="#otimizar">Otimizar Saúde</a></li>
         <li><a href="#como-funciona">Como Funciona</a></li>
-        <li><a href="#materiais-pdf">Kit Materiais PDF</a></li>
-        <li><a href="#solucoes">Soluções</a></li>
-        <li><a href="#faq">Dúvidas Frequentes</a></li>
+        <li><a href="#calculadora">Calculadora IMC</a></li>
+        <li><a href="#materiais-pdf">Kit PDF</a></li>
       </ul>
     </div>
 
@@ -494,22 +481,44 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
 </a>
 
 <script>
+let selectedDiagText = 'Metabolismo Lento & Emagrecimento';
+function selectDiag(el, text) {
+  document.querySelectorAll('.diag-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedDiagText = text;
+  const msg = `Olá Dra. Silvia! Fiz o diagnóstico no site para: ${text}. Quero otimizar minha saúde!`;
+  document.getElementById('btnSendDiagWsp').href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
+}
+
+function calcularSaude() {
+  const peso = parseFloat(document.getElementById('calcPeso').value);
+  const altura = parseFloat(document.getElementById('calcAltura').value);
+  if (!peso || !altura || peso <= 0 || altura <= 0) return;
+
+  const imc = (peso / (altura * altura)).toFixed(1);
+  const agua = (peso * 35 / 1000).toFixed(1);
+
+  document.getElementById('resIMC').innerText = imc;
+  document.getElementById('resAgua').innerText = agua + 'L / dia';
+
+  let diag = "";
+  if (imc < 18.5) diag = "Abaixo do Peso Ideal";
+  else if (imc < 24.9) diag = "Peso Corporal Saudável";
+  else if (imc < 29.9) diag = "Sobrepeso Leve";
+  else diag = "Atenção / Obesidade";
+
+  document.getElementById('resDiag').innerText = diag;
+
+  const msg = `Olá Dra. Silvia! Calculei no site: Meu IMC é ${imc} (${diag}) e meta de água é ${agua}L/dia. Quero agendar minha consulta!`;
+  document.getElementById('btnSendCalcWsp').href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.parentElement;
-    document.querySelectorAll('.faq-item').forEach(i => {
-      if (i !== item) i.classList.remove('active');
-    });
-    item.classList.toggle('active');
-  });
-});
 </script>
 </body>
 </html>
