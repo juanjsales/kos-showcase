@@ -143,11 +143,19 @@ footer { background: var(--forest-dark); color: #fff; padding: 80px 5% 35px; mar
 }
 .wsp-float:hover { transform: scale(1.1); }
 
-@media (max-width: 900px) {
-  .hero, .about-grid { grid-template-columns: 1fr; text-align: center; padding-top: 130px; }
-  .grid-3, .step-grid, .testi-grid { grid-template-columns: 1fr; }
+/* PADRONIZAÇÃO RESPONSIVA GLOBAL */
+@media (max-width: 992px) {
+  .hero-container, .grid-3, .grid-2, .grid-4, .ftr-grid { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; }
+  .hero-text { text-align: center; }
+  .hero-btns, .hdr-btns, .nav-right { justify-content: center; }
   .nav-links { display: none; }
-  .lead-form { flex-direction: column; }
+  .hdr { padding: 0 16px; }
+  .sec { padding: 50px 20px !important; }
+}
+@media (max-width: 576px) {
+  h1 { font-size: 2.1rem !important; }
+  h2 { font-size: 1.7rem !important; }
+  .btn-primary, .btn-gold { width: 100%; justify-content: center; }
 }
 </style>
 </head>

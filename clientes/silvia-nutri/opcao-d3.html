@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opção D3 — Monte Seu Prato & Conscientização · Dra. Silvia Oliveira Nutricionista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage-light: #a4ba9a;
+  --sage-bg: #92a988;
+  --sage-grad: linear-gradient(135deg, #abbf9f 0%, #8ca481 100%);
+  --forest-dark: #203528;
+  --forest-card: #182a1f;
+  --forest-deep: #122117;
+  --cream: #eef4e5;
+  --cream-dim: #c5d4b8;
+  --text-dark: #192b20;
+  --border-sage: rgba(164, 186, 154, 0.3);
+  --border-forest: rgba(238, 244, 229, 0.15);
+  --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.25);
+  --tr: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--forest-dark); color: var(--cream); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; line-height: 1.7; }
+
+/* TOP VARIANT BAR */
+.variant-bar {
+  background: var(--forest-deep); border-bottom: 1px solid var(--border-forest);
+  padding: 8px 5%; display: flex; align-items: center; justify-content: center; gap: 12px;
+  font-size: 0.78rem; font-weight: 700; z-index: 1002; position: relative; flex-wrap: wrap;
+}
+.variant-title { color: var(--sage-light); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.7rem; }
+.variant-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.variant-pill {
+  padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--cream-dim);
+  text-decoration: none; border: 1px solid var(--border-forest); transition: var(--tr); font-size: 0.75rem;
+}
+.variant-pill:hover { background: rgba(164, 186, 154, 0.2); color: var(--cream); }
+.variant-pill.active { background: var(--sage-light); color: var(--forest-dark); border-color: var(--sage-light); font-weight: 800; }
+
+/* HEADER */
+.hdr {
+  position: sticky; top: 0; left: 0; right: 0; height: 80px;
+  background: rgba(24, 42, 31, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-forest); padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between; z-index: 1000;
+}
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.brand-logo-svg { width: 48px; height: 38px; color: var(--sage-light); flex-shrink: 0; }
+.brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--cream); line-height: 1.1; }
+.brand-sub { font-size: 0.78rem; font-weight: 500; color: var(--sage-light); letter-spacing: 1px; }
+
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { color: var(--cream-dim); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--tr); }
+.nav-links a:hover { color: var(--sage-light); }
+
+.btn-sage {
+  background: var(--sage-light); color: var(--forest-dark); font-weight: 800; font-size: 0.82rem;
+  letter-spacing: 1px; padding: 12px 24px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: var(--tr);
+  box-shadow: 0 6px 20px rgba(164, 186, 154, 0.3); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+}
+.btn-sage:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(238, 244, 229, 0.4); }
+
+/* HERO D3: EDUCATIVO & INTERATIVO */
+.hero-d3 {
+  padding: 60px 5% 50px; max-width: 1250px; margin: 0 auto; text-align: center;
+}
+.hero-badge-d3 {
+  display: inline-flex; align-items: center; gap: 8px; background: rgba(164, 186, 154, 0.15);
+  border: 1px solid var(--sage-light); color: var(--sage-light); font-size: 0.8rem; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; padding: 8px 20px; border-radius: 100px; margin-bottom: 20px;
+}
+h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 600; line-height: 1.15; margin-bottom: 20px; color: var(--cream);
+}
+h1 em { font-style: italic; color: var(--sage-light); font-weight: 400; }
+.hero-p-d3 { color: var(--cream-dim); font-size: 1.1rem; max-width: 760px; margin: 0 auto 30px; line-height: 1.7; }
+
+/* SIMULADOR MONTE SEU PRATO */
+.builder-box {
+  background: var(--forest-card); border: 1.5px solid var(--border-sage); border-radius: 32px;
+  padding: 40px 5%; margin: 20px auto 70px; max-width: 1150px; box-shadow: var(--shadow-card);
+}
+.builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+
+/* PRATO DINÂMICO */
+.plate-interactive {
+  width: 280px; height: 280px; border-radius: 50%; border: 8px solid var(--sage-light); margin: 0 auto;
+  position: relative; background: rgba(0,0,0,0.3); box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+  display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: center; padding: 20px; text-align: center;
+}
+.plate-sec-salad { background: rgba(164, 186, 154, 0.25); width: 100%; height: 50%; border-bottom: 2px dashed var(--sage-light); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; color: var(--cream); }
+.plate-sec-bottom { width: 100%; height: 50%; display: flex; }
+.plate-sec-prot { background: rgba(197, 160, 89, 0.25); width: 50%; height: 100%; border-right: 2px dashed var(--sage-light); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; color: var(--sage-light); padding: 5px; }
+.plate-sec-carb { background: rgba(238, 244, 229, 0.15); width: 50%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; color: var(--cream-dim); padding: 5px; }
+
+/* SELETORES DE ALIMENTOS */
+.builder-controls { text-align: left; }
+.group-title { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--sage-light); letter-spacing: 1px; margin-bottom: 8px; }
+.food-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.food-chip {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border-forest); color: var(--cream-dim);
+  padding: 6px 14px; border-radius: 100px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: var(--tr);
+}
+.food-chip:hover { border-color: var(--sage-light); color: var(--cream); }
+.food-chip.selected { background: var(--sage-light); color: var(--forest-dark); font-weight: 800; border-color: var(--sage-light); }
+
+/* PILARES MÉTODOS SOL */
+.sec { padding: 80px 5%; max-width: 1300px; margin: 0 auto; }
+.sec-hdr { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+.sec-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 10px; display: block; }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 600; color: var(--cream); }
+
+.pilares-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.pilar-card {
+  background: var(--forest-card); border-radius: 28px; padding: 40px 30px; border: 1px solid var(--border-forest);
+  transition: var(--tr); text-align: center;
+}
+.pilar-card:hover { border-color: var(--sage-light); transform: translateY(-6px); }
+.pilar-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+.pilar-h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: var(--cream); margin-bottom: 12px; }
+.pilar-p { font-size: 0.92rem; color: var(--cream-dim); line-height: 1.7; }
+
+/* QUADRO COMPARATIVO: PRESENCIAL VS ONLINE */
+.compare-box {
+  background: var(--forest-card); border: 1px solid var(--border-sage); border-radius: 32px;
+  padding: 45px 5%; margin-top: 40px;
+}
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+.compare-table th { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--sage-light); padding: 16px; border-bottom: 2px solid var(--border-sage); text-align: left; }
+.compare-table td { padding: 18px 16px; border-bottom: 1px solid var(--border-forest); font-size: 0.92rem; color: var(--cream-dim); }
+.compare-table tr:last-child td { border-bottom: none; }
+.badge-check { color: var(--sage-light); font-weight: 800; font-size: 1.1rem; }
+
+/* CARDS EXPANSÍVEIS DE ESPECIALIDADES */
+.cards-expand { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
+.expand-card {
+  background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: 24px;
+  padding: 30px 24px; cursor: pointer; transition: var(--tr);
+}
+.expand-card:hover { border-color: var(--sage-light); background: rgba(24, 42, 31, 0.95); }
+.expand-h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--cream); margin-bottom: 10px; display: flex; justify-content: space-between; }
+
+/* DEPOIMENTOS */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
+.testi-card { background: var(--forest-card); padding: 30px 24px; border-radius: 24px; border: 1px solid var(--border-forest); }
+.testi-text { font-size: 0.92rem; color: var(--cream-dim); font-style: italic; margin-bottom: 18px; line-height: 1.7; }
+.testi-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.05rem; color: var(--sage-light); }
+
+/* FAQ ACCORDION */
+.faq-wrap { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.faq-item {
+  background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: 18px;
+  overflow: hidden; transition: var(--tr);
+}
+.faq-item.active { border-color: var(--sage-light); }
+.faq-question {
+  padding: 22px 26px; font-size: 1.02rem; font-weight: 600; color: var(--cream);
+  display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;
+}
+.faq-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(164, 186, 154, 0.15); color: var(--sage-light); display: flex; align-items: center; justify-content: center; font-weight: 800; transition: var(--tr); }
+.faq-item.active .faq-icon { transform: rotate(45deg); background: var(--sage-light); color: var(--forest-dark); }
+.faq-answer { padding: 0 26px 22px; font-size: 0.92rem; color: var(--cream-dim); line-height: 1.7; display: none; }
+.faq-item.active .faq-answer { display: block; }
+
+/* FOOTER */
+footer { background: var(--forest-deep); border-top: 1px solid var(--border-forest); padding: 70px 5% 30px; margin-top: 80px; }
+.ftr-flex { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid var(--border-forest); }
+.ftr-col h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--sage-light); margin-bottom: 18px; }
+.ftr-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: var(--cream-dim); }
+.ftr-col ul a { color: var(--cream-dim); text-decoration: none; transition: var(--tr); }
+.ftr-col ul a:hover { color: var(--sage-light); }
+
+.wsp-float {
+  position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+  background: var(--sage-light); color: var(--forest-dark); border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 10px 25px rgba(164, 186, 154, 0.4);
+  text-decoration: none; z-index: 999; transition: var(--tr); font-weight: 800;
+}
+.wsp-float:hover { transform: scale(1.1); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 992px) {
+  .builder-grid, .pilares-grid, .cards-expand, .testi-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .compare-box { overflow-x: auto; }
+  .nav-links { display: none; }
+  .sec { padding: 60px 20px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP VARIANT SELECTOR BAR -->
+<div class="variant-bar">
+  <span class="variant-title">Opção D — Estruturas:</span>
+  <div class="variant-pills">
+    <a href="opcao-d1.html" class="variant-pill">1. Jornada Humanizada</a>
+    <a href="opcao-d2.html" class="variant-pill">2. Foco Conversão</a>
+    <a href="opcao-d3.html" class="variant-pill active">3. Monte Seu Prato Interativo</a>
+    <a href="opcao-d4.html" class="variant-pill">4. Consulta Online</a>
+    <a href="opcao-d5.html" class="variant-pill">5. Editorial Minimalista</a>
+  </div>
+</div>
+
+<header class="hdr">
+  <a href="#" class="brand">
+    <svg class="brand-logo-svg" viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M 25 35 C 20 25, 35 15, 55 22 C 45 28, 30 35, 25 35 Z" />
+      <path d="M 45 42 C 38 32, 52 24, 60 30 C 68 24, 82 32, 75 42 C 70 50, 50 50, 45 42 Z" />
+    </svg>
+    <div class="brand-text">
+      <div class="brand-title">Silvia Oliveira</div>
+      <div class="brand-sub">nutricionista</div>
+    </div>
+  </a>
+
+  <nav class="nav-links">
+    <a href="#prato-builder">Monte Seu Prato</a>
+    <a href="#pilares">Pilares Método SOL</a>
+    <a href="#especialidades">Especialidades</a>
+    <a href="#comparativo">Presencial vs Online</a>
+    <a href="#faq">Dúvidas</a>
+  </nav>
+
+  <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta." target="_blank" class="btn-sage">
+    🌿 Agendar Consulta
+  </a>
+</header>
+
+<!-- HERO D3 -->
+<section class="hero-d3">
+  <div class="hero-badge-d3 reveal">
+    🥗 3. Experiência Interativa &amp; Conscientização Alimentar
+  </div>
+
+  <h1 class="reveal" style="transition-delay: 0.1s;">
+    Comer saudável é simples, saboroso e <em>sem proibições.</em>
+  </h1>
+
+  <p class="hero-p-d3 reveal" style="transition-delay: 0.2s;">
+    Aprenda na prática a montar combinações equilibradas. Monte o seu prato ideal abaixo e envie diretamente para a Dra. Silvia Oliveira avaliar no seu atendimento!
+  </p>
+</section>
+
+<!-- SIMULADOR MONTE SEU PRATO -->
+<div class="builder-box reveal" id="prato-builder">
+  <div style="text-align: center; margin-bottom: 30px;">
+    <span class="sec-tag">Ferramenta Interativa</span>
+    <h2 style="font-size: 2rem;">Simulador "Monte Seu Prato Perfeito"</h2>
+  </div>
+
+  <div class="builder-grid">
+    <!-- VISUAL DO PRATO -->
+    <div>
+      <div class="plate-interactive">
+        <div class="plate-sec-salad" id="view-salad">🥗 50% Vegetais: Alface &amp; Tomate</div>
+        <div class="plate-sec-bottom">
+          <div class="plate-sec-prot" id="view-prot">🍗 25% Proteína: Frango Grelhado</div>
+          <div class="plate-sec-carb" id="view-carb">🍚 25% Carbo: Arroz Integral</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: var(--sage-light); font-weight: 700;">
+        Proporção Recomendada: 50% Salada • 25% Proteína • 25% Carboidrato
+      </div>
+    </div>
+
+    <!-- SELETORES -->
+    <div class="builder-controls">
+      <div class="group-title">1. Escolha a Salada / Vegetais (50%):</div>
+      <div class="food-options">
+        <button class="food-chip selected" onclick="selectFood('salad', 'Alface & Tomate', '🥗 50% Vegetais: Alface & Tomate')">Alface &amp; Tomate</button>
+        <button class="food-chip" onclick="selectFood('salad', 'Brócolis & Cenoura', '🥦 50% Vegetais: Brócolis & Cenoura')">Brócolis &amp; Cenoura</button>
+        <button class="food-chip" onclick="selectFood('salad', 'Rúcula & Beterraba', '🥬 50% Vegetais: Rúcula & Beterraba')">Rúcula &amp; Beterraba</button>
+      </div>
+
+      <div class="group-title">2. Escolha a Proteína (25%):</div>
+      <div class="food-options">
+        <button class="food-chip selected" onclick="selectFood('prot', 'Frango Grelhado', '🍗 25% Proteína: Frango Grelhado')">Frango Grelhado</button>
+        <button class="food-chip" onclick="selectFood('prot', 'Ovos Mexidos', '🍳 25% Proteína: Ovos Mexidos')">Ovos Mexidos</button>
+        <button class="food-chip" onclick="selectFood('prot', 'Peixe Assado', '🐟 25% Proteína: Peixe Assado')">Peixe Assado</button>
+      </div>
+
+      <div class="group-title">3. Escolha o Carboidrato (25%):</div>
+      <div class="food-options">
+        <button class="food-chip selected" onclick="selectFood('carb', 'Arroz Integral', '🍚 25% Carbo: Arroz Integral')">Arroz Integral</button>
+        <button class="food-chip" onclick="selectFood('carb', 'Batata Doce', '🍠 25% Carbo: Batata Doce')">Batata Doce</button>
+        <button class="food-chip" onclick="selectFood('carb', 'Mandioca Assada', '🥔 25% Carbo: Mandioca Assada')">Mandioca Assada</button>
+      </div>
+
+      <a id="btn-wsp-plate" href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Montei%20meu%20prato%20no%20site:%20Salada:%20Alface%20%26%20Tomate,%20Prote%C3%ADna:%20Frango%20Grelhado,%20Carbo:%20Arroz%20Integral." target="_blank" class="btn-sage" style="margin-top: 15px; width: 100%; justify-content: center; padding: 14px 20px;">
+        📲 Enviar Este Prato no WhatsApp da Dra. Silvia
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PILARES MÉTODOS SOL -->
+<section class="sec" id="pilares">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Filosofia de Atendimento</span>
+    <h2>Os 3 Pilares do Método SOL</h2>
+  </div>
+
+  <div class="pilares-grid">
+    <div class="pilar-card reveal">
+      <span class="pilar-icon">🌱</span>
+      <h3 class="pilar-h3">1. Conscientização</h3>
+      <p class="pilar-p">Entender a função de cada alimento no seu organismo, libertando você de dietas restritivas e da culpa alimentar.</p>
+    </div>
+
+    <div class="pilar-card reveal" style="transition-delay: 0.1s;">
+      <span class="pilar-icon">📅</span>
+      <h3 class="pilar-h3">2. Organização da Rotina</h3>
+      <p class="pilar-p">Ajuste de refeições adaptado ao seu ritmo de trabalho, compromissos de família e horários de treino real.</p>
+    </div>
+
+    <div class="pilar-card reveal" style="transition-delay: 0.2s;">
+      <span class="pilar-icon">✨</span>
+      <h3 class="pilar-h3">3. Longevidade &amp; Saúde</h3>
+      <p class="pilar-p">Resultados duradouros de composição corporal que se mantêm ao longo dos anos com vitalidade e disposição.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUADRO COMPARATIVO: PRESENCIAL VS ONLINE -->
+<section class="sec" id="comparativo">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Flexibilidade de Atendimento</span>
+    <h2>Presencial vs. Atendimento Online</h2>
+  </div>
+
+  <div class="compare-box reveal">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Recurso do Atendimento</th>
+          <th>Presencial (Clínica)</th>
+          <th>Online (Videochamada)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Anamnese &amp; Análise de Exames</td>
+          <td><span class="badge-check">✓</span> Completa (60 min)</td>
+          <td><span class="badge-check">✓</span> Completa (60 min)</td>
+        </tr>
+        <tr>
+          <td>Plano Alimentar em PDF</td>
+          <td><span class="badge-check">✓</span> Personalizado</td>
+          <td><span class="badge-check">✓</span> Personalizado</td>
+        </tr>
+        <tr>
+          <td>Guias &amp; Listas de Compras</td>
+          <td><span class="badge-check">✓</span> Entregue no e-mail/WSP</td>
+          <td><span class="badge-check">✓</span> Entregue no e-mail/WSP</td>
+        </tr>
+        <tr>
+          <td>Suporte Contínuo via WhatsApp</td>
+          <td><span class="badge-check">✓</span> Direto com a Dra.</td>
+          <td><span class="badge-check">✓</span> Direto com a Dra.</td>
+        </tr>
+        <tr>
+          <td>Conveniência &amp; Deslocamento</td>
+          <td>Atendimento local</td>
+          <td><span class="badge-check">✓</span> De qualquer lugar do Brasil</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CARDS EXPANSÍVEIS DE ESPECIALIDADES -->
+<section class="sec" id="especialidades">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Áreas Nutricionais</span>
+    <h2>Nossas Especialidades em Destaque</h2>
+  </div>
+
+  <div class="cards-expand">
+    <div class="expand-card reveal">
+      <h3 class="expand-h3">Nutrição Clínica <span>🌱</span></h3>
+      <p style="font-size: 0.9rem; color: var(--cream-dim); margin-top: 10px;">
+        Tratamento integrativo para disbiose intestinal, diabetes, hipertensão e reequilíbrio hormonal.
+      </p>
+    </div>
+
+    <div class="expand-card reveal" style="transition-delay: 0.1s;">
+      <h3 class="expand-h3">Nutrição Esportiva <span>⚡</span></h3>
+      <p style="font-size: 0.9rem; color: var(--cream-dim); margin-top: 10px;">
+        Otimização de performance, suplementação certeira e ganho de massa magra acelerado.
+      </p>
+    </div>
+
+    <div class="expand-card reveal" style="transition-delay: 0.2s;">
+      <h3 class="expand-h3">Reeducação Corporal <span>⚖️</span></h3>
+      <p style="font-size: 0.9rem; color: var(--cream-dim); margin-top: 10px;">
+        Emagrecimento sustentável focado em mudança de hábitos e autonomia alimentícia.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS & FAQ -->
+<section class="sec" id="faq">
+  <div class="sec-hdr reveal">
+    <span class="sec-tag">Esclarecimentos</span>
+    <h2>Dúvidas Frequentes</h2>
+  </div>
+
+  <div class="faq-wrap reveal">
+    <div class="faq-item active">
+      <div class="faq-question">
+        <span>Preciso cortar carboidratos para emagrecer?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        Não! O método da Dra. Silvia utiliza combinações inteligentes onde os carboidratos são ajustados às suas necessidades energéticas sem proibições radicais.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Como recebo os materiais didáticos em PDF?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        Todos os guias de substituição, lista de compras e seu plano de refeições são estruturados e enviados diretamente em formato PDF no seu WhatsApp e e-mail.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="ftr-flex">
+    <div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 4px;">Dra. Silvia Oliveira</div>
+      <div style="font-size: 0.88rem; color: var(--sage-light); margin-bottom: 14px;">Nutricionista • CRN 24.108</div>
+      <p style="color: var(--cream-dim); font-size: 0.88rem; max-width: 340px;">Nutrição interativa, conscientização alimentar e ferramentas práticas para a sua saúde.</p>
+    </div>
+
+    <div class="ftr-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#prato-builder">Monte Seu Prato</a></li>
+        <li><a href="#pilares">Pilares SOL</a></li>
+        <li><a href="#comparativo">Presencial vs Online</a></li>
+        <li><a href="#faq">Dúvidas Frequentes</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr-col">
+      <h4>Contato Direto</h4>
+      <ul>
+        <li>📞 WhatsApp: (21) 98738-5146</li>
+        <li>✉️ silviadeoliveira24.nutri@gmail.com</li>
+        <li>📷 Instagram: @silviaoliveira_nutri</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="max-width: 1300px; margin: 25px auto 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--cream-dim); flex-wrap: wrap; gap: 10px;">
+    <div>© 2026 Dra. Silvia Oliveira Nutricionista • Todos os direitos reservados.</div>
+    <div>SOL Botanical Line-Art — Opção D3</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="wsp-float">
+  💬
+</a>
+
+<script>
+// State do simulador
+let currentPlate = {
+  saladName: 'Alface & Tomate',
+  saladText: '🥗 50% Vegetais: Alface & Tomate',
+  protName: 'Frango Grelhado',
+  protText: '🍗 25% Proteína: Frango Grelhado',
+  carbName: 'Arroz Integral',
+  carbText: '🍚 25% Carbo: Arroz Integral'
+};
+
+function selectFood(type, name, text) {
+  // Update buttons state
+  const btnGroup = event.target.parentElement;
+  btnGroup.querySelectorAll('.food-chip').forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+
+  if (type === 'salad') {
+    currentPlate.saladName = name;
+    currentPlate.saladText = text;
+    document.getElementById('view-salad').innerText = text;
+  } else if (type === 'prot') {
+    currentPlate.protName = name;
+    currentPlate.protText = text;
+    document.getElementById('view-prot').innerText = text;
+  } else if (type === 'carb') {
+    currentPlate.carbName = name;
+    currentPlate.carbText = text;
+    document.getElementById('view-carb').innerText = text;
+  }
+
+  // Update WhatsApp link
+  const msg = `Olá Dra. Silvia! Montei meu prato no site: Salada: ${currentPlate.saladName}, Proteína: ${currentPlate.protName}, Carbo: ${currentPlate.carbName}. Quero agendar minha consulta!`;
+  document.getElementById('btn-wsp-plate').href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i => {
+      if (i !== item) i.classList.remove('active');
+    });
+    item.classList.toggle('active');
+  });
+});
+</script>
+</body>
+</html>

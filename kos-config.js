@@ -51,12 +51,44 @@ const KOS_HUB_CONFIG = {
           url: "clientes/silvia-nutri/opcao-c.html"
         },
         {
-          id: "op-d",
-          title: "Opção D — Official Card & Botanical Line-Art",
-          subtitle: "Verde Sage • Linhas Orgânicas • Logo Frutas & Estilo Cartão Oficial",
-          badge: "Cartão Oficial",
+          id: "op-d1",
+          title: "Opção D1 — Jornada Humanizada (Recomendada)",
+          subtitle: "Passo a Passo da Consulta • PDF & Suporte WhatsApp",
+          badge: "D1 Recomendado",
           badgeColor: "#92a988",
-          url: "clientes/silvia-nutri/opcao-d.html"
+          url: "clientes/silvia-nutri/opcao-d1.html"
+        },
+        {
+          id: "op-d2",
+          title: "Opção D2 — Foco Direto em Conversão",
+          subtitle: "Alta Performance • Check-list de Dores • Entregáveis em PDF",
+          badge: "D2 Conversão",
+          badgeColor: "#84a179",
+          url: "clientes/silvia-nutri/opcao-d2.html"
+        },
+        {
+          id: "op-d3",
+          title: "Opção D3 — Monte Seu Prato Interativo",
+          subtitle: "Engajamento Visual • Simulador de Prato • Envio WhatsApp",
+          badge: "D3 Interativo",
+          badgeColor: "#a4ba9a",
+          url: "clientes/silvia-nutri/opcao-d3.html"
+        },
+        {
+          id: "op-d4",
+          title: "Opção D4 — Foco em Consulta Online",
+          subtitle: "Atendimento Sem Fronteiras • Kit PDF Marmitas & Substituições",
+          badge: "D4 Online",
+          badgeColor: "#6c8c63",
+          url: "clientes/silvia-nutri/opcao-d4.html"
+        },
+        {
+          id: "op-d5",
+          title: "Opção D5 — Editorial Botânico Minimalista",
+          subtitle: "Playfair Display • Manifesto Nutricional • Estética Exclusiva",
+          badge: "D5 Editorial",
+          badgeColor: "#4f6e47",
+          url: "clientes/silvia-nutri/opcao-d5.html"
         },
         {
           id: "op-e",

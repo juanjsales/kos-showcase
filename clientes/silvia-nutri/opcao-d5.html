@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opção D5 — Editorial Botânico Minimalista & Autoridade · Dra. Silvia Oliveira Nutricionista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage-light: #a4ba9a;
+  --sage-bg: #92a988;
+  --sage-grad: linear-gradient(135deg, #abbf9f 0%, #8ca481 100%);
+  --forest-dark: #1b2e22;
+  --forest-card: #14241a;
+  --forest-deep: #0e1a12;
+  --cream: #f2f7ec;
+  --cream-dim: #b8c9ad;
+  --text-dark: #16261c;
+  --border-sage: rgba(164, 186, 154, 0.25);
+  --border-forest: rgba(242, 247, 236, 0.12);
+  --shadow-card: 0 30px 60px rgba(0, 0, 0, 0.3);
+  --tr: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--forest-dark); color: var(--cream); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; line-height: 1.8; letter-spacing: 0.2px; }
+
+/* TOP VARIANT BAR */
+.variant-bar {
+  background: var(--forest-deep); border-bottom: 1px solid var(--border-forest);
+  padding: 8px 5%; display: flex; align-items: center; justify-content: center; gap: 12px;
+  font-size: 0.78rem; font-weight: 700; z-index: 1002; position: relative; flex-wrap: wrap;
+}
+.variant-title { color: var(--sage-light); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.7rem; }
+.variant-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.variant-pill {
+  padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--cream-dim);
+  text-decoration: none; border: 1px solid var(--border-forest); transition: var(--tr); font-size: 0.75rem;
+}
+.variant-pill:hover { background: rgba(164, 186, 154, 0.2); color: var(--cream); }
+.variant-pill.active { background: var(--sage-light); color: var(--forest-dark); border-color: var(--sage-light); font-weight: 800; }
+
+/* HEADER MINIMALISTA EDITORIAL */
+.hdr {
+  position: sticky; top: 0; left: 0; right: 0; height: 90px;
+  background: rgba(20, 36, 26, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-forest); padding: 0 6%;
+  display: flex; align-items: center; justify-content: space-between; z-index: 1000;
+}
+.brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+.brand-logo-svg { width: 52px; height: 40px; color: var(--sage-light); flex-shrink: 0; }
+.brand-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 500; color: var(--cream); letter-spacing: 1px; }
+.brand-sub { font-size: 0.75rem; font-weight: 400; color: var(--sage-light); letter-spacing: 2px; text-transform: uppercase; }
+
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { color: var(--cream-dim); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--tr); }
+.nav-links a:hover { color: var(--sage-light); }
+
+.btn-sage-outline {
+  background: transparent; color: var(--sage-light); font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 1.5px; text-transform: uppercase; padding: 12px 26px; border-radius: 100px; border: 1px solid var(--sage-light);
+  cursor: pointer; text-decoration: none; transition: var(--tr); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+}
+.btn-sage-outline:hover { background: var(--sage-light); color: var(--forest-dark); transform: translateY(-2px); }
+
+/* HERO D5 EDITORIAL MINIMALISTA */
+.hero-d5 {
+  padding: 100px 6% 90px; max-width: 1200px; margin: 0 auto; text-align: center;
+}
+.editorial-tag {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 24px; display: inline-block;
+}
+h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 400; line-height: 1.15; margin-bottom: 30px; color: var(--cream); max-width: 1000px; margin-left: auto; margin-right: auto;
+}
+h1 em { font-style: italic; color: var(--sage-light); font-weight: 300; }
+.hero-p-d5 {
+  color: var(--cream-dim); font-size: 1.15rem; max-width: 750px; margin: 0 auto 40px; font-weight: 300; line-height: 1.8;
+}
+
+.hero-portrait-frame {
+  width: 320px; height: 420px; border-radius: 200px 200px 30px 30px; overflow: hidden; margin: 0 auto 40px;
+  border: 1px solid var(--border-sage); box-shadow: var(--shadow-card); position: relative;
+}
+.hero-portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+/* MANIFESTO / FILOSOFIA DE ATENDIMENTO */
+.sec { padding: 110px 6%; max-width: 1200px; margin: 0 auto; }
+.manifesto-box {
+  background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: 36px;
+  padding: 70px 8%; text-align: center; position: relative;
+}
+.manifesto-quote-icon { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--sage-light); opacity: 0.3; line-height: 0; margin-bottom: 20px; }
+.manifesto-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; color: var(--cream); margin-bottom: 24px; }
+.manifesto-text { font-size: 1.05rem; color: var(--cream-dim); font-weight: 300; line-height: 1.9; max-width: 820px; margin: 0 auto; }
+
+/* SERVIÇOS EXCLUSIVOS */
+.sec-hdr-editorial { text-align: center; max-width: 650px; margin: 0 auto 60px; }
+.sec-tag-ed { font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 12px; display: block; }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 400; color: var(--cream); }
+
+.services-editorial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.service-ed-card {
+  background: var(--forest-card); border-radius: 28px; padding: 45px 32px; border: 1px solid var(--border-forest);
+  transition: var(--tr); text-align: left;
+}
+.service-ed-card:hover { border-color: var(--sage-light); transform: translateY(-6px); }
+.service-ed-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--sage-light); opacity: 0.6; margin-bottom: 20px; }
+.service-ed-h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 500; color: var(--cream); margin-bottom: 14px; }
+.service-ed-p { font-size: 0.92rem; color: var(--cream-dim); font-weight: 300; line-height: 1.7; }
+
+/* DIFERENCIAIS EXCLUSIVOS */
+.diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+.diff-card {
+  border: 1px solid var(--border-sage); border-radius: 24px; padding: 36px 28px; background: rgba(20, 36, 26, 0.6);
+  transition: var(--tr);
+}
+.diff-card:hover { background: var(--forest-card); transform: translateY(-5px); }
+.diff-h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 500; color: var(--sage-light); margin-bottom: 12px; }
+.diff-p { font-size: 0.9rem; color: var(--cream-dim); font-weight: 300; line-height: 1.7; }
+
+/* VISUALIZADOR DE PRATO MINIMALISTA */
+.plate-editorial {
+  background: var(--forest-card); border-radius: 36px; border: 1px solid var(--border-forest);
+  padding: 60px 6%; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+}
+.plate-static-visual {
+  width: 260px; height: 260px; border-radius: 50%; border: 2px stroke var(--sage-light);
+  margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px rgba(164, 186, 154, 0.15); border: 2px solid var(--sage-light);
+}
+
+/* AGENDA VIP / CONTATOS */
+.vip-booking {
+  background: var(--sage-grad); border-radius: 36px; padding: 70px 6%; text-align: center; color: var(--text-dark);
+  margin-top: 70px; box-shadow: var(--shadow-card);
+}
+.vip-booking h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.8vw, 3.2rem); font-weight: 600; color: var(--forest-dark); margin-bottom: 20px; }
+.vip-booking p { font-size: 1.05rem; color: var(--text-dark); opacity: 0.9; max-width: 620px; margin: 0 auto 35px; font-weight: 400; line-height: 1.8; }
+
+.btn-forest-dark {
+  background: var(--forest-dark); color: var(--cream); font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 1.5px; text-transform: uppercase; padding: 18px 40px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: var(--tr);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.btn-forest-dark:hover { background: var(--forest-deep); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(14, 26, 18, 0.4); }
+
+/* FOOTER */
+footer { background: var(--forest-deep); border-top: 1px solid var(--border-forest); padding: 80px 6% 35px; margin-top: 100px; }
+.ftr-flex { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; gap: 50px; flex-wrap: wrap; padding-bottom: 50px; border-bottom: 1px solid var(--border-forest); }
+.ftr-col h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--sage-light); margin-bottom: 20px; font-weight: 500; }
+.ftr-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.86rem; color: var(--cream-dim); font-weight: 300; }
+.ftr-col ul a { color: var(--cream-dim); text-decoration: none; transition: var(--tr); }
+.ftr-col ul a:hover { color: var(--sage-light); }
+
+.wsp-float {
+  position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+  background: var(--sage-light); color: var(--forest-dark); border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 10px 25px rgba(164, 186, 154, 0.4);
+  text-decoration: none; z-index: 999; transition: var(--tr); font-weight: 800;
+}
+.wsp-float:hover { transform: scale(1.1); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 992px) {
+  .services-editorial-grid, .diff-grid, .plate-editorial { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .nav-links { display: none; }
+  .sec { padding: 60px 24px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP VARIANT SELECTOR BAR -->
+<div class="variant-bar">
+  <span class="variant-title">Opção D — Estruturas:</span>
+  <div class="variant-pills">
+    <a href="opcao-d1.html" class="variant-pill">1. Jornada Humanizada</a>
+    <a href="opcao-d2.html" class="variant-pill">2. Foco Conversão</a>
+    <a href="opcao-d3.html" class="variant-pill">3. Monte Seu Prato</a>
+    <a href="opcao-d4.html" class="variant-pill">4. Consulta Online</a>
+    <a href="opcao-d5.html" class="variant-pill active">5. Editorial Botânico Minimalista</a>
+  </div>
+</div>
+
+<header class="hdr">
+  <a href="#" class="brand">
+    <svg class="brand-logo-svg" viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M 25 35 C 20 25, 35 15, 55 22 C 45 28, 30 35, 25 35 Z" />
+      <path d="M 45 42 C 38 32, 52 24, 60 30 C 68 24, 82 32, 75 42 C 70 50, 50 50, 45 42 Z" />
+    </svg>
+    <div class="brand-text">
+      <div class="brand-title">Silvia Oliveira</div>
+      <div class="brand-sub">Nutrição Integrativa</div>
+    </div>
+  </a>
+
+  <nav class="nav-links">
+    <a href="#filosofia">Filosofia</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#contato">Agendamento</a>
+  </nav>
+
+  <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Desejo%20solicitar%20um%20atendimento%20exclusivo." target="_blank" class="btn-sage-outline">
+    Agendar Atendimento Exclusivo
+  </a>
+</header>
+
+<!-- HERO D5 EDITORIAL MINIMALISTA -->
+<section class="hero-d5">
+  <span class="editorial-tag reveal">🌿 5. Editorial Botânico Minimalista &amp; Autoridade</span>
+
+  <h1 class="reveal" style="transition-delay: 0.1s;">
+    Nutrir o corpo com consciência, <em>transformar a vida com leveza.</em>
+  </h1>
+
+  <p class="hero-p-d5 reveal" style="transition-delay: 0.2s;">
+    Uma abordagem sofisticada e personalizada da nutrição. Ciência de alta precisão aliada à saúde integrativa e longevidade.
+  </p>
+
+  <div class="hero-portrait-frame reveal" style="transition-delay: 0.3s;">
+    <img src="assets/silvia-salad.jpg" alt="Dra. Silvia Oliveira Nutricionista">
+  </div>
+</section>
+
+<!-- MANIFESTO / FILOSOFIA -->
+<section class="sec" id="filosofia">
+  <div class="manifesto-box reveal">
+    <div class="manifesto-quote-icon">“</div>
+    <h2 class="manifesto-title">Manifesto SOL Botanical</h2>
+    <p class="manifesto-text">
+      Acreditamos que a verdadeira nutrição vai além da contagem de calorias. Ela envolve o respeito à sua história, a celebração do alimento de verdade e a construção de um estilo de vida sustentável. Através de planejamentos artesanais entregues em PDF e um canal contínuo no WhatsApp, construímos juntos o seu caminho de saúde e vitalidade.
+    </p>
+  </div>
+</section>
+
+<!-- SERVIÇOS EXCLUSIVOS -->
+<section class="sec" id="servicos">
+  <div class="sec-hdr-editorial reveal">
+    <span class="sec-tag-ed">Atendimento Customizado</span>
+    <h2>Serviços Exclusivos</h2>
+  </div>
+
+  <div class="services-editorial-grid">
+    <div class="service-ed-card reveal">
+      <div class="service-ed-num">01</div>
+      <h3 class="service-ed-h3">Nutrição Clínica de Precisão</h3>
+      <p class="service-ed-p">Otimização da saúde gastrointestinal, equilíbrio metabólico, perfil lipídico e regulação hormonal integrativa.</p>
+    </div>
+
+    <div class="service-ed-card reveal" style="transition-delay: 0.1s;">
+      <div class="service-ed-num">02</div>
+      <h3 class="service-ed-h3">Acompanhamento Esportivo</h3>
+      <p class="service-ed-p">Estratégias nutricionais avançadas para praticantes de atividade física, hipertrofia limpa e máxima energia.</p>
+    </div>
+
+    <div class="service-ed-card reveal" style="transition-delay: 0.2s;">
+      <div class="service-ed-num">03</div>
+      <h3 class="service-ed-h3">Reeducação Corporal Artesanal</h3>
+      <p class="service-ed-p">Emagrecimento definitivo e reorganização dos hábitos alimentares sem radicalismos ou restrições punitivas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS DO ACOMPANHAMENTO -->
+<section class="sec" id="diferenciais">
+  <div class="sec-hdr-editorial reveal">
+    <span class="sec-tag-ed">Exclusividade</span>
+    <h2>Diferenciais do Acompanhamento</h2>
+  </div>
+
+  <div class="diff-grid">
+    <div class="diff-card reveal">
+      <h3 class="diff-h3">Atendimento Sem Pressa</h3>
+      <p class="diff-p">Consultas com escuta ativa minuciosa e tempo dedicado exclusivamente a compreender a sua rotina e preferências.</p>
+    </div>
+
+    <div class="diff-card reveal" style="transition-delay: 0.1s;">
+      <h3 class="diff-h3">Plano Artesanal em PDF</h3>
+      <p class="diff-p">Entrega de materiais didáticos em PDF elegante de fácil consulta, com guias práticos de substituição e compras.</p>
+    </div>
+
+    <div class="diff-card reveal" style="transition-delay: 0.2s;">
+      <h3 class="diff-h3">Canal Exclusivo WhatsApp</h3>
+      <p class="diff-p">Acompanhamento humanizado e direto com a Dra. Silvia para suporte contínuo durante toda a sua jornada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VISUALIZADOR DO PRATO EQUILIBRADO MINIMALISTA -->
+<section class="sec">
+  <div class="plate-editorial reveal">
+    <div class="plate-static-visual">
+      <div style="text-align: center;">
+        <span style="font-size: 2rem; display: block;">🌿</span>
+        <span style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--sage-light); font-weight: 500;">SOL Concept</span>
+      </div>
+    </div>
+
+    <div>
+      <span class="sec-tag-ed">Equilíbrio Botânico</span>
+      <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Harmonia em Cada Refeição</h2>
+      <p style="color: var(--cream-dim); font-weight: 300; line-height: 1.8; margin-bottom: 25px;">
+        Entenda o valor estético e nutricional da comida de verdade. A Dra. Silvia ensina você a combinar 50% de fitoquímicos e vegetais com proporções adequadas de proteínas de alto valor biológico e carboidratos complexos.
+      </p>
+      <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" class="btn-sage-outline">
+        Conhecer o Método
+      </a>
+    </div>
+  </div>
+
+  <!-- AGENDA VIP -->
+  <div class="vip-booking reveal">
+    <h2>Agende Sua Experiência Nutricional</h2>
+    <p>Atendimento presencial e online com vagas limitadas para garantir o acompanhamento humanizado e minucioso de cada paciente.</p>
+    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Desejo%20agendar%20minha%20consulta." target="_blank" class="btn-forest-dark">
+      💬 Agendar Consulta via WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="ftr-flex">
+    <div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 4px;">Dra. Silvia Oliveira</div>
+      <div style="font-size: 0.85rem; color: var(--sage-light); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;">Nutrição Integrativa • CRN 24.108</div>
+      <p style="color: var(--cream-dim); font-size: 0.88rem; max-width: 340px; font-weight: 300;">Estética minimalista, ciência aplicada e acompanhamento exclusivo.</p>
+    </div>
+
+    <div class="ftr-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#filosofia">Filosofia</a></li>
+        <li><a href="#servicos">Serviços Exclusivos</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#contato">Agendamento</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr-col">
+      <h4>Contato VIP</h4>
+      <ul>
+        <li>📞 WhatsApp: (21) 98738-5146</li>
+        <li>✉️ silviadeoliveira24.nutri@gmail.com</li>
+        <li>📷 Instagram: @silviaoliveira_nutri</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="max-width: 1200px; margin: 25px auto 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--cream-dim); font-weight: 300; flex-wrap: wrap; gap: 10px;">
+    <div>© 2026 Dra. Silvia Oliveira Nutricionista • Todos os direitos reservados.</div>
+    <div>SOL Botanical Line-Art — Opção D5</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="wsp-float">
+  💬
+</a>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
