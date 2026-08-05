@@ -17,7 +17,11 @@ const SHEETS = {
   AGENDAMENTOS: "Agendamentos",
   ANAMNESES: "Anamneses",
   EVOLUCAO: "Evolucao",
-  PLANOS: "Planos"
+  PLANOS: "Planos",
+  EXAMES: "Exames_Laboratoriais",
+  DOBRAS: "Dobras_Cutaneas",
+  SUPLEMENTOS: "Prescricoes_Suplementos",
+  RECORDATORIO: "Recordatorio_24h"
 };
 
 /**
@@ -32,7 +36,11 @@ function setupDatabase() {
     [SHEETS.AGENDAMENTOS]: ["id", "paciente_id", "paciente_nome", "data", "hora", "tipo", "valor", "status"],
     [SHEETS.ANAMNESES]: ["id", "paciente_id", "data", "alergias", "historico_saude", "rotina_sono", "intestino", "preferencias"],
     [SHEETS.EVOLUCAO]: ["id", "paciente_id", "data", "peso", "percentual_gordura", "massa_magra", "cintura", "quadril"],
-    [SHEETS.PLANOS]: ["id", "paciente_id", "data", "json_refeicoes", "json_extras", "json_lista_compras"]
+    [SHEETS.PLANOS]: ["id", "paciente_id", "data", "json_refeicoes", "json_extras", "json_lista_compras"],
+    [SHEETS.EXAMES]: ["id", "paciente_id", "data_exame", "glicemia", "hba1c", "insulina", "colesterol_total", "hdl", "ldl", "triglicerideos", "vitamina_d", "vitamina_b12", "ferritina", "tsh"],
+    [SHEETS.DOBRAS]: ["id", "paciente_id", "data", "tricipital", "subescapular", "suprailiaca", "abdominal", "coxa", "braco_relaxado", "braco_contraido", "cintura", "quadril"],
+    [SHEETS.SUPLEMENTOS]: ["id", "paciente_id", "data", "suplemento_nome", "dosagem", "posologia", "forma_farmaceutica"],
+    [SHEETS.RECORDATORIO]: ["id", "paciente_id", "data", "refeicao", "horario", "alimentos", "escala_bristol_tipo"]
   };
 
   Object.keys(schemas).forEach(sheetName => {
