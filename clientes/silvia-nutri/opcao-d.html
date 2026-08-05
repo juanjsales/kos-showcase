@@ -230,28 +230,37 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* RAINBOW DECOR LOGO KOS */
+.rainbow-decor {
+  background: linear-gradient(90deg, #ef4444 0%, #f97316 16.6%, #eab308 33.3%, #22c55e 50%, #06b6d4 66.6%, #3b82f6 83.3%, #a855f7 100%);
+}
+
+/* MENU MOBILE HAMBÚRGUER & DRAWER */
+.mobile-menu-btn {
+  display: none; background: transparent; border: 1.5px solid var(--sage-light); color: var(--sage-light);
+  width: 40px; height: 40px; border-radius: 10px; font-size: 1.4rem; cursor: pointer;
+  align-items: center; justify-content: center; transition: var(--tr);
+}
+.mobile-menu-btn:hover { background: var(--sage-light); color: var(--forest-dark); }
+
+.nav-mobile-drawer {
+  position: fixed; top: 80px; left: 0; right: 0; background: var(--forest-deep);
+  border-bottom: 1.5px solid var(--border-sage); padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 16px; transform: translateY(-120%);
+  opacity: 0; pointer-events: none; transition: var(--tr); z-index: 999; box-shadow: var(--shadow-card);
+}
+.nav-mobile-drawer.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.nav-mobile-drawer a { color: var(--cream); text-decoration: none; font-size: 1rem; font-weight: 600; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.nav-mobile-drawer a:hover { color: var(--sage-light); }
+
 @media (max-width: 992px) {
   .hero, .grid-3, .step-grid-a, .diag-grid, .calc-grid, .about-card-sol, .plate-grid { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; }
   .hero-right-info { padding-left: 0; text-align: center; }
   .nav-links { display: none; }
+  .mobile-menu-btn { display: flex; }
   .sec { padding: 60px 20px !important; }
 }
 </style>
-</head>
-<body>
-
-<!-- TOP VARIANT SELECTOR BAR -->
-<div class="variant-bar">
-  <span class="variant-title">Estrutura da Página:</span>
-  <div class="variant-pills">
-    <a href="opcao-d1.html" class="variant-pill active">1. Jornada Humanizada</a>
-    <a href="opcao-d2.html" class="variant-pill">2. Foco Conversão</a>
-    <a href="opcao-d3.html" class="variant-pill">3. Monte Seu Prato</a>
-    <a href="opcao-d4.html" class="variant-pill">4. Consulta Online</a>
-    <a href="opcao-d5.html" class="variant-pill">5. Editorial Minimalista</a>
-  </div>
-</div>
-
 <header class="hdr">
   <a href="#" class="brand">
     <svg class="brand-logo-svg" viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2">
@@ -281,10 +290,28 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
     <a href="#faq">Dúvidas</a>
   </nav>
 
-  <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-sage">
-    🌿 Agendar Consulta
-  </a>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-sage">
+      🌿 Agendar Consulta
+    </a>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir Menu Navegação">
+      ☰
+    </button>
+  </div>
 </header>
+
+<!-- NAV MOBILE DRAWER -->
+<nav class="nav-mobile-drawer" id="mobileDrawer">
+  <a href="#sobre" onclick="toggleMobileMenu()">Sobre Mim</a>
+  <a href="#otimizar" onclick="toggleMobileMenu()">Otimizar Saúde</a>
+  <a href="#como-funciona" onclick="toggleMobileMenu()">Como Funciona</a>
+  <a href="#prato" onclick="toggleMobileMenu()">Prato Perfeito</a>
+  <a href="#calculadora" onclick="toggleMobileMenu()">Calculadora IMC</a>
+  <a href="#especialidades" onclick="toggleMobileMenu()">Especialidades</a>
+  <a href="#faq" onclick="toggleMobileMenu()">Dúvidas</a>
+  <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" style="color: var(--sage-light); font-weight: 800;">💬 Falar no WhatsApp</a>
+</nav>
 
 <!-- HERO D1 -->
 <section class="hero">
@@ -341,7 +368,7 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
       <span class="crn-badge-a">CRN 25104731 • Registro Ativo</span>
       <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Ciência, Acolhimento &amp; Nutrição Real</h2>
       <p style="color: var(--cream-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 16px;">
-        Sou a <strong>Dra. Silvia de Oliveira Lemos</strong>, nutricionista especializada em Nutrição Clínica, Esportiva e Comportamental. Minha missão é ajudar você a alcançar seus objetivos estéticos e de saúde de forma leve e definitiva.
+        Sou a <strong>Dra. Silvia de Oliveira Lemos</strong>, nutricionista especializada em Nutrição Clínica, Esportiva e Reeducação Alimentar. Minha missão é ajudar você a alcançar seus objetivos estéticos e de saúde de forma leve e definitiva.
       </p>
       <p style="color: var(--cream-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 24px;">
         Acredito que o alimento não deve ser fonte de culpa ou ansiedade. Através de um planejamento estratégico personalizado entregue em materiais em PDF de fácil acesso, adequamos os macronutrientes à sua rotina real, com suporte contínuo via WhatsApp.
@@ -624,35 +651,72 @@ footer { background: var(--forest-deep); border-top: 1px solid var(--border-fore
     </div>
   </div>
 
-  <div style="max-width: 1300px; margin: 25px auto 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--cream-dim); flex-wrap: wrap; gap: 10px;">
-    <div>© 2026 Dra. Silvia Oliveira Nutricionista • Todos os direitos reservados.</div>
+  <div style="max-width: 1300px; margin: 30px auto 0; padding-top: 24px; border-top: 1px solid var(--border-forest); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--cream-dim); flex-wrap: wrap; gap: 16px;">
+    <div>© 2026 Dra. Silvia de Oliveira Lemos Nutricionista • CRN 25104731 • Todos os direitos reservados.</div>
+    
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 0.78rem; color: var(--cream-dim); opacity: 0.8;">Desenvolvido por:</span>
+      <a href="https://github.com/juanjsales/kos-showcase" target="_blank" style="text-decoration: none;" title="KOS Web & Automação">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1;">
+          <span style="font-size: 1.15rem; font-weight: 900; letter-spacing: 0.1em; color: #ffffff; font-family: monospace; text-transform: uppercase; display: flex; align-items: center; gap: 4px;">
+            KOS<span class="rainbow-decor" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 12px rgba(6,182,212,0.8);"></span>
+          </span>
+          <span style="font-size: 9px; font-family: monospace; letter-spacing: 0.06em; color: #22d3ee; font-weight: 700; text-transform: uppercase; margin-top: 2px;">Web &amp; Automação</span>
+          <div class="rainbow-decor" style="height: 2px; width: 100%; margin-top: 3px; border-radius: 100px; opacity: 0.8;"></div>
+        </div>
+      </a>
+    </div>
   </div>
 </footer>
 
-<a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="wsp-float">
+<a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!" target="_blank" class="wsp-float" aria-label="Falar no WhatsApp">
   💬
 </a>
 
 <script>
+// MENU MOBILE TOGGLE
+function toggleMobileMenu() {
+  const drawer = document.getElementById('mobileDrawer');
+  if (drawer) drawer.classList.toggle('open');
+}
+
 let selectedDiagText = 'Metabolismo Lento & Emagrecimento';
 function selectDiag(el, text) {
   document.querySelectorAll('.diag-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   selectedDiagText = text;
   const msg = `Olá Dra. Silvia! Fiz o diagnóstico no site para: ${text}. Quero otimizar minha saúde!`;
-  document.getElementById('btnSendDiagWsp').href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
+  const btn = document.getElementById('btnSendDiagWsp');
+  if (btn) btn.href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
 }
 
+// CALCULADORA COM VALIDAÇÃO ANTI-NaN
 function calcularSaude() {
-  const peso = parseFloat(document.getElementById('calcPeso').value);
-  const altura = parseFloat(document.getElementById('calcAltura').value);
-  if (!peso || !altura || peso <= 0 || altura <= 0) return;
+  const pesoInput = document.getElementById('calcPeso');
+  const alturaInput = document.getElementById('calcAltura');
+  if (!pesoInput || !alturaInput) return;
+
+  const peso = parseFloat(pesoInput.value);
+  const altura = parseFloat(alturaInput.value);
+
+  const resIMC = document.getElementById('resIMC');
+  const resAgua = document.getElementById('resAgua');
+  const resDiag = document.getElementById('resDiag');
+  const btnWsp = document.getElementById('btnSendCalcWsp');
+
+  if (!peso || !altura || isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+    if (resIMC) resIMC.innerText = '--';
+    if (resAgua) resAgua.innerText = '--';
+    if (resDiag) resDiag.innerText = 'Preencha peso e altura válidos';
+    if (btnWsp) btnWsp.href = "https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Gostaria%20de%20calcular%20meu%20IMC%20e%20agendar%20uma%20consulta.";
+    return;
+  }
 
   const imc = (peso / (altura * altura)).toFixed(1);
   const agua = (peso * 35 / 1000).toFixed(1);
 
-  document.getElementById('resIMC').innerText = imc;
-  document.getElementById('resAgua').innerText = agua + 'L / dia';
+  if (resIMC) resIMC.innerText = imc;
+  if (resAgua) resAgua.innerText = agua + 'L / dia';
 
   let diag = "";
   if (imc < 18.5) diag = "Abaixo do Peso Ideal";
@@ -660,12 +724,13 @@ function calcularSaude() {
   else if (imc < 29.9) diag = "Sobrepeso Leve";
   else diag = "Atenção / Obesidade";
 
-  document.getElementById('resDiag').innerText = diag;
+  if (resDiag) resDiag.innerText = diag;
 
   const msg = `Olá Dra. Silvia! Calculei no site: Meu IMC é ${imc} (${diag}) e meta de água é ${agua}L/dia. Quero agendar minha consulta!`;
-  document.getElementById('btnSendCalcWsp').href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
+  if (btnWsp) btnWsp.href = `https://wa.me/5521987385146?text=${encodeURIComponent(msg)}`;
 }
 
+// INTERSECTION OBSERVER PARA ANIMAÇÕES REVEAL
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -673,13 +738,25 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ACESSIBILIDADE VIA TECLADO NO ACCORDION FAQ
 document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
+  q.setAttribute('tabindex', '0');
+  q.setAttribute('role', 'button');
+  
+  const toggleFaq = () => {
     const item = q.parentElement;
     document.querySelectorAll('.faq-item').forEach(i => {
       if (i !== item) i.classList.remove('active');
     });
     item.classList.toggle('active');
+  };
+
+  q.addEventListener('click', toggleFaq);
+  q.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleFaq();
+    }
   });
 });
 </script>
