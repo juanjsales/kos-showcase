@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Portal do Paciente · Dra. Silvia Lemos Nutricionista</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root {
+  --forest-dark: #203528;
+  --forest-card: #182a1f;
+  --forest-deep: #0e1a12;
+  --sage-light: #8ca481;
+  --sage-dim: rgba(140, 164, 129, 0.2);
+  --paper-bg: #f8faf6;
+  --text-dark: #192b20;
+  --text-light: #eef4e5;
+  --text-muted: #a0b399;
+  --border-forest: rgba(140, 164, 129, 0.25);
+  --tr: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--forest-deep); color: var(--text-light); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* TELA DE LOGIN */
+.login-overlay { position: fixed; inset: 0; background: var(--forest-deep); z-index: 999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.login-card { background: var(--forest-card); border: 1.5px solid var(--sage-light); border-radius: 28px; padding: 36px 28px; width: 100%; max-width: 400px; text-align: center; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+.login-logo { width: 60px; height: 60px; background: var(--sage-dim); border: 1.5px solid var(--sage-light); border-radius: 50%; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+.login-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #fff; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.form-group label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--sage-light); letter-spacing: 0.05em; }
+.form-control { background: rgba(0,0,0,0.3); border: 1px solid var(--border-forest); padding: 14px 18px; border-radius: 12px; color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; transition: var(--tr); }
+.form-control:focus { border-color: var(--sage-light); }
+
+.btn { background: var(--sage-light); color: var(--forest-dark); border: none; padding: 14px; border-radius: 12px; font-family: inherit; font-weight: 900; font-size: 0.95rem; cursor: pointer; transition: var(--tr); width: 100%; justify-content: center; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.btn:hover { background: #9bb590; transform: translateY(-1px); }
+
+/* LAYOUT PRINCIPAL DO PACIENTE */
+.app-header { background: var(--forest-dark); border-bottom: 1px solid var(--border-forest); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; sticky: top; z-index: 100; }
+.app-brand { display: flex; align-items: center; gap: 10px; }
+.app-user-info { text-align: right; }
+.patient-name { font-weight: 800; font-size: 0.95rem; color: #fff; }
+.patient-tag { font-size: 0.72rem; color: var(--sage-light); font-weight: 700; }
+
+.container { max-width: 600px; width: 100%; margin: 0 auto; padding: 24px 16px 100px; display: flex; flex-direction: column; gap: 24px; }
+
+.section-card { background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; }
+
+/* CARD DE PRÓXIMA CONSULTA */
+.appointment-banner { background: linear-gradient(135deg, var(--forest-dark) 0%, #15271c 100%); border: 1.5px solid var(--sage-light); border-radius: var(--radius); padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+.ap-date { font-size: 1.2rem; font-weight: 900; color: #fff; }
+.ap-type { font-size: 0.8rem; color: var(--sage-light); font-weight: 700; }
+
+/* BARRA DE NAVEGAÇÃO INFERIOR PARA MOBILE */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--forest-dark); border-top: 1px solid var(--border-forest); height: 65px; display: flex; justify-content: space-around; align-items: center; z-index: 200; }
+.bnav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 700; cursor: pointer; }
+.bnav-item.active, .bnav-item:hover { color: var(--sage-light); }
+.bnav-icon { font-size: 1.2rem; }
+
+/* IMPRESSÃO DO PLANO */
+@media print {
+  .app-header, .bottom-nav, .no-print { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .section-card { border: none !important; background: transparent !important; padding: 0 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- TELA DE LOGIN DO PACIENTE -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-card">
+    <div class="login-logo">🌿</div>
+    <div>
+      <div class="login-title">Portal do Paciente</div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Dra. Silvia de Oliveira Lemos Nutricionista</div>
+    </div>
+
+    <form onsubmit="realizarLogin(event)" style="display:flex; flex-direction:column; gap:16px;">
+      <div class="form-group">
+        <label>Seu CPF</label>
+        <input type="text" class="form-control" id="loginCPF" placeholder="000.000.000-00" value="123.456.789-00" required>
+      </div>
+
+      <div class="form-group">
+        <label>Data de Nascimento</label>
+        <input type="date" class="form-control" id="loginNasc" value="1995-04-12" required>
+      </div>
+
+      <button type="submit" class="btn" style="margin-top:8px;">🔑 Entrar no Portal</button>
+    </form>
+
+    <div style="font-size:0.75rem; color:var(--text-muted);">
+      🔒 Acesso seguro e restrito conforme a LGPD.
+    </div>
+  </div>
+</div>
+
+<!-- CABEÇALHO -->
+<header class="app-header">
+  <div class="app-brand">
+    <div style="width:36px; height:36px; background:var(--sage-dim); border:1px solid var(--sage-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem;">🌿</div>
+    <div style="font-weight:800; font-size:0.9rem; color:#fff;">Dra. Silvia Lemos</div>
+  </div>
+
+  <div class="app-user-info">
+    <div class="patient-name" id="dispNome">Juliana Mendes</div>
+    <div class="patient-tag">Paciente Ativa</div>
+  </div>
+</header>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="container">
+  
+  <!-- BANNER PRÓXIMA CONSULTA -->
+  <div class="appointment-banner">
+    <div>
+      <div class="ap-type">Próxima Consulta Agendada</div>
+      <div class="ap-date">10 de Agosto às 14:00</div>
+      <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">Online via Google Meet</div>
+    </div>
+    <a href="https://wa.me/5521987385146?text=Ol%C3%A1%20Dra.%20Silvia!%20Gostaria%20de%20confirmar%20minha%20consulta%20do%20dia%2010." target="_blank" class="btn" style="width:auto; padding:10px 14px; font-size:0.8rem;">
+      💬 WhatsApp
+    </a>
+  </div>
+
+  <!-- SEÇÃO 1: PLANO ALIMENTAR VIGENTE -->
+  <section class="section-card" id="secPlano">
+    <div class="section-title">
+      <span>🥗</span> Seu Plano Alimentar Vigente
+    </div>
+
+    <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-forest); padding: 16px; border-radius: 14px; font-size: 0.88rem; line-height: 1.6;">
+      <strong style="color: var(--sage-light);">Meta Diária:</strong> 1800 kcal (130g Proteínas | 180g Carbos | 55g Gorduras)<br>
+      <strong style="color: var(--sage-light);">Meta de Água:</strong> 2.3 Litros / dia
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:14px; margin-top:8px;">
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-forest); padding:16px; border-radius:14px;">
+        <div style="font-weight:800; color:var(--sage-light); margin-bottom:6px;">🍳 Café da Manhã (08:00)</div>
+        <p style="font-size:0.88rem; color:var(--text-light); line-height:1.6;">
+          • 2 ovos mexidos temperados com orégano.<br>
+          • 1 fatia de pão integral 100% com requeijão light.<br>
+          • 1 xícara de café preto sem açúcar.
+        </p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-forest); padding:16px; border-radius:14px;">
+        <div style="font-weight:800; color:var(--sage-light); margin-bottom:6px;">🥗 Almoço (12:30) - Regra 50/25/25</div>
+        <p style="font-size:0.88rem; color:var(--text-light); line-height:1.6;">
+          • <strong>50% Salada/Folhas:</strong> Alface, rúcula e tomate.<br>
+          • <strong>25% Proteína:</strong> 120g filé de frango grelhado.<br>
+          • <strong>25% Carboidrato:</strong> 3 colheres de arroz integral + feijão.
+        </p>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.print()" style="margin-top:10px;">
+      📥 Baixar / Imprimir Plano em PDF
+    </button>
+  </section>
+
+  <!-- SEÇÃO 2: LISTA DE COMPRAS INTEGRADA -->
+  <section class="section-card" id="secCompras">
+    <div class="section-title">
+      <span>🛒</span> Sua Lista de Compras Categorizada
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; font-size:0.85rem; line-height:1.6;">
+      <div style="background:rgba(0,0,0,0.2); padding:14px; border-radius:12px;">
+        <strong style="color:var(--sage-light); display:block; margin-bottom:4px;">🥬 Hortifrúti:</strong>
+        • Alface crespa<br>• Rúcula &amp; Tomate<br>• Pepino &amp; Bananas
+      </div>
+
+      <div style="background:rgba(0,0,0,0.2); padding:14px; border-radius:12px;">
+        <strong style="color:var(--sage-light); display:block; margin-bottom:4px;">🥩 Proteínas &amp; Ovos:</strong>
+        • Ovos caipiras (2 dúzias)<br>• Filé de frango (1kg)<br>• Patinho moído
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: EVOLUÇÃO CORPORAL -->
+  <section class="section-card" id="secEvolucao">
+    <div class="section-title">
+      <span>📈</span> Sua Evolução Corporal
+    </div>
+
+    <div style="height:250px; position:relative;">
+      <canvas id="chartEvolucaoPaciente"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<!-- NAVEGAÇÃO INFERIOR PARA MOBILE -->
+<nav class="bottom-nav no-print">
+  <div class="bnav-item active" onclick="scrollToSection('secPlano')">
+    <span class="bnav-icon">🥗</span>
+    <span>Cardápio</span>
+  </div>
+  <div class="bnav-item" onclick="scrollToSection('secCompras')">
+    <span class="bnav-icon">🛒</span>
+    <span>Compras</span>
+  </div>
+  <div class="bnav-item" onclick="scrollToSection('secEvolucao')">
+    <span class="bnav-icon">📈</span>
+    <span>Evolução</span>
+  </div>
+</nav>
+
+<script>
+function realizarLogin(e) {
+  e.preventDefault();
+  document.getElementById('loginOverlay').style.display = 'none';
+  inicializarGrafico();
+}
+
+function scrollToSection(secId) {
+  const el = document.getElementById(secId);
+  if(el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+function inicializarGrafico() {
+  const ctx = document.getElementById('chartEvolucaoPaciente');
+  if (ctx) {
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Maio', 'Junho', 'Julho', 'Agosto'],
+        datasets: [
+          {
+            label: 'Peso (kg)',
+            data: [71.2, 69.0, 67.4, 65.5],
+            borderColor: '#8ca481',
+            backgroundColor: 'rgba(140, 164, 129, 0.15)',
+            fill: true,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#eef4e5' } }
+        },
+        scales: {
+          x: { ticks: { color: '#a0b399' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+          y: { ticks: { color: '#a0b399' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+        }
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>

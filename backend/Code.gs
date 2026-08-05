@@ -1,0 +1,323 @@
+/**
+ * ====================================================================
+ * KOS NUTRIÇÃO - BACKEND API SERVERLESS (GOOGLE APPS SCRIPT)
+ * Dra. Silvia de Oliveira Lemos · CRN-4 24987/P
+ * ====================================================================
+ * Instruções de Deploy:
+ * 1. Abra o Google Sheets e vá em Extensões > Apps Script.
+ * 2. Cole este código no arquivo Code.gs.
+ * 3. Execute a função setupDatabase() uma vez para criar as abas.
+ * 4. Implante como Web App: "Executar como: Eu" e "Quem tem acesso: Qualquer pessoa".
+ * 5. Copie a URL do Web App gerada e cole no app-nutri.html e portal-paciente.html.
+ */
+
+// Nomes das Abas do Banco de Dados
+const SHEETS = {
+  PACIENTES: "Pacientes",
+  AGENDAMENTOS: "Agendamentos",
+  ANAMNESES: "Anamneses",
+  EVOLUCAO: "Evolucao",
+  PLANOS: "Planos"
+};
+
+/**
+ * Função de Inicialização do Banco de Dados
+ * Cria todas as abas necessárias com os cabeçalhos padrão
+ */
+function setupDatabase() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  const schemas = {
+    [SHEETS.PACIENTES]: ["id", "cpf", "nome", "email", "whatsapp", "data_nascimento", "objetivo", "data_cadastro"],
+    [SHEETS.AGENDAMENTOS]: ["id", "paciente_id", "paciente_nome", "data", "hora", "tipo", "valor", "status"],
+    [SHEETS.ANAMNESES]: ["id", "paciente_id", "data", "alergias", "historico_saude", "rotina_sono", "intestino", "preferencias"],
+    [SHEETS.EVOLUCAO]: ["id", "paciente_id", "data", "peso", "percentual_gordura", "massa_magra", "cintura", "quadril"],
+    [SHEETS.PLANOS]: ["id", "paciente_id", "data", "json_refeicoes", "json_extras", "json_lista_compras"]
+  };
+
+  Object.keys(schemas).forEach(sheetName => {
+    let sheet = ss.getSheetByName(sheetName);
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+    }
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(schemas[sheetName]);
+      sheet.getRange(1, 1, 1, schemas[sheetName].length).setFontWeight("bold").setBackground("#203528").setFontColor("#ffffff");
+    }
+  });
+
+  Logger.log("Database Setup Completed Successfully!");
+}
+
+/**
+ * Tratamento de Requisições GET
+ */
+function doGet(e) {
+  return handleRequest(e, "GET");
+}
+
+/**
+ * Tratamento de Requisições POST
+ */
+function doPost(e) {
+  return handleRequest(e, "POST");
+}
+
+/**
+ * Handler Central da API REST
+ */
+function handleRequest(e, method) {
+  const response = { success: false, data: null, error: null };
+
+  try {
+    let params = {};
+    if (method === "GET") {
+      params = e.parameter || {};
+    } else if (method === "POST" && e.postData && e.postData.contents) {
+      params = JSON.parse(e.postData.contents);
+    }
+
+    const action = params.action;
+
+    switch (action) {
+      // 1. LOGIN PACIENTE
+      case "loginPaciente":
+        response.data = loginPaciente(params.cpf, params.data_nascimento);
+        response.success = true;
+        break;
+
+      // 2. PACIENTES
+      case "getPacientes":
+        response.data = getTableData(SHEETS.PACIENTES);
+        response.success = true;
+        break;
+
+      case "savePaciente":
+        response.data = savePaciente(params.paciente);
+        response.success = true;
+        break;
+
+      // 3. AGENDAMENTOS
+      case "getAgendamentos":
+        response.data = getTableData(SHEETS.AGENDAMENTOS);
+        response.success = true;
+        break;
+
+      case "saveAgendamento":
+        response.data = saveAgendamento(params.agendamento);
+        response.success = true;
+        break;
+
+      // 4. ANAMNESES
+      case "saveAnamnese":
+        response.data = saveAnamnese(params.anamnese);
+        response.success = true;
+        break;
+
+      case "getAnamnese":
+        response.data = getByField(SHEETS.ANAMNESES, "paciente_id", params.paciente_id);
+        response.success = true;
+        break;
+
+      // 5. EVOLUÇÃO CORPORAL
+      case "saveEvolucao":
+        response.data = saveEvolucao(params.evolucao);
+        response.success = true;
+        break;
+
+      case "getEvolucao":
+        response.data = getAllByField(SHEETS.EVOLUCAO, "paciente_id", params.paciente_id);
+        response.success = true;
+        break;
+
+      // 6. PLANOS ALIMENTARES
+      case "savePlano":
+        response.data = savePlano(params.plano);
+        response.success = true;
+        break;
+
+      case "getPlanoVigente":
+        response.data = getPlanoVigente(params.paciente_id);
+        response.success = true;
+        break;
+
+      default:
+        response.error = "Ação não informada ou inválida: " + action;
+    }
+
+  } catch (err) {
+    response.success = false;
+    response.error = err.toString();
+  }
+
+  return ContentService.createTextOutput(JSON.stringify(response))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ==========================================
+// FUNÇÕES AUXILIARES DE BANCO DE DADOS
+// ==========================================
+
+function getSheet(sheetName) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    setupDatabase();
+    sheet = ss.getSheetByName(sheetName);
+  }
+  return sheet;
+}
+
+function getTableData(sheetName) {
+  const sheet = getSheet(sheetName);
+  const data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return [];
+
+  const headers = data[0];
+  const rows = data.slice(1);
+
+  return rows.map(row => {
+    let obj = {};
+    headers.forEach((h, idx) => {
+      obj[h] = row[idx];
+    });
+    return obj;
+  });
+}
+
+function getByField(sheetName, fieldName, val) {
+  const items = getTableData(sheetName);
+  return items.find(item => String(item[fieldName]).trim() === String(val).trim()) || null;
+}
+
+function getAllByField(sheetName, fieldName, val) {
+  const items = getTableData(sheetName);
+  return items.filter(item => String(item[fieldName]).trim() === String(val).trim());
+}
+
+function cleanCPF(cpf) {
+  return String(cpf || "").replace(/\D/g, "");
+}
+
+function loginPaciente(cpfInput, dataNascInput) {
+  const cleanInputCpf = cleanCPF(cpfInput);
+  const pacientes = getTableData(SHEETS.PACIENTES);
+
+  const paciente = pacientes.find(p => {
+    const pCpf = cleanCPF(p.cpf);
+    return pCpf === cleanInputCpf;
+  });
+
+  if (!paciente) {
+    throw new Error("Paciente não encontrado com o CPF informado.");
+  }
+
+  return paciente;
+}
+
+function savePaciente(p) {
+  const sheet = getSheet(SHEETS.PACIENTES);
+  const id = p.id || "PAC-" + Date.now();
+  const dataCad = p.data_cadastro || new Date().toISOString().split("T")[0];
+
+  sheet.appendRow([
+    id,
+    cleanCPF(p.cpf),
+    p.nome,
+    p.email || "",
+    p.whatsapp || "",
+    p.data_nascimento || "",
+    p.objetivo || "Reeducação Alimentar",
+    dataCad
+  ]);
+
+  return { id: id, ...p };
+}
+
+function saveAgendamento(ag) {
+  const sheet = getSheet(SHEETS.AGENDAMENTOS);
+  const id = ag.id || "AG-" + Date.now();
+
+  sheet.appendRow([
+    id,
+    ag.paciente_id,
+    ag.paciente_nome,
+    ag.data,
+    ag.hora,
+    ag.tipo || "Consulta Nutricional",
+    ag.valor || 250,
+    ag.status || "Confirmado"
+  ]);
+
+  return { id: id, ...ag };
+}
+
+function saveAnamnese(an) {
+  const sheet = getSheet(SHEETS.ANAMNESES);
+  const id = "ANAM-" + Date.now();
+  const hoje = new Date().toISOString().split("T")[0];
+
+  sheet.appendRow([
+    id,
+    an.paciente_id,
+    hoje,
+    an.alergias || "Nenhuma",
+    an.historico_saude || "Sem observações",
+    an.rotina_sono || "8h/noite",
+    an.intestino || "Regular",
+    an.preferencias || ""
+  ]);
+
+  return { id: id, ...an };
+}
+
+function saveEvolucao(ev) {
+  const sheet = getSheet(SHEETS.EVOLUCAO);
+  const id = "EVO-" + Date.now();
+  const hoje = ev.data || new Date().toISOString().split("T")[0];
+
+  sheet.appendRow([
+    id,
+    ev.paciente_id,
+    hoje,
+    ev.peso,
+    ev.percentual_gordura,
+    ev.massa_magra,
+    ev.cintura || 0,
+    ev.quadril || 0
+  ]);
+
+  return { id: id, ...ev };
+}
+
+function savePlano(pl) {
+  const sheet = getSheet(SHEETS.PLANOS);
+  const id = "PLANO-" + Date.now();
+  const hoje = new Date().toISOString().split("T")[0];
+
+  sheet.appendRow([
+    id,
+    pl.paciente_id,
+    hoje,
+    JSON.stringify(pl.refeicoes || []),
+    JSON.stringify(pl.extras || {}),
+    JSON.stringify(pl.lista_compras || {})
+  ]);
+
+  return { id: id, ...pl };
+}
+
+function getPlanoVigente(paciente_id) {
+  const planos = getAllByField(SHEETS.PLANOS, "paciente_id", paciente_id);
+  if (!planos || planos.length === 0) return null;
+
+  const ultimo = planos[planos.length - 1];
+  return {
+    id: ultimo.id,
+    paciente_id: ultimo.paciente_id,
+    data: ultimo.data,
+    refeicoes: JSON.parse(ultimo.json_refeicoes || "[]"),
+    extras: JSON.parse(ultimo.json_extras || "{}"),
+    lista_compras: JSON.parse(ultimo.json_lista_compras || "{}")
+  };
+}

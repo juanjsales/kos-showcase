@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOS Nutrição · Painel da Nutricionista (Dra. Silvia Lemos)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root {
+  --forest-dark: #203528;
+  --forest-card: #182a1f;
+  --forest-deep: #0e1a12;
+  --sage-light: #8ca481;
+  --sage-dim: rgba(140, 164, 129, 0.2);
+  --paper-bg: #f8faf6;
+  --text-dark: #192b20;
+  --text-light: #eef4e5;
+  --text-muted: #a0b399;
+  --border-forest: rgba(140, 164, 129, 0.25);
+  --tr: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--forest-deep); color: var(--text-light); font-family: 'Plus Jakarta Sans', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+
+/* SIDEBAR LEVE */
+.sidebar { width: 260px; background: var(--forest-dark); border-right: 1px solid var(--border-forest); padding: 24px; display: flex; flex-direction: column; gap: 28px; flex-shrink: 0; }
+.brand-box { display: flex; align-items: center; gap: 12px; }
+.brand-icon { width: 42px; height: 42px; background: var(--sage-dim); border: 1.5px solid var(--sage-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+.brand-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: #fff; }
+.brand-crn { font-size: 0.72rem; color: var(--sage-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.nav-menu { display: flex; flex-direction: column; gap: 8px; }
+.nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: var(--tr); cursor: pointer; border: 1px solid transparent; }
+.nav-item:hover, .nav-item.active { background: var(--forest-card); color: #fff; border-color: var(--border-forest); }
+.nav-item.active { border-color: var(--sage-light); color: var(--sage-light); }
+
+/* MAIN CONTENT */
+.main-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--forest-deep); }
+.top-header { height: 70px; background: var(--forest-dark); border-bottom: 1px solid var(--border-forest); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.page-title { font-size: 1.25rem; font-weight: 800; color: #fff; }
+.top-user { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; font-weight: 700; color: var(--sage-light); }
+.top-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--sage-light); }
+
+.content-area { flex: 1; overflow-y: auto; padding: 32px; display: flex; flex-direction: column; gap: 28px; }
+.view-panel { display: none; flex-direction: column; gap: 28px; }
+.view-panel.active { display: flex; }
+
+/* KPIS GRID */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.kpi-card { background: var(--forest-card); border: 1px solid var(--border-forest); padding: 20px 24px; border-radius: var(--radius); display: flex; flex-direction: column; gap: 8px; }
+.kpi-val { font-size: 2rem; font-weight: 900; color: #fff; }
+.kpi-label { font-size: 0.8rem; color: var(--sage-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* CARDS & TABLES */
+.card { background: var(--forest-card); border: 1px solid var(--border-forest); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.card-header { display: flex; align-items: center; justify-content: space-between; }
+.card-title { font-size: 1.1rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
+
+/* BOTÕES & INPUTS */
+.btn { background: var(--sage-light); color: var(--forest-dark); border: none; padding: 10px 20px; border-radius: 10px; font-family: inherit; font-weight: 800; font-size: 0.85rem; cursor: pointer; transition: var(--tr); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.btn:hover { background: #9bb590; transform: translateY(-1px); }
+.btn-secondary { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid var(--border-forest); }
+.btn-secondary:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sage-light); }
+.form-control { background: rgba(0,0,0,0.3); border: 1px solid var(--border-forest); padding: 12px 16px; border-radius: 10px; color: #fff; font-family: inherit; font-size: 0.9rem; outline: none; transition: var(--tr); }
+.form-control:focus { border-color: var(--sage-light); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* TABELA DE PACIENTES */
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+th { background: rgba(0,0,0,0.3); padding: 14px 16px; color: var(--sage-light); font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--border-forest); }
+td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-light); }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ESTILO EDITORIAL DO PLANO ALIMENTAR PARA IMPRESSÃO PDF */
+.pdf-preview { background: var(--paper-bg); color: var(--text-dark); padding: 40px; border-radius: var(--radius); font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; gap: 28px; }
+.pdf-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--forest-dark); padding-bottom: 20px; }
+.pdf-brand { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--forest-dark); }
+.pdf-patient-info { background: #eef4e5; border-left: 4px solid var(--sage-light); padding: 16px; border-radius: 8px; font-size: 0.9rem; line-height: 1.6; }
+
+.pdf-meal-card { background: #fff; border: 1px solid #e2ebd8; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.pdf-meal-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--forest-dark); margin-bottom: 12px; display: flex; justify-content: space-between; }
+
+/* IMPRESSÃO A4 */
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .sidebar, .top-header, .btn, .no-print { display: none !important; }
+  .main-wrapper, .content-area, .view-panel { padding: 0 !important; overflow: visible !important; }
+  .pdf-preview { padding: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar no-print">
+  <div class="brand-box">
+    <div class="brand-icon">🌿</div>
+    <div>
+      <div class="brand-name">KOS Nutrição</div>
+      <div class="brand-crn">Dra. Silvia Lemos</div>
+    </div>
+  </div>
+
+  <nav class="nav-menu">
+    <div class="nav-item active" onclick="switchView('agendaView', this)">
+      <span>📅</span> Agenda &amp; KPIs
+    </div>
+    <div class="nav-item" onclick="switchView('pacientesView', this)">
+      <span>👤</span> Pacientes &amp; Anamnese
+    </div>
+    <div class="nav-item" onclick="switchView('planoView', this)">
+      <span>🥗</span> Gerador de Plano &amp; PDF
+    </div>
+    <div class="nav-item" onclick="switchView('evolucaoView', this)">
+      <span>📈</span> Bioimpedância &amp; Evolução
+    </div>
+  </nav>
+</aside>
+
+<main class="main-wrapper">
+  <header class="top-header no-print">
+    <div class="page-title" id="pageTitle">Agenda &amp; KPIs Diários</div>
+    <div class="top-user">
+      <img src="assets/silvia-hero.jpg" alt="Dra Silvia" class="top-avatar">
+      <span>Dra. Silvia de Oliveira Lemos</span>
+    </div>
+  </header>
+
+  <div class="content-area">
+    
+    <!-- 1. AGENDA & KPIS -->
+    <div class="view-panel active" id="agendaView">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Consultas Hoje</div>
+          <div class="kpi-val" id="kpiConsultas">4</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Atendimentos Online</div>
+          <div class="kpi-val" id="kpiOnline">3</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Presenciais</div>
+          <div class="kpi-val" id="kpiPresencial">1</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Faturamento Estimado</div>
+          <div class="kpi-val" id="kpiFatura">R$ 1.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📅 Consultas Agendadas</div>
+          <button class="btn" onclick="openAgendamentoModal()">+ Novo Agendamento</button>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Horário</th>
+                <th>Paciente</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Ação WhatsApp</th>
+              </tr>
+            </thead>
+            <tbody id="tblAgendamentos">
+              <tr>
+                <td>09:00</td>
+                <td>Juliana Mendes</td>
+                <td>Online (Google Meet)</td>
+                <td><span style="color: #8ca481; font-weight:800;">Confirmado</span></td>
+                <td>
+                  <a href="https://wa.me/5521999998888?text=Ol%C3%A1%20Juliana!%20Lembrete%20da%20sua%20consulta%20hoje%20%C3%A0s%2009h." target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">💬 Lembrete 1-Clique</a>
+                </td>
+              </tr>
+              <tr>
+                <td>11:00</td>
+                <td>Carlos Eduardo Torres</td>
+                <td>Presencial</td>
+                <td><span style="color: #8ca481; font-weight:800;">Confirmado</span></td>
+                <td>
+                  <a href="https://wa.me/5521988887777?text=Ol%C3%A1%20Carlos!%20Confirmado%20atendimento%20às%2011h." target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">💬 Lembrete 1-Clique</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PACIENTES & ANAMNESE -->
+    <div class="view-panel" id="pacientesView">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">👤 Cadastro de Pacientes</div>
+          <button class="btn" onclick="openPacienteModal()">+ Cadastrar Paciente</button>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>WhatsApp</th>
+                <th>Objetivo</th>
+                <th>Link Anamnese</th>
+              </tr>
+            </thead>
+            <tbody id="tblPacientes">
+              <tr>
+                <td>Juliana Mendes</td>
+                <td>123.456.789-00</td>
+                <td>(21) 99999-8888</td>
+                <td>Reeducação Alimentar &amp; Emagrecimento</td>
+                <td>
+                  <button class="btn btn-secondary" onclick="copiarLinkAnamnese('PAC-01')" style="padding:6px 12px; font-size:0.75rem;">🔗 Copiar Link Anamnese</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GERADOR DE PLANO ALIMENTAR & LISTA DE COMPRAS PDF -->
+    <div class="view-panel" id="planoView">
+      <div class="card no-print">
+        <div class="card-header">
+          <div class="card-title">🥗 Prescrição Nutricional &amp; Gerador PDF</div>
+          <button class="btn" onclick="window.print()">🖨️ Exportar / Imprimir PDF A4</button>
+        </div>
+
+        <div class="grid-3">
+          <div class="form-group">
+            <label>Selecione o Paciente</label>
+            <select class="form-control" id="selPacientePlano">
+              <option value="PAC-01">Juliana Mendes (CPF: 123.456.789-00)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preset Rápido de Macronutrientes</label>
+            <select class="form-control" onchange="aplicarPreset(this.value)">
+              <option value="EMAGRECIMENTO">Reeducação Alimentar / Emagrecimento (1800 kcal)</option>
+              <option value="HIPERTROFIA">Hipertrofia Esportiva (2400 kcal)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Meta Calórica Diária</label>
+            <input type="text" class="form-control" id="inpCalorias" value="1800 kcal">
+          </div>
+        </div>
+      </div>
+
+      <!-- PREVIEW IMPRESSÃO EDITORIAL A4 -->
+      <div class="pdf-preview" id="pdfArea">
+        <div class="pdf-header">
+          <div>
+            <div class="pdf-brand">Dra. Silvia de Oliveira Lemos</div>
+            <div style="font-size: 0.85rem; color: #555; margin-top: 2px;">Nutricionista • CRN-4 24987/P • (21) 98738-5146</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 800; font-size: 1rem; color: var(--forest-dark);">PLANO ALIMENTAR</div>
+            <div style="font-size: 0.8rem; color: #666;" id="pdfData">Data: 05/08/2026</div>
+          </div>
+        </div>
+
+        <div class="pdf-patient-info">
+          <strong>Paciente:</strong> Juliana Mendes | <strong>Objetivo:</strong> Reeducação Alimentar &amp; Emagrecimento<br>
+          <strong>Meta Diária:</strong> 1800 kcal (Proteínas: 130g | Carbos: 180g | Gorduras: 55g) | <strong>Meta de Água:</strong> 2.3 Litros/dia
+        </div>
+
+        <div id="pdfRefeicoes">
+          <div class="pdf-meal-card">
+            <div class="pdf-meal-title">
+              <span>🍳 Café da Manhã (08:00)</span>
+              <span style="font-size:0.85rem; color:#666;">~350 kcal</span>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.6; color: #333;">
+              • 2 ovos mexidos (ou cozidos) temperados com orégano e pitada de sal rosa.<br>
+              • 1 fatia de pão integral 100% grãos com 1 colher de chá de requeijão light.<br>
+              • 1 xícara de café preto sem açúcar (opcional: adoçante stevia).
+            </p>
+          </div>
+
+          <div class="pdf-meal-card">
+            <div class="pdf-meal-title">
+              <span>🥗 Almoço - Regra do Prato 50/25/25 (12:30)</span>
+              <span style="font-size:0.85rem; color:#666;">~600 kcal</span>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.6; color: #333;">
+              • <strong>50% Salada/Vegetais:</strong> Alface crespa, rúcula, tomate assado e pepino temperados com azeite extravirgem.<br>
+              • <strong>25% Proteína Magra:</strong> 120g de filé de frango grelhado (ou patinho moído).<br>
+              • <strong>25% Carboidrato Complexo:</strong> 3 colheres de sopa de arroz integral + 1 concha média de feijão preto.
+            </p>
+          </div>
+        </div>
+
+        <!-- LISTA DE COMPRAS CATEGORIZADA AUTO-GERADA -->
+        <div style="background: #fff; border: 1.5px solid var(--forest-dark); border-radius: 12px; padding: 24px; margin-top: 10px;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--forest-dark); margin-bottom: 16px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+            🛒 Lista de Compras Categorizada
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.88rem; line-height: 1.7;">
+            <div>
+              <strong style="color: var(--forest-dark);">🥬 Hortifrúti:</strong>
+              <p>Alface crespa, Rúcula, Tomate, Pepino, Bananas, Limão.</p>
+
+              <strong style="color: var(--forest-dark); display:block; margin-top:10px;">🥩 Proteínas &amp; Ovos:</strong>
+              <p>Ovos caipiras (2 dúzias), Filé de frango (1kg), Patinho moído (500g).</p>
+            </div>
+
+            <div>
+              <strong style="color: var(--forest-dark);">🌾 Mercearia &amp; Grãos:</strong>
+              <p>Pão integral 100%, Arroz integral, Feijão preto, Azeite extravirgem, Aveia.</p>
+
+              <strong style="color: var(--forest-dark); display:block; margin-top:10px;">🥛 Laticínios &amp; Bebidas:</strong>
+              <p>Requeijão light, Café torrado moído.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. BIOIMPEDÂNCIA & EVOLUÇÃO CORPORAL -->
+    <div class="view-panel" id="evolucaoView">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📈 Acompanhamento de Bioimpedância (Juliana Mendes)</div>
+          <button class="btn" onclick="registrarEvolucao()">+ Registrar Nova Medição</button>
+        </div>
+
+        <div style="height: 320px; position: relative;">
+          <canvas id="chartEvolucao"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+function switchView(viewId, navEl) {
+  document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  
+  document.getElementById(viewId).classList.add('active');
+  if(navEl) navEl.classList.add('active');
+}
+
+function copiarLinkAnamnese(pacienteId) {
+  const link = `${window.location.origin}${window.location.pathname.replace('app-nutri.html', '')}anamnese-publica.html?paciente=${pacienteId}`;
+  navigator.clipboard.writeText(link).then(() => {
+    alert("Link de Anamnese Copiado com Sucesso!\n\nLink: " + link);
+  });
+}
+
+// INICIALIZAR GRÁFICO DE EVOLUÇÃO (CHART.JS)
+window.addEventListener('DOMContentLoaded', () => {
+  const ctx = document.getElementById('chartEvolucao');
+  if (ctx) {
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Maio/26', 'Junho/26', 'Julho/26', 'Agosto/26'],
+        datasets: [
+          {
+            label: 'Peso (kg)',
+            data: [71.2, 69.0, 67.4, 65.5],
+            borderColor: '#8ca481',
+            backgroundColor: 'rgba(140, 164, 129, 0.1)',
+            fill: true,
+            tension: 0.3
+          },
+          {
+            label: 'Gordura corporal (%)',
+            data: [28.5, 26.1, 24.0, 22.4],
+            borderColor: '#203528',
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#eef4e5', font: { family: 'Plus Jakarta Sans' } } }
+        },
+        scales: {
+          x: { ticks: { color: '#a0b399' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+          y: { ticks: { color: '#a0b399' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+        }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
